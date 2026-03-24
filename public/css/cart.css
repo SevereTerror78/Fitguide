@@ -1,0 +1,471 @@
+/* =========================================================
+   FITGUIDE CART – CLEAN, CENTERED, FIXED VERSION (ALL CENTER)
+   ========================================================= */
+
+/* ---------- GLOBAL WIDTH VARIABLE ---------- */
+:root { --cart-width: 920px; }
+
+/* =========================================================
+   HEADER (CART TITLE)
+   ========================================================= */
+.cart-header{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  inline-size:min(100%, var(--cart-width));
+  margin:14px auto 1%;
+  padding:16px 18px;
+  background:linear-gradient(135deg, #1e293b, #0f172a);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:12px;
+  box-shadow:0 8px 28px rgba(9,12,22,.45), inset 0 1px 0 rgba(255,255,255,.06);
+}
+
+.cart-icon{
+  width:46px; height:46px;
+  border-radius:50%;
+  display:grid; place-items:center;
+  color:#fff;
+  background:linear-gradient(135deg, #6a11cb, #2575fc);
+  box-shadow:0 8px 22px rgba(37,117,252,.45);
+}
+
+.cart-text h1{
+  margin:0;
+  font-size:1.4rem;
+  font-weight:800;
+  color:#fff;
+}
+
+.cart-text p{
+  margin:2px 0 0;
+  font-size:.95rem;
+  color:#cfe3ff;
+}
+
+/* =========================================================
+   MAIN CART WRAPPER
+   ========================================================= */
+.cart-card__main{
+  inline-size:min(100%, var(--cart-width));
+  margin:0 auto 28px;
+  padding:28px;
+  background:#141a28;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.06);
+  box-shadow:0 14px 36px rgba(0,0,0,.35);
+}
+
+/* =========================================================
+   SUMMARY (ORDER SUMMARY BELOW)
+   ========================================================= */
+.cart-card__aside{
+  width:100%;
+  display:flex;
+  justify-content:center;
+}
+
+.summary-card{
+  inline-size:min(100%, var(--cart-width));
+  margin:0 auto;
+  padding:20px;
+  background:#161d2b;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 12px 30px rgba(0,0,0,.35);
+}
+
+.summary-card h3{
+  margin:0 0 10px;
+  padding-bottom:4px;
+  color:#eaf1ff;
+  font-weight:800;
+}
+
+/* summary rows */
+.sum-row{
+  display:flex;
+  justify-content:space-between;
+  padding:8px 0;
+  color:#cfe3ff;
+  border-top:1px dashed rgba(255,255,255,.08);
+}
+.sum-row:first-of-type{ border-top:none; }
+
+.sum-row.total strong{
+  font-size:1.2rem;
+  color:#fff;
+  text-shadow:0 2px 12px rgba(124,77,255,.25);
+}
+
+/* proceed link no underline */
+.summary-card a.btn.pill.large,
+.summary-card a.btn.pill.large:hover,
+.summary-card a.btn.pill.large:focus,
+.summary-card a.btn.pill.large:active{
+  text-decoration:none !important;
+}
+
+/* =========================================================
+   DISCOUNT (ORDER SUMMARY)
+   ========================================================= */
+.discount-box{
+  margin:14px 0 10px;
+  max-width:560px;
+}
+
+.discount-label{
+  display:block;
+  margin-bottom:8px;
+  font-weight:800;
+  color:#cfe3ff;
+}
+
+.discount-row{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.discount-input{
+  flex:1;
+  max-width:420px;
+  height:40px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.12);
+  background:#0f1624;
+  color:#fff;
+  padding:0 14px;
+  outline:none;
+  font-weight:700;
+}
+
+.discount-input:focus{
+  border-color:rgba(124,77,255,.55);
+  box-shadow:0 0 0 3px rgba(124,77,255,.18);
+}
+
+.btn.pill.discount-apply{
+  height:40px;
+  min-width:120px;
+  padding:0 18px;
+  border-radius:12px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  margin-top:-2px;
+}
+
+.discount-message{
+  margin-top:10px;
+  font-weight:800;
+  font-size:.95rem;
+  display:none;
+}
+.discount-message.ok{ color:#8cf0c8; display:block; }
+.discount-message.err{ color:#ff8aa0; display:block; }
+
+/* =========================================================
+   TABLE (HEADER + ROWS) — STABLE GRID (ALL CENTERED)
+   ========================================================= */
+.cart-head.row,
+.cart-row.row{
+  inline-size:min(100%, var(--cart-width));
+  margin-inline:auto;
+  display:grid;
+  grid-template-columns: 1fr 170px 210px 170px 90px; /* Product | Price | Qty | Total | Actions */
+  align-items:center;
+  column-gap:16px;
+  box-sizing:border-box;
+}
+
+/* header */
+.cart-head.row{
+  padding:10px 12px 16px;
+  text-align:center;
+  color:#9fb0ff;
+  font-weight:800;
+  border-bottom:1px dashed rgba(153,170,255,.28);
+}
+
+/* Header: minden középre */
+.cart-head.row .Fejlec{
+  justify-self: center;
+  text-align: center;
+}
+
+/* rows */
+.cart-row.row{
+  margin:14px auto 0;
+  padding:14px 16px;
+  background:linear-gradient(180deg, #1a2540, #152136);
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.06);
+  box-shadow:0 8px 18px rgba(0,0,0,.25);
+  transition:transform .08s ease, box-shadow .18s ease;
+}
+
+.cart-row.row:hover{
+  transform:translateY(-1px);
+  box-shadow:0 14px 28px rgba(0,0,0,.32);
+}
+
+/* cells: minden középre */
+.cart-row.row .cell{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-width:0;
+  text-align:center;
+}
+
+/* Product: egy sorban, középen, …-tal */
+.cart-row.row .cell--name{
+  justify-content:center;
+  text-align:center;
+}
+.cart-row .cell--name .title{
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color:#f0f3ff;
+  font-weight:800;
+}
+
+/* price + total: középen */
+.cart-row .cell--price .price,
+.cart-row .cell--total .line-total{
+  font-weight:700;
+  color:#f7f8ff;
+}
+
+/* actions középen, ne legyen extra padding */
+.cart-row.row .cell--actions{
+  padding-right:0;
+}
+.cart-row.row .cell--actions form{ margin:0; }
+
+/* =========================================================
+   QTY CONTROLS
+   ========================================================= */
+.qty-form{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+}
+
+.qty-btn{
+  width:36px; height:36px;
+  border-radius:10px;
+  background:#1b2338;
+  border:1px solid rgba(255,255,255,.12);
+  color:#eef;
+  font-size:18px;
+}
+
+.qty-btn:hover{
+  background:#212b46;
+  box-shadow:0 0 0 3px rgba(124,77,255,.2);
+}
+
+.qty-input{
+  width:60px;
+  height:36px;
+  background:#0f1624;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:10px;
+  color:#fff;
+  text-align:center;
+  font-weight:700;
+}
+
+/* =========================================================
+   DELETE BUTTON
+   ========================================================= */
+.icon-btn{
+  width:38px; height:38px;
+  border-radius:10px;
+  background:#3a2232;
+  border:1px solid rgba(255,99,132,.24);
+  color:#f6dbe1;
+}
+
+.icon-btn:hover{
+  background:#4a273c;
+  box-shadow:0 0 10px rgba(255,77,109,.28);
+}
+
+/* =========================================================
+   CLEAR CART
+   ========================================================= */
+.btn.ghost.danger.clear-cart-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  margin-top:14px;
+  gap:8px;
+  height:38px;
+  padding:0 14px;
+  border-radius:999px;
+  border:1px solid rgba(255,99,132,.25);
+  color:#ff6b8a;
+  background:transparent;
+}
+
+.btn.ghost.danger.clear-cart-btn:hover{
+  background:rgba(255,99,132,.1);
+}
+
+/* =========================================================
+   EMPTY CART
+   ========================================================= */
+.empty-cart{
+  text-align:center;
+  max-width:640px;
+  margin:64px auto 80px;
+  padding:28px 22px;
+  background:#141a28;
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:16px; 
+}
+.empty-cart a {
+  text-decoration: none;
+}
+
+.empty-cart__title{
+  font-size:1.6rem;
+  color:#fff;
+  font-weight:800;
+}
+
+.empty-cart__icon{
+  width:46px; height:46px;
+  border-radius:50%;
+  display:grid; place-items:center;
+  color:#fff;
+  background:linear-gradient(135deg, #6a11cb, #2575fc);
+  box-shadow:0 8px 22px rgba(37,117,252,.45);
+  margin: 0 auto 14px;
+}
+
+/* =========================================================
+   MOBILE LAYOUT
+   ========================================================= */
+@media (max-width: 768px){
+  .cart-head.row{ display:none !important; }
+
+  .cart-row.row{
+    grid-template-columns: 1fr !important;
+    text-align:left !important;
+    gap:12px !important;
+  }
+
+  .cart-row.row .cell{
+    justify-content:space-between !important;
+    text-align:left !important;
+  }
+
+  .cart-row .cell--name .title{
+    white-space: normal; /* mobilon mehet 2 sor */
+  }
+}
+/* =========================================================
+   RESPONSIVE PACK (add to END of cart.css)
+   ========================================================= */
+
+/* 1) Globális szélesség: kisebb kijelzőn ne erőltesse a 920-at */
+@media (max-width: 1100px){
+  :root{ --cart-width: 94vw; } /* mindig belefér */
+}
+
+/* 2) Tablet: kisebb paddingek */
+@media (max-width: 900px){
+  .cart-header{ padding: 14px 14px; }
+  .cart-card__main{ padding: 18px; }
+  .summary-card{ padding: 16px; }
+
+  /* kicsit szorosabb grid */
+  .cart-head.row,
+  .cart-row.row{
+    grid-template-columns: 1fr 150px 200px 150px 80px;
+    column-gap: 12px;
+  }
+}
+
+/* 3) Mobil: a táblázat kártyás elrendezésre vált */
+@media (max-width: 768px){
+  /* header eltűnik */
+  .cart-head.row{ display:none !important; }
+
+  /* a sor egyoszlopos kártya */
+  .cart-row.row{
+    grid-template-columns: 1fr !important;
+    row-gap: 12px;
+    padding: 14px 14px;
+    text-align: left;
+  }
+
+  /* cellák: kétoldali elrendezés (cím + érték) */
+  .cart-row.row .cell{
+    width: 100%;
+    justify-content: space-between !important;
+    text-align: left !important;
+  }
+
+  /* Product felül külön sor, teljes szélesség */
+  .cart-row.row .cell--name{
+    justify-content: flex-start !important;
+  }
+
+  /* mobilon ne legyen 1 soros vágás, inkább törjön */
+  .cart-row .cell--name .title{
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+  }
+
+  /* Qty középre, de ne nyomja szét */
+  .cart-row.row .cell--qty{
+    justify-content: flex-start !important;
+  }
+
+  .qty-form{
+    justify-content: flex-start !important;
+  }
+
+  /* Actions jobbra */
+  .cart-row.row .cell--actions{
+    justify-content: flex-end !important;
+  }
+}
+
+/* 4) Extra kicsi mobil: még kisebb paddings + gombok */
+@media (max-width: 420px){
+  .cart-header{ gap: 12px; padding: 12px; }
+  .cart-icon{ width: 42px; height: 42px; }
+  .cart-text h1{ font-size: 1.2rem; }
+  .cart-text p{ font-size: .9rem; }
+
+  .cart-card__main{ padding: 14px; }
+  .summary-card{ padding: 14px; }
+
+  .qty-input{ width: 54px; }
+  .qty-btn{ width: 34px; height: 34px; }
+  .icon-btn{ width: 36px; height: 36px; }
+
+  /* discount sor törjön egymás alá */
+  .discount-row{
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .discount-input{
+    max-width: none;
+    width: 100%;
+  }
+  .btn.pill.discount-apply{
+    width: 100%;
+    margin-top: 0;
+  }
+}
