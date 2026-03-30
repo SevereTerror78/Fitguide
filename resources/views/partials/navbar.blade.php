@@ -4,14 +4,19 @@
     <!-- BAL OLDAL: oldalak -->
     <div class="nav-left">
 <<<<<<< HEAD
+<<<<<<< HEAD
       <button class="nav-toggle" id="navToggle">
 =======
       <button class="nav-toggle" id="navToggle" aria-label="{{ __('nav.toggle_menu') }}">
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+      <button class="nav-toggle" id="navToggle" aria-label="{{ __('nav.toggle_menu') }}">
+>>>>>>> 5c55d34 (new features)
         <i class="fa-solid fa-bars"></i>
       </button>
 
       <div class="nav-links" id="navMenu">
+<<<<<<< HEAD
 <<<<<<< HEAD
         <a href="/">HOME</a>
         <a href="/exercises">EXERCISES</a>
@@ -20,6 +25,8 @@
         @if(auth()->check() && auth()->user()->role === 'admin')
           <a href="{{ route('admin.dashboard') }}">ADMIN PANEL</a>
 =======
+=======
+>>>>>>> 5c55d34 (new features)
         <a href="/" class="{{ request()->routeIs('home') ? 'active' : '' }}">{{ __('nav.home') }}</a>
         <a href="/exercises" class="{{ request()->routeIs('exercises.*') ? 'active' : '' }}">{{ __('nav.exercises') }}</a>
         <a href="/store" class="{{ request()->routeIs('store.*') ? 'active' : '' }}">{{ __('nav.store') }}</a>
@@ -29,11 +36,15 @@
           <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.*') ? 'active' : '' }}">
             {{ __('nav.admin_panel') }}
           </a>
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
         @endif
       </div>
     </div>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
       <!-- JOBB OLDAL: Cart + Profile egy sorban -->
   <div class="user-area">
@@ -46,6 +57,8 @@
               {{ auth()->user()->name }}
               <i class="fa-solid fa-chevron-down"></i>
 =======
+=======
+>>>>>>> 5c55d34 (new features)
     <!-- JOBB OLDAL: Cart + Profile egy sorban -->
     <div class="user-area">
 
@@ -56,11 +69,15 @@
           <button class="user-btn" type="button" aria-label="{{ __('nav.user_menu') }}">
             {{ auth()->user()->name }}
             <i class="fa-solid fa-chevron-down"></i>
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
           </button>
 
           <!-- DROPDOWN -->
           <div class="dropdown-menu">
+<<<<<<< HEAD
 <<<<<<< HEAD
               <a href="{{ route('profile.index') }}" class="dropdown-item">
                   Profile
@@ -99,6 +116,8 @@
   </div>
 </nav>
 =======
+=======
+>>>>>>> 5c55d34 (new features)
             <a href="{{ route('profile.index') }}" class="dropdown-item">
               {{ __('nav.profile') }}
             </a>
@@ -134,5 +153,9 @@
     </div>
 
   </div>
+<<<<<<< HEAD
 </nav>
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+</nav>
+>>>>>>> 5c55d34 (new features)

@@ -4,10 +4,14 @@
 <div class="p-8 max-w-xl mx-auto bg-white shadow rounded-xl">
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     <h1 class="text-3xl font-bold mb-8">Edit User</h1>
 =======
     <h1 class="text-3xl font-bold mb-8">{{ __('admin.users.edit_title') }}</h1>
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+    <h1 class="text-3xl font-bold mb-8">{{ __('admin.users.edit_title') }}</h1>
+>>>>>>> 5c55d34 (new features)
 
     <form action="{{ route('admin.users.update', $user->id) }}" method="POST">
         @csrf
@@ -15,14 +19,19 @@
 
         {{-- Name --}}
 <<<<<<< HEAD
+<<<<<<< HEAD
         <label class="block font-semibold mb-1">Name</label>
 =======
         <label class="block font-semibold mb-1">{{ __('admin.users.form.name') }}</label>
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+        <label class="block font-semibold mb-1">{{ __('admin.users.form.name') }}</label>
+>>>>>>> 5c55d34 (new features)
         <input type="text" name="name" value="{{ $user->name }}"
                class="w-full mb-4 px-4 py-2 border rounded-lg">
 
         {{-- Email --}}
+<<<<<<< HEAD
 <<<<<<< HEAD
         <label class="block font-semibold mb-1">Email</label>
         <input type="email" name="email" value="{{ $user->email }}"
@@ -41,6 +50,8 @@
                 Save Changes
             </button>
 =======
+=======
+>>>>>>> 5c55d34 (new features)
         <label class="block font-semibold mb-1">{{ __('admin.users.form.email') }}</label>
         <input type="email" name="email" value="{{ $user->email }}"
                class="w-full mb-4 px-4 py-2 border rounded-lg">
@@ -59,13 +70,20 @@
         <button class="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 mt-6">
             {{ __('admin.users.save_changes') }}
         </button>
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
 
     </form>
 
 </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 @endsection
 =======
 @endsection
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+@endsection
+>>>>>>> 5c55d34 (new features)

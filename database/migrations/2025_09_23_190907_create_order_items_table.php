@@ -9,7 +9,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('order_items', function (Blueprint $table) {
+<<<<<<< HEAD
             $table->id();
+=======
+>>>>>>> 5c55d34 (new features)
 
             $table->foreignId('order_id')
                   ->constrained('orders')

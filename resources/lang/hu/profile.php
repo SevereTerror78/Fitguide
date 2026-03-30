@@ -39,6 +39,13 @@ return [
     'admin_label'   => 'FitGuide Admin',
     'member_label'  => 'FitGuide Tag',
 
+<<<<<<< HEAD
+=======
+    'delete_confirmation_invalid' => 'A megadott megerősítő szöveg hibás.',
+    'delete_warning' => 'A fiók törlése végleges, és később nem vonható vissza.',
+    'type_delete_to_confirm' => 'A törlés megerősítéséhez írd be pontosan ezt:',
+
+>>>>>>> 5c55d34 (new features)
     /*
     |--------------------------------------------------------------------------
     | SIDEBAR

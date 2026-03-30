@@ -39,6 +39,12 @@ return [
     'admin_label'   => 'FitGuide Admin',
     'member_label'  => 'FitGuide Member',
 
+<<<<<<< HEAD
+=======
+    'delete_confirmation_invalid' => 'The confirmation text is incorrect.',
+    'delete_warning' => 'Deleting your account is permanent and cannot be undone later.',
+    'type_delete_to_confirm' => 'To confirm deletion, type this exactly:',
+>>>>>>> 5c55d34 (new features)
     /*
     |--------------------------------------------------------------------------
     | SIDEBAR

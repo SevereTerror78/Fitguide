@@ -3,12 +3,18 @@
 namespace App\Http\Controllers;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 use Illuminate\Http\Request;
 =======
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+>>>>>>> 5c55d34 (new features)
 
 class SettingsController extends Controller
 {
@@ -17,6 +23,7 @@ class SettingsController extends Controller
         return view('settings.index');
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     public function update(Request $request)
     {
@@ -40,6 +47,8 @@ class SettingsController extends Controller
     }
 }
 =======
+=======
+>>>>>>> 5c55d34 (new features)
     /**
      * Save changes (language + theme + currency) via the main Settings form.
      */
@@ -88,5 +97,9 @@ class SettingsController extends Controller
 
         return redirect()->back();
     }
+<<<<<<< HEAD
 }
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+}
+>>>>>>> 5c55d34 (new features)

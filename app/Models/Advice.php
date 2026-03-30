@@ -14,6 +14,9 @@ class Advice extends Model
     protected $fillable = [
         'user_id',
         'category',
+<<<<<<< HEAD
         'content',
+=======
+>>>>>>> 5c55d34 (new features)
     ];
 }

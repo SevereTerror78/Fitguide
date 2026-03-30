@@ -33,9 +33,12 @@ class StripeWebhookController extends Controller
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         // event-idempotencia (gyors kilépés)
 =======
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
         if (StripeWebhookEvent::where('event_id', $event->id)->exists()) {
             return response()->json(['ok' => true]);
         }
@@ -43,9 +46,12 @@ class StripeWebhookController extends Controller
         $order = null;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         // Order betöltés metadata-ból
 =======
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
         if (isset($event->data->object->metadata->order_id)) {
             $orderId = (int) $event->data->object->metadata->order_id;
             $order = Order::with(['items', 'user'])->find($orderId);
@@ -54,29 +60,39 @@ class StripeWebhookController extends Controller
         try {
             switch ($event->type) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 
                 case 'checkout.session.completed': {
                     if (!$order) break;
 =======
+=======
+>>>>>>> 5c55d34 (new features)
                 case 'checkout.session.completed': {
                     if (!$order) {
                         break;
                     }
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
 
                     $session = $event->data->object;
                     $paymentIntentId = $session->payment_intent ?? null;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                     // ✅ discount metadata
 =======
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
                     $discountId = null;
                     if (isset($session->metadata->discount_id) && $session->metadata->discount_id !== '') {
                         $discountId = (int) $session->metadata->discount_id;
                     }
 
                     DB::transaction(function () use ($order, $session, $paymentIntentId, $discountId) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 
                         // 1) ✅ paid állapot (régi + új mezők)
@@ -90,15 +106,23 @@ class StripeWebhookController extends Controller
                             $order->forceFill([
                                 'status' => 'paid',
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+                        if ($order->status !== 'paid' || $order->payment_status !== 'paid') {
+                            $order->forceFill([
+                                'status' => 'paid',
+>>>>>>> 5c55d34 (new features)
                                 'payment_method' => $order->payment_method ?: 'card',
                                 'payment_status' => 'paid',
                                 'fulfillment_status' => $order->fulfillment_status === 'new'
                                     ? 'processing'
                                     : ($order->fulfillment_status ?: 'processing'),
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
                                 'stripe_checkout_session_id' => $session->id ?? $order->stripe_checkout_session_id,
                                 'stripe_payment_intent_id' => $paymentIntentId ?? $order->stripe_payment_intent_id,
                                 'paid_at' => now(),
@@ -108,6 +132,7 @@ class StripeWebhookController extends Controller
                         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                         // 2) teljesítés csak egyszer
                         $order->refresh();
                         if (!is_null($order->fulfilled_at)) {
@@ -116,13 +141,18 @@ class StripeWebhookController extends Controller
 
                         // 3) ✅ DISCOUNT ELÉGETÉS (csak sikeres fizetés után)
 =======
+=======
+>>>>>>> 5c55d34 (new features)
                         $order->refresh();
 
                         if (!is_null($order->fulfilled_at)) {
                             return;
                         }
 
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
                         if ($discountId) {
                             $discount = Discount::where('id', $discountId)
                                 ->where('user_id', $order->user_id)
@@ -135,18 +165,24 @@ class StripeWebhookController extends Controller
                         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                         // 4) Készlet csökkentés (safe)
                         foreach ($order->items as $item) {
                             $product = Product::lockForUpdate()->find($item->product_id);
                             if (!$product) continue;
 =======
+=======
+>>>>>>> 5c55d34 (new features)
                         foreach ($order->items as $item) {
                             $product = Product::lockForUpdate()->find($item->product_id);
 
                             if (!$product) {
                                 continue;
                             }
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
 
                             if (!is_null($product->stock) && $product->stock < $item->qty) {
                                 throw new \Exception("Stock mismatch for product_id={$item->product_id}");
@@ -157,6 +193,7 @@ class StripeWebhookController extends Controller
                             }
                         }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
                         // 5) Pont (paid után)
                         $order->awardPointsIfEligible();
@@ -195,6 +232,27 @@ class StripeWebhookController extends Controller
                         // 7) teljesítve (nálad ez “lezárás”, maradhat)
 =======
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+                        $order->awardPointsIfEligible();
+
+                        Mail::to($order->user->email)
+                            ->locale($order->user->language ?? 'hu')
+                            ->send(
+                                new OrderPlaced(
+                                    $order->items->map(fn ($i) => [
+                                        'product_id' => $i->product_id,
+                                        'name'       => $i->name,
+                                        'price'      => (int) $i->unit_price,
+                                        'qty'        => (int) $i->qty,
+                                    ])->toArray(),
+                                    (int) $order->subtotal,
+                                    (int) $order->shipping,
+                                    (int) $order->total,
+                                    $order
+                                )
+                            );
+
+>>>>>>> 5c55d34 (new features)
                         $order->forceFill([
                             'fulfilled_at' => now(),
                         ])->save();
@@ -204,6 +262,7 @@ class StripeWebhookController extends Controller
                 }
 
                 case 'payment_intent.payment_failed': {
+<<<<<<< HEAD
 <<<<<<< HEAD
                     if (!$order) break;
 
@@ -219,6 +278,8 @@ class StripeWebhookController extends Controller
                             'fulfillment_status' => 'cancelled',
 
 =======
+=======
+>>>>>>> 5c55d34 (new features)
                     if (!$order) {
                         break;
                     }
@@ -230,7 +291,10 @@ class StripeWebhookController extends Controller
                             'status' => 'failed',
                             'payment_status' => 'failed',
                             'fulfillment_status' => 'cancelled',
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
                             'stripe_payment_intent_id' => $pi->id ?? $order->stripe_payment_intent_id,
                             'payment_failed_at' => now(),
                             'payment_last_error' => $pi->last_payment_error->message ?? 'Payment failed',
@@ -242,16 +306,23 @@ class StripeWebhookController extends Controller
 
                 case 'checkout.session.expired': {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     if (!$order) break;
 =======
                     if (!$order) {
                         break;
                     }
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+                    if (!$order) {
+                        break;
+                    }
+>>>>>>> 5c55d34 (new features)
 
                     if ($order->status !== 'paid' && $order->payment_status !== 'paid') {
                         $order->forceFill([
                             'status' => 'failed',
+<<<<<<< HEAD
 <<<<<<< HEAD
 
                             // ✅ ÚJ mezők
@@ -262,6 +333,10 @@ class StripeWebhookController extends Controller
                             'payment_status' => 'failed',
                             'fulfillment_status' => 'cancelled',
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+                            'payment_status' => 'failed',
+                            'fulfillment_status' => 'cancelled',
+>>>>>>> 5c55d34 (new features)
                             'payment_failed_at' => now(),
                             'payment_last_error' => 'Checkout session expired',
                         ])->save();
@@ -274,6 +349,7 @@ class StripeWebhookController extends Controller
                     break;
             }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         } finally {
             // ✅ minden esetben logoljuk az eventet (idempotencia)
@@ -284,6 +360,8 @@ class StripeWebhookController extends Controller
                 'processed_at' => now(),
                 'payload' => json_decode($payload, true),
 =======
+=======
+>>>>>>> 5c55d34 (new features)
         } finally {
             StripeWebhookEvent::create([
                 'event_id'     => $event->id,
@@ -291,14 +369,21 @@ class StripeWebhookController extends Controller
                 'order_id'     => $order?->id,
                 'processed_at' => now(),
                 'payload'      => json_decode($payload, true),
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
             ]);
         }
 
         return response()->json(['ok' => true]);
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 }
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+}
+>>>>>>> 5c55d34 (new features)

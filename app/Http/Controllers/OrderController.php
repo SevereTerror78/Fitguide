@@ -6,6 +6,7 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 <<<<<<< HEAD
+<<<<<<< HEAD
 class OrderController extends Controller
 {
     /**
@@ -33,6 +34,8 @@ class OrderController extends Controller
     {
         // biztosítjuk, hogy csak a saját rendelését lássa
 =======
+=======
+>>>>>>> 5c55d34 (new features)
 
 class OrderController extends Controller
 {
@@ -53,11 +56,15 @@ class OrderController extends Controller
 
     public function show(Order $order)
     {
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
         if (Auth::id() !== $order->user_id) {
             abort(403);
         }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         // betöltjük a rendelés tételeit és termékeket
         $order->load('items.product');
@@ -68,11 +75,17 @@ class OrderController extends Controller
     }
 }
 =======
+=======
+>>>>>>> 5c55d34 (new features)
         $order->load('items.product');
 
         return view('orders.show', [
             'order' => $order,
         ]);
     }
+<<<<<<< HEAD
 }
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+}
+>>>>>>> 5c55d34 (new features)

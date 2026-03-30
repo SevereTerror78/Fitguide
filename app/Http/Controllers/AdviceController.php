@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 <<<<<<< HEAD
+<<<<<<< HEAD
 use App\Models\Advice; // <- importáld a modellt
 =======
 use App\Models\Advice;
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+use App\Models\Advice;
+>>>>>>> 5c55d34 (new features)
 
 class AdviceController extends Controller
 {
@@ -16,6 +20,7 @@ class AdviceController extends Controller
         return view('advice.index');
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     public function calculateBMI(Request $request)
     {
@@ -38,6 +43,8 @@ class AdviceController extends Controller
 
         // BMI pozíció kiszámítása
 =======
+=======
+>>>>>>> 5c55d34 (new features)
     public function bmi(Request $request)
     {
         $data = $request->validate([
@@ -61,7 +68,10 @@ class AdviceController extends Controller
         };
 
         // BMI scale position (0..100)
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
         if ($bmi < 18.5) {
             $position = (($bmi - 15) / (18.5 - 15)) * 25;
         } elseif ($bmi < 25) {
@@ -74,6 +84,7 @@ class AdviceController extends Controller
 
         $position = max(0, min($position, 100));
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         // kategória normalizálása az adatbázishoz
         $dbCategory = strtolower(str_replace(' ', '', $category)); 
@@ -92,6 +103,8 @@ class AdviceController extends Controller
     }
 }
 =======
+=======
+>>>>>>> 5c55d34 (new features)
         // optional DB lookup (not required for translation)
         $advice = Advice::where('category', $categoryKey)->first();
 
@@ -101,11 +114,18 @@ class AdviceController extends Controller
                 'bmi' => $bmiRounded,
                 'category_key' => $categoryKey,
                 'advice_key' => $categoryKey, // IMPORTANT: matches lang advices keys
+<<<<<<< HEAD
                 'advice' => $advice?->content, // fallback only
+=======
+>>>>>>> 5c55d34 (new features)
                 'bmi_position' => $position,
                 'old_weight' => $weight,
                 'old_height' => $heightCm,
             ]);
     }
+<<<<<<< HEAD
 }
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+}
+>>>>>>> 5c55d34 (new features)

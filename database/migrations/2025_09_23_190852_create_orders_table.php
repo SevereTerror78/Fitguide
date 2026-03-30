@@ -68,10 +68,14 @@ return new class extends Migration
 
             // ───── Pickup extra (opcionális)
 <<<<<<< HEAD
+<<<<<<< HEAD
             $table->string('pickup_location')->nullable();
 =======
             $table->string('pickup_location', 100)->nullable()->index();
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+            $table->string('pickup_location', 100)->nullable()->index();
+>>>>>>> 5c55d34 (new features)
 
             $table->timestamps();
         });

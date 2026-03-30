@@ -70,7 +70,10 @@ class Order extends Model
         'fulfilled_at' => 'datetime',
     ];
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 5c55d34 (new features)
     public const PICKUP_LOCATIONS = [
         'budapest' => 'Budapest – Váci út 23, 1132',
         'debrecen' => 'Debrecen – Piac utca 12, 4024',
@@ -78,7 +81,10 @@ class Order extends Model
         'szeged'   => 'Szeged – Kárász utca 8, 6720',
         'gyor'     => 'Győr – Baross Gábor út 21, 9021',
     ];
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
 
     public function user()
     {

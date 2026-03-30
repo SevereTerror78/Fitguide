@@ -30,4 +30,10 @@ return [
     'to' => '-től',
     'of' => '/',
     'results' => 'találat',
+<<<<<<< HEAD
+=======
+    'quantity' => 'Mennyiség',
+    'qty_increase' => 'Mennyiség növelése',
+    'qty_decrease' => 'Mennyiség csökkentése',
+>>>>>>> 5c55d34 (new features)
 ];

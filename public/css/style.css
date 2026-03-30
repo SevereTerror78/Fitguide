@@ -1,16 +1,22 @@
 /* ===== Reset & Base ===== */
 *{box-sizing:border-box}
 <<<<<<< HEAD
+<<<<<<< HEAD
 html,body{height:100%}
 =======
 html,body{height:100%; overflow-x:hidden;} /* ✅ FIX: oldalirányú csúszás megfogása */
 
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+html,body{height:100%; overflow-x:hidden;} /* ✅ FIX: oldalirányú csúszás megfogása */
+
+>>>>>>> 5c55d34 (new features)
 body{
   margin:0;
   font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
   color:#e7f0ff;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
   background:
@@ -21,6 +27,8 @@ body{
   background-size: cover;
   background-color: #0a1930;     
 =======
+=======
+>>>>>>> 5c55d34 (new features)
   background:
     radial-gradient(1100px 700px at 18% 8%, #1f53a6 0%, #0d2a57 35%, rgba(13,42,87,0) 62%),
     linear-gradient(180deg, #0c1d33 0%, #0a1930 55%, #081629 100%);
@@ -28,7 +36,10 @@ body{
   background-repeat: no-repeat;
   background-size: cover;
   background-color: #0a1930;
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
 }
 
 /* ===== Layout ===== */
@@ -42,13 +53,19 @@ body{
   border-bottom:1px solid rgba(255,255,255,.07);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 .navbar-inner{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
 =======
+=======
+>>>>>>> 5c55d34 (new features)
 .navbar-inner{
   display:flex; align-items:center; justify-content:space-between; padding:14px 0;
   position:relative; /* ✅ FIX: mobil .nav-links absolute ehhez igazodjon */
 }
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
 .nav-links{display:flex; gap:28px; align-items:center; flex-wrap:wrap}
 .nav-links a{
   color:#dfe9ff; text-decoration:none; font-weight:600; letter-spacing:.02em;
@@ -74,7 +91,10 @@ body{
 }
 .hero::before{
   content:""; position:absolute; inset:0; pointer-events:none;
+<<<<<<< HEAD
   background:radial-gradient(700px 520px at 92% 12%, rgba(90,145,255,.35) 0%, rgba(90,145,255,0) 65%);
+=======
+>>>>>>> 5c55d34 (new features)
 }
 .hero > div{
   background:rgba(10,20,40,.45);
@@ -106,6 +126,165 @@ body{
 }
 .btn.pill:hover{background:linear-gradient(135deg,#8d6aff,#6c4ef0); transform:translateY(-2px)}
 
+<<<<<<< HEAD
+=======
+/* ===== Hero2 ===== */
+.hero2{
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 48px;
+  align-items: center;
+  padding: 56px 32px 36px;
+  color: #e7f0ff;
+  background: url('/images/background2_2.png') no-repeat center center / cover;
+  border-radius: 22px;
+  overflow: hidden;
+}
+
+.hero2::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero2 > div{
+  position: relative;
+  z-index: 1;
+  background: rgba(10,20,40,.45);
+  padding: 28px;
+  border-radius: 16px;
+  max-width: 480px;
+  width: 100%;
+  margin-left: 0;
+}
+
+.hero2-title{
+  font-size: clamp(36px, 6.2vw, 66px);
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  margin: 0 0 12px;
+  color: #eef4ff;
+}
+
+.hero2-sub{
+  font-size: clamp(15px, 2.2vw, 18px);
+  color: #d6e2ff;
+  margin: 0 0 28px;
+  line-height: 1.5;
+}
+
+.hero2-cta{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 26px;
+  border-radius: 16px;
+  border: 0;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 17px;
+  letter-spacing: .3px;
+  background: linear-gradient(135deg,#4a66ff,#3a4bdd);
+  color: #fff;
+  text-decoration: none;
+  box-shadow:
+    0 4px 12px rgba(0,0,0,.25),
+    0 0 0 2px rgba(255,255,255,.10) inset,
+    inset 0 2px 6px rgba(255,255,255,.22);
+  transition: .22s;
+}
+
+.hero2-cta:hover{
+  background: linear-gradient(135deg,#5a74ff,#4657e0);
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* ===== Tablet ===== */
+@media (max-width: 992px){
+  .hero2{
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 40px 24px 28px;
+    background-position: center;
+  }
+
+  .hero2 > div{
+    max-width: 560px;
+  }
+
+  .hero2-title{
+    font-size: clamp(30px, 5.8vw, 52px);
+  }
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 768px){
+  .hero2{
+    grid-template-columns: 1fr;
+    padding: 24px 16px;
+    min-height: 520px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 18px;
+  }
+
+  .hero2 > div{
+    max-width: 100%;
+    padding: 20px;
+    border-radius: 14px;
+  }
+
+  .hero2-title{
+    font-size: clamp(28px, 9vw, 42px);
+    line-height: 1.08;
+    margin-bottom: 10px;
+  }
+
+  .hero2-sub{
+    font-size: 16px;
+    line-height: 1.45;
+    margin-bottom: 20px;
+  }
+
+  .hero2-cta{
+    width: 100%;
+    min-height: 52px;
+    padding: 14px 18px;
+    font-size: 16px;
+    border-radius: 14px;
+  }
+}
+
+/* ===== Small Mobile ===== */
+@media (max-width: 480px){
+  .hero2{
+    padding: 18px 12px;
+    min-height: 460px;
+    border-radius: 16px;
+    background-position: 62% center;
+  }
+
+  .hero2 > div{
+    padding: 16px;
+  }
+
+  .hero2-title{
+    font-size: clamp(24px, 8.5vw, 34px);
+  }
+
+  .hero2-sub{
+    font-size: 15px;
+  }
+
+  .hero2-cta{
+    font-size: 15px;
+    padding: 13px 16px;
+  }
+}
+>>>>>>> 5c55d34 (new features)
 /* ===== Footer (bővített) ===== */
 .footer{
   margin-top:8px;
@@ -202,11 +381,17 @@ body{
   .hero>div{margin:0 auto}
   .footer-grid{ grid-template-columns:1fr 1fr; }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
   /* ✅ FIX: a margin-left:30px ne tolja el mobilon */
   .hero > div{ margin-left:0; max-width:100%; }
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+
+  /* ✅ FIX: a margin-left:30px ne tolja el mobilon */
+  .hero > div{ margin-left:0; max-width:100%; }
+>>>>>>> 5c55d34 (new features)
 }
 
 @media (max-width:768px){
@@ -245,6 +430,7 @@ body{
   align-items: center;
   gap: 10px;
 <<<<<<< HEAD
+<<<<<<< HEAD
   flex-wrap: nowrap;       
 }
 .nl-form input {
@@ -255,6 +441,8 @@ body{
   flex: 0 0 auto;          
   white-space: nowrap;    
 =======
+=======
+>>>>>>> 5c55d34 (new features)
   flex-wrap: nowrap;
 }
 .nl-form input {
@@ -264,17 +452,24 @@ body{
 .nl-btn {
   flex: 0 0 auto;
   white-space: nowrap;
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
 }
 
 .footer-socials { flex-wrap: wrap; }
 @media (max-width: 768px) {
   .nl-form {
 <<<<<<< HEAD
+<<<<<<< HEAD
     flex-wrap: wrap;       
 =======
     flex-wrap: wrap;
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+    flex-wrap: wrap;
+>>>>>>> 5c55d34 (new features)
     gap: 8px;
   }
   .nl-form input {
@@ -282,10 +477,14 @@ body{
   }
   .nl-btn {
 <<<<<<< HEAD
+<<<<<<< HEAD
     width: 100%;           
 =======
     width: 100%;
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+    width: 100%;
+>>>>>>> 5c55d34 (new features)
     text-align: center;
   }
 }
@@ -382,10 +581,14 @@ body{
   /* A linkek alapból rejtve, a lenyíló panel a nav alatt */
   .nav-links {
 <<<<<<< HEAD
+<<<<<<< HEAD
     display: none;                 /* rejtve alapból */
 =======
     display: none;
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+    display: none;
+>>>>>>> 5c55d34 (new features)
     position: absolute;
     left: 0;
     right: 0;
@@ -404,6 +607,7 @@ body{
   /* Auth + cart marad a jobb oldalon, nem tűnik el */
   .auth-buttons { display: flex; align-items: center; gap: 10px; }
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* ========== NAV: CART BADGE (globális, de maradhat) ========== */
 .nav-cart{ 
@@ -436,6 +640,8 @@ body{
 .nav-cart .cart-badge.bump{ 
   animation:cart-bump .35s ease; 
 =======
+=======
+>>>>>>> 5c55d34 (new features)
 
 /* ========== NAV: CART BADGE (globális, de maradhat) ========== */
 .nav-cart{
@@ -467,7 +673,10 @@ body{
 }
 .nav-cart .cart-badge.bump{
   animation:cart-bump .35s ease;
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
 }
 
 /* ====================== USER DROPDOWN (ÚJ, FIX) ====================== */
@@ -565,9 +774,13 @@ body{
   }
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+
+>>>>>>> 5c55d34 (new features)
 /* USER AREA ONE-LINE ALIGNMENT */
 .user-area {
   display: flex;
@@ -658,9 +871,12 @@ body{
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
 /* ONE LINE FIX */
 .user-area {
   display: flex;
@@ -668,9 +884,13 @@ body{
   gap: 22px;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+
+>>>>>>> 5c55d34 (new features)
 .order-page{ padding: 18px 0 60px; }
 
 .order-top{
@@ -768,7 +988,10 @@ body{
   .order-top{ align-items:flex-start; }
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 5c55d34 (new features)
 
 /* =========================================================
    FINAL OVERRIDES (EZEK DÖNTENEK)  ✅
@@ -826,4 +1049,7 @@ body{
         min-width: 320px;
     }
 }
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)

@@ -19,6 +19,7 @@ class ProductSeeder extends Seeder
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         // XLSX beolvasás
         $spreadsheet = IOFactory::load($path);
         $sheet = $spreadsheet->getActiveSheet();
@@ -28,6 +29,10 @@ class ProductSeeder extends Seeder
         $spreadsheet = IOFactory::load($path);
         $sheet = $spreadsheet->getActiveSheet();
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+        $spreadsheet = IOFactory::load($path);
+        $sheet = $spreadsheet->getActiveSheet();
+>>>>>>> 5c55d34 (new features)
         $rows = $sheet->toArray(null, true, true, false);
 
         if (empty($rows) || empty($rows[0])) {
@@ -36,6 +41,7 @@ class ProductSeeder extends Seeder
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         // Fejléc (első sor)
         $headers = array_map(fn($h) => strtolower(trim((string)$h)), $rows[0]);
 
@@ -43,26 +49,35 @@ class ProductSeeder extends Seeder
         $required = ['name', 'description', 'price', 'image', 'product_type_slug'];
         $missing = array_diff($required, $headers);
 =======
+=======
+>>>>>>> 5c55d34 (new features)
         $headers = array_map(fn($h) => strtolower(trim((string)$h)), $rows[0]);
 
         $required = ['name', 'description', 'price', 'image', 'product_type_slug'];
         $missing = array_diff($required, $headers);
 
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
         if (!empty($missing)) {
             $this->command?->error('❌ Hiányzó fejléc(ek): ' . implode(', ', $missing));
             return;
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         // Oszlop indexek gyors lookup-hoz
 =======
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
         $idx = array_flip($headers);
 
         $countOk = 0;
         $countSkip = 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         // Adatsorok: a 2. sortól (index 1)
         for ($i = 1; $i < count($rows); $i++) {
@@ -74,11 +89,17 @@ class ProductSeeder extends Seeder
             $row = $rows[$i];
 
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+        for ($i = 1; $i < count($rows); $i++) {
+            $row = $rows[$i];
+
+>>>>>>> 5c55d34 (new features)
             if (!isset($row[$idx['name']]) || trim((string)$row[$idx['name']]) === '') {
                 $countSkip++;
                 continue;
             }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
             $name   = trim((string)($row[$idx['name']] ?? ''));
             $desc   = (string)($row[$idx['description']] ?? '');
@@ -110,6 +131,8 @@ class ProductSeeder extends Seeder
                     'description'     => $desc,
                     'price'           => $price,
 =======
+=======
+>>>>>>> 5c55d34 (new features)
             $name     = trim((string)($row[$idx['name']] ?? ''));
             $desc     = (string)($row[$idx['description']] ?? '');
             $image    = (string)($row[$idx['image']] ?? '');
@@ -143,7 +166,10 @@ class ProductSeeder extends Seeder
                     'description'     => $desc,
                     'description_hu'  => $descHu !== '' ? $descHu : null,
                     'price_huf'       => $priceHuf,
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
                     'image'           => $image,
                     'product_type_id' => $productTypeId,
                 ]
@@ -155,7 +181,11 @@ class ProductSeeder extends Seeder
         $this->command?->info("✅ Import kész. Sikeres sorok: {$countOk}, kihagyott sorok: {$countSkip}");
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 }
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+}
+>>>>>>> 5c55d34 (new features)

@@ -1,5 +1,6 @@
 (function () {
 <<<<<<< HEAD
+<<<<<<< HEAD
   // =========================================================
   //  CONFIG
   // =========================================================
@@ -11,6 +12,8 @@
   //  CART BADGE HELPERS
   // =========================================================
 =======
+=======
+>>>>>>> 5c55d34 (new features)
   if (window.__FG_STORE_JS_LOADED) return;
   window.__FG_STORE_JS_LOADED = true;
 
@@ -19,12 +22,16 @@
   const CSRF = document.querySelector('meta[name="csrf-token"]')?.content || '';
   const currency = document.body?.dataset?.currency || 'HUF';
 
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
   const cartLink = document.querySelector('.nav-cart');
 
   function getBadgeEl() {
     return cartLink ? cartLink.querySelector('.cart-badge') : null;
   }
+<<<<<<< HEAD
 <<<<<<< HEAD
   function getBadgeCount() {
     const b = getBadgeEl();
@@ -34,6 +41,9 @@
 =======
 
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+
+>>>>>>> 5c55d34 (new features)
   function setBadgeCount(n) {
     if (!cartLink) return;
     let b = getBadgeEl();
@@ -48,9 +58,13 @@
     b.classList.add('bump');
   }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+
+>>>>>>> 5c55d34 (new features)
   async function refreshCartBadge() {
     if (!CART_COUNT_URL) return;
     try {
@@ -61,6 +75,7 @@
       if (!res.ok) return;
       const data = await res.json();
       if (typeof data.count === 'number') setBadgeCount(data.count);
+<<<<<<< HEAD
 <<<<<<< HEAD
     } catch (_) { /* ignore */ }
   }
@@ -82,6 +97,8 @@
       const v = (searchInput?.value || '').trim();
       return v;
 =======
+=======
+>>>>>>> 5c55d34 (new features)
     } catch (_) {}
   }
 
@@ -96,7 +113,10 @@
 
     function getSearchValue() {
       return (searchInput?.value || '').trim();
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
     }
 
     function setSearchValue(v) {
@@ -131,26 +151,35 @@
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     // build url úgy, hogy a jelenlegi URL paramjai alapból megmaradjanak
     // és csak amit felülírsz, azt írja át
 =======
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
     function buildUrl(base, params) {
       const current = new URL(window.location.href);
       const url = new URL(base, window.location.origin);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
       // kiindulás: a current search paramjai
 =======
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
       current.searchParams.forEach((val, key) => {
         url.searchParams.set(key, val);
       });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
       // felülírás: a params
 =======
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
       Object.entries(params).forEach(([k, v]) => {
         if (v == null || v === '' || v === 'all') url.searchParams.delete(k);
         else url.searchParams.set(k, v);
@@ -160,6 +189,7 @@
     }
 
     async function loadProducts(url) {
+<<<<<<< HEAD
 <<<<<<< HEAD
       if (!list) { window.location.href = url; return; }
       try {
@@ -172,6 +202,11 @@
         list.classList.add('loading');
 
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+      try {
+        list.classList.add('loading');
+
+>>>>>>> 5c55d34 (new features)
         const ajaxUrl = (url.includes('?') ? url + '&' : url + '?') + 'ajax=1';
 
         const res = await fetch(ajaxUrl, {
@@ -189,9 +224,19 @@
 
         window.history.pushState({}, '', cleanUrl);
 
+<<<<<<< HEAD
         wirePagination();
         list.classList.remove('loading');
         window.scrollTo({ top: list.offsetTop - 40, behavior: 'smooth' });
+=======
+      wirePagination();
+      list.classList.remove('loading');
+
+      document.querySelector('.section-cards')?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+>>>>>>> 5c55d34 (new features)
       } catch (e) {
         console.error(e);
         list.classList.remove('loading');
@@ -200,9 +245,12 @@
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     // -------- FILTER BUTTONS (megőrzi a search-t)
 =======
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
     function wireFilterButtons() {
       filterBtns.forEach(a => {
         a.addEventListener('click', (e) => {
@@ -218,10 +266,14 @@
             type,
             search: getSearchValue(),
 <<<<<<< HEAD
+<<<<<<< HEAD
             page: '' // reset page filter váltáskor
 =======
             page: ''
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+            page: ''
+>>>>>>> 5c55d34 (new features)
           });
 
           loadProducts(url);
@@ -230,9 +282,12 @@
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     // -------- SELECT (megőrzi a search-t)
 =======
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
     function wireSelect() {
       if (!filterSelect) return;
       filterSelect.addEventListener('change', () => {
@@ -243,10 +298,14 @@
           type,
           search: getSearchValue(),
 <<<<<<< HEAD
+<<<<<<< HEAD
           page: '' // reset page
 =======
           page: ''
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+          page: ''
+>>>>>>> 5c55d34 (new features)
         });
 
         loadProducts(url);
@@ -254,9 +313,12 @@
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     // -------- PAGINATION (ha valamiért nincs benne search/type, hozzáadjuk)
 =======
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
     function wirePagination() {
       const listEl = document.getElementById('product-list');
       if (!listEl) return;
@@ -270,30 +332,40 @@
 
           const u = new URL(href, window.location.origin);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
           const page = u.searchParams.get('page');
 
           const url = buildUrl(STORE_URL, {
             page, // ✅ EZ A KULCS
 =======
+=======
+>>>>>>> 5c55d34 (new features)
           const page = u.searchParams.get('page');
 
           const url = buildUrl(STORE_URL, {
             page,
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
             type: (new URL(window.location.href)).searchParams.get('type') || (filterSelect?.value || 'all'),
             search: getSearchValue()
           });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
           loadProducts(url);
         });
       });
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     // -------- SEARCH (debounce + clear + enter + esc)
     function wireSearch() {
@@ -305,6 +377,11 @@
       if (!searchInput) return;
 
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+    function wireSearch() {
+      if (!searchInput) return;
+
+>>>>>>> 5c55d34 (new features)
       const fromUrl = (new URL(window.location.href)).searchParams.get('search') || '';
       if (fromUrl && !searchInput.value) searchInput.value = fromUrl;
       toggleClear();
@@ -315,10 +392,14 @@
           type,
           search: getSearchValue(),
 <<<<<<< HEAD
+<<<<<<< HEAD
           page: '' // kereséskor reset
 =======
           page: ''
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+          page: ''
+>>>>>>> 5c55d34 (new features)
         });
         loadProducts(url);
       };
@@ -352,9 +433,12 @@
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     // init active type from URL
 =======
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
     const currentType = new URL(window.location.href).searchParams.get('type') || 'all';
     setActiveBySlug(currentType);
 
@@ -364,9 +448,12 @@
     wireSearch();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     // back/forward: UI sync
 =======
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
     window.addEventListener('popstate', () => {
       const u = new URL(window.location.href);
       const type = u.searchParams.get('type') || 'all';
@@ -375,19 +462,25 @@
       setActiveBySlug(type);
       setSearchValue(s);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
       loadProducts(u.toString());
     }, { once: false });
   }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   // =========================================================
   //  ADD TO CART (AJAX)
   // =========================================================
 =======
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
   let BADGE_VERSION = 0;
 
   document.addEventListener('submit', async (e) => {
@@ -398,11 +491,17 @@
     e.preventDefault();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     if (form.dataset.submitting === '1') return;
     form.dataset.submitting = '1';
 
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+    if (form.dataset.submitting === '1') return;
+    form.dataset.submitting = '1';
+
+>>>>>>> 5c55d34 (new features)
     const qtyInput = form.querySelector('input[name="qty"]');
     const qty = qtyInput ? Math.max(1, parseInt(qtyInput.value || '1', 10)) : 1;
 
@@ -410,17 +509,23 @@
     if (btn) { btn.classList.add('adding'); btn.disabled = true; }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     const before = (function(){
       const b = document.querySelector('.nav-cart .cart-badge');
       return b ? parseInt(b.textContent || '0', 10) || 0 : 0;
     })();
 =======
+=======
+>>>>>>> 5c55d34 (new features)
     const before = (() => {
       const b = document.querySelector('.nav-cart .cart-badge');
       return b ? (parseInt(b.textContent || '0', 10) || 0) : 0;
     })();
 
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
     setBadgeCount(before + qty);
 
     const thisVersion = ++BADGE_VERSION;
@@ -438,11 +543,15 @@
       });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
       let data = null;
       try { data = await res.json(); } catch (_) {}
 =======
       const data = await res.json().catch(() => null);
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+      const data = await res.json().catch(() => null);
+>>>>>>> 5c55d34 (new features)
 
       if (!res.ok || !data || data.ok !== true || typeof data.count !== 'number') {
         throw new Error('Add to cart failed');
@@ -455,16 +564,22 @@
       alert('Sajnos nem sikerült a kosárhoz adni. Próbáld újra.');
     } finally {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       delete form.dataset.submitting;
 
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+      delete form.dataset.submitting;
+
+>>>>>>> 5c55d34 (new features)
       setTimeout(() => {
         if (btn) { btn.classList.remove('adding'); btn.disabled = false; }
       }, 180);
     }
   });
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   // =========================================================
   //  CART PAGE: QTY HANDLING, OPTIMISTIC TOTALS
@@ -478,6 +593,8 @@
     const card = document.querySelector('.summary-card');
     if(!card) return 0;
 =======
+=======
+>>>>>>> 5c55d34 (new features)
   function fmtFromHuf(n) {
     const num = Number(n || 0);
 
@@ -494,11 +611,15 @@
   function getDiscountPercent() {
     const card = document.querySelector('.summary-card');
     if (!card) return 0;
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
     const p = parseFloat(card.dataset.discountPercent || '0');
     return Number.isFinite(p) ? Math.max(0, Math.min(100, p)) : 0;
   }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   function setDiscountPercent(p){
     const card = document.querySelector('.summary-card');
@@ -520,6 +641,8 @@
       const priceHolder = row.querySelector('.line-total') || row.querySelector('[data-price]');
       const unitPrice = parseFloat(priceHolder?.dataset.price || '0');
 =======
+=======
+>>>>>>> 5c55d34 (new features)
   function setDiscountPercent(p) {
     const card = document.querySelector('.summary-card');
     if (!card) return;
@@ -540,12 +663,16 @@
     document.querySelectorAll('.cart-row').forEach(row => {
       const priceHolder = row.querySelector('.line-total');
       const unitPrice = parseFloat(priceHolder?.dataset.priceHuf || '0');
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
       const qty = parseInt(row.querySelector('.qty-input')?.value || '1', 10);
       subtotal += unitPrice * qty;
     });
 
     const shipEl = document.getElementById('cart-shipping');
+<<<<<<< HEAD
 <<<<<<< HEAD
     const shipping = shipEl ? parseFloat((shipEl.textContent || '').replace(/[^\d.]/g,'') || '0') : 0;
 
@@ -553,15 +680,21 @@
     const discount = percent > 0 ? (subtotal * (percent / 100)) : 0;
 
 =======
+=======
+>>>>>>> 5c55d34 (new features)
     const shipping = shipEl?.dataset.shippingHuf ? parseFloat(shipEl.dataset.shippingHuf) : 0;
 
     const percent = getDiscountPercent();
     const discount = percent > 0 ? (subtotal * (percent / 100)) : 0;
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
     const total = Math.max(0, subtotal + shipping - discount);
 
     const subEl = document.getElementById('cart-subtotal');
     const totEl = document.getElementById('cart-total');
+<<<<<<< HEAD
 <<<<<<< HEAD
     if(subEl) subEl.textContent = fmt(subtotal);
     if(totEl) totEl.textContent = fmt(total);
@@ -576,6 +709,8 @@
         dLine.style.display = 'none';
         dEl.textContent = fmt(0);
 =======
+=======
+>>>>>>> 5c55d34 (new features)
 
     if (subEl) subEl.textContent = fmtFromHuf(subtotal);
     if (totEl) totEl.textContent = fmtFromHuf(total);
@@ -590,11 +725,15 @@
       } else {
         dLine.style.display = 'none';
         dEl.textContent = fmtFromHuf(0);
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
       }
     }
   }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   async function persistQty(form, qty){
     const url = form?.dataset?.updateUrl;
@@ -602,16 +741,22 @@
 
     try{
 =======
+=======
+>>>>>>> 5c55d34 (new features)
   async function persistQty(form, qty) {
     const url = form?.dataset?.updateUrl;
     if (!url) return;
 
     try {
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
       const fd = new FormData();
       fd.append('qty', qty);
 
       const res = await fetch(url, {
+<<<<<<< HEAD
 <<<<<<< HEAD
         method:'POST',
         headers:{ 'X-Requested-With':'XMLHttpRequest', 'X-CSRF-TOKEN':CSRF, 'Accept':'application/json' },
@@ -652,6 +797,8 @@
             dLine.style.display = 'none';
             dEl.textContent = fmt(0);
 =======
+=======
+>>>>>>> 5c55d34 (new features)
         method: 'POST',
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
@@ -697,11 +844,15 @@
           } else {
             dLine.style.display = 'none';
             dEl.textContent = fmtFromHuf(0);
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
           }
         }
       }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
       if(typeof data.total === 'string'){
         const totEl = document.getElementById('cart-total');
@@ -710,16 +861,22 @@
 
     }catch(e){
 =======
+=======
+>>>>>>> 5c55d34 (new features)
       if (typeof data.total !== 'undefined') {
         const totEl = document.getElementById('cart-total');
         if (totEl) totEl.textContent = fmtFromHuf(data.total);
       }
     } catch (e) {
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
       console.warn('cart.update error, keeping optimistic totals', e);
     }
   }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   function wireCartQty(){
     const table = document.querySelector('.cart-table');
@@ -738,6 +895,8 @@
       if(btn.classList.contains('plus')) val += 1;
       if(btn.classList.contains('minus')) val = Math.max(min, val - 1);
 =======
+=======
+>>>>>>> 5c55d34 (new features)
   function wireCartQty() {
     const table = document.querySelector('.cart-table');
     if (!table) return;
@@ -757,13 +916,17 @@
       if (btn.classList.contains('plus')) val += 1;
       if (btn.classList.contains('minus')) val = Math.max(min, val - 1);
 
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
       input.value = val;
       updateRowLineTotal(row);
       recalcCartTotals();
       persistQty(form, val);
     });
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     table.addEventListener('input', (e)=>{
       const input = e.target.closest('.qty-input');
@@ -777,6 +940,8 @@
       clearTimeout(input._t);
       input._t = setTimeout(()=> persistQty(form, val), 300);
 =======
+=======
+>>>>>>> 5c55d34 (new features)
     table.addEventListener('input', (e) => {
       const input = e.target.closest('.qty-input');
       if (!input) return;
@@ -791,11 +956,15 @@
 
       clearTimeout(input._t);
       input._t = setTimeout(() => persistQty(form, val), 300);
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
     });
 
     recalcCartTotals();
   }
+<<<<<<< HEAD
 
 <<<<<<< HEAD
   function wireDiscountBox(){
@@ -808,6 +977,51 @@
       msg.textContent = text;
       msg.classList.remove('ok','err');
 =======
+=======
+  function wireStoreQtyPickers() {
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.qty-minus, .qty-plus');
+      if (!btn) return;
+
+      const picker = btn.closest('[data-qty-picker]');
+      if (!picker) return;
+
+      const input = picker.querySelector('.qty-input');
+      if (!input) return;
+
+      const min = parseInt(input.min || '1', 10);
+      const max = parseInt(input.max || '9999', 10);
+      let value = parseInt(input.value || '1', 10);
+
+      if (Number.isNaN(value)) value = min;
+
+      if (btn.classList.contains('qty-minus')) {
+        value = Math.max(min, value - 1);
+      }
+
+      if (btn.classList.contains('qty-plus')) {
+        value = Math.min(max, value + 1);
+      }
+
+      input.value = value;
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+
+    document.addEventListener('input', (e) => {
+      const input = e.target.closest('.qty-input');
+      if (!input) return;
+
+      const min = parseInt(input.min || '1', 10);
+      const max = parseInt(input.max || '9999', 10);
+      let value = parseInt(input.value || '1', 10);
+
+      if (Number.isNaN(value)) value = min;
+      value = Math.max(min, Math.min(max, value));
+      input.value = value;
+    });
+  }
+
+>>>>>>> 5c55d34 (new features)
   function wireDiscountBox() {
     const input = document.getElementById('discount-code');
     const btn = document.getElementById('apply-discount');
@@ -832,13 +1046,17 @@
     const showMsg = (text, ok) => {
       msg.textContent = text;
       msg.classList.remove('ok', 'err');
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
       msg.classList.add(ok ? 'ok' : 'err');
       msg.style.display = 'block';
     };
 
     const postJson = async (url, payload) => {
       const res = await fetch(url, {
+<<<<<<< HEAD
 <<<<<<< HEAD
         method:'POST',
         headers:{
@@ -852,6 +1070,8 @@
       });
       const data = await res.json().catch(()=>null);
 =======
+=======
+>>>>>>> 5c55d34 (new features)
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -864,13 +1084,17 @@
       });
 
       const data = await res.json().catch(() => null);
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
       return { res, data };
     };
 
     const applyUrl = '/cart/discount/apply';
     const removeUrl = '/cart/discount/remove';
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     btn.addEventListener('click', async () => {
       const isRemove = (btn.textContent || '').toLowerCase().includes('remove');
@@ -893,6 +1117,8 @@
           const dLine = document.getElementById('discount-line');
           if(dLine) dLine.style.display = 'none';
 =======
+=======
+>>>>>>> 5c55d34 (new features)
     const safeSetMoney = (el, value) => {
       if (!el) return;
       const n = Number(value);
@@ -923,7 +1149,10 @@
 
           if (dLine) dLine.style.display = 'none';
           if (dEl) dEl.textContent = fmtFromHuf(0);
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
 
           showMsg(data.msg, true);
           recalcCartTotals();
@@ -932,6 +1161,7 @@
 
         const code = (input.value || '').trim();
 <<<<<<< HEAD
+<<<<<<< HEAD
         if(!code) return showMsg('Enter a code.', false);
 
         const { data } = await postJson(applyUrl, { code });
@@ -939,6 +1169,8 @@
         if(!data || !data.ok){
           return showMsg(data?.msg || 'Failed.', false);
 =======
+=======
+>>>>>>> 5c55d34 (new features)
         if (!code) {
           showMsg(I18N.enter, false);
           return;
@@ -949,12 +1181,16 @@
         if (!data || !data.ok) {
           showMsg(data?.msg || I18N.failed, false);
           return;
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
         }
 
         const percent = parseFloat(data.percent || '0');
         setDiscountPercent(percent);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         document.getElementById('cart-subtotal').textContent = fmt(parseFloat(data.subtotal));
         document.getElementById('cart-shipping').textContent = fmt(parseFloat(data.shipping));
@@ -975,6 +1211,8 @@
         showMsg('Network error.', false);
       }finally{
 =======
+=======
+>>>>>>> 5c55d34 (new features)
         safeSetMoney(elSubtotal, data.subtotal);
         safeSetMoney(elShipping, data.shipping);
         safeSetMoney(elTotal, data.total);
@@ -993,7 +1231,10 @@
         console.error(e);
         showMsg(I18N.network, false);
       } finally {
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
         btn.disabled = false;
       }
     });
@@ -1001,6 +1242,7 @@
     recalcCartTotals();
   }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   // =========================================================
   //  HAMBURGER MENU
@@ -1027,20 +1269,29 @@
   // =========================================================
 =======
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
   document.addEventListener('DOMContentLoaded', () => {
     wireAjaxFiltering();
     refreshCartBadge();
     wireCartQty();
     wireDiscountBox();
 <<<<<<< HEAD
+<<<<<<< HEAD
     wireHamburgerMenu();
   });
 })();
 =======
+=======
+    wireStoreQtyPickers();
+>>>>>>> 5c55d34 (new features)
 
     if (typeof wireHamburgerMenu === 'function') {
       wireHamburgerMenu();
     }
   });
 })();
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)

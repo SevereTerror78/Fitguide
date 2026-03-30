@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <html lang="en">
 =======
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+>>>>>>> 5c55d34 (new features)
 <head>
   @php($t = auth()->user()->theme ?? 'dark')
   <link id="theme-css" rel="stylesheet" href="{{ asset('css/themes/'.$t.'.css') }}?v={{ time() }}">
@@ -15,6 +19,7 @@
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}">
 <<<<<<< HEAD
+<<<<<<< HEAD
   <script src="{{ asset('js/script.js') }}" defer></script>
   <script src="{{ asset('js/shop.js') }}" defer></script>
 =======
@@ -23,6 +28,11 @@
     <script src="{{ asset('js/shop.js') }}" defer></script>
 
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+    <script src="{{ asset('js/navbar.js') }}" defer></script>
+    <script src="{{ asset('js/shop.js') }}" defer></script>
+
+>>>>>>> 5c55d34 (new features)
 </head>
 
 <body data-theme="{{ $t }}">
@@ -32,6 +42,7 @@
   {{-- HERO --}}
   <header class="container hero hero--tight">
     <div>
+<<<<<<< HEAD
 <<<<<<< HEAD
       <h1 class="hero-title">Your guide<br>to fitness</h1>
       <p class="hero-sub">Explore exercises, shop for products, and get personalized advice.</p>
@@ -135,3 +146,21 @@
 =======
 </html>
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+      <h1 class="hero-title">{!! __('welcome.hero_title') !!}</h1>
+      <p class="hero-sub">{{ __('welcome.hero_sub') }}</p>
+      <a href="/exercises"><button id="cta-exercises" class="hero-cta">{{ __('welcome.browse_exercises') }}</button></a>
+    </div>
+  </header>
+  <br>
+  <header class="container hero2 hero--tight">
+    <div>
+      <h1 class="hero2-title">{!! __('welcome.cgame_title') !!}</h1>
+      <p class="hero2-sub">{{ __('welcome.cgame_sub') }}</p>
+      <a href="{{ asset('games/game.exe') }}" download class="hero2-cta">{{__('welcome.cgame_downLoad')}}</a>
+    </div>
+  </header>
+  @include('partials.footer')
+</body>
+</html>
+>>>>>>> 5c55d34 (new features)

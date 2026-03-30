@@ -12,11 +12,14 @@ return new class extends Migration
             $table->id();
             $table->enum('category', ['underweight', 'normal', 'overweight', 'obese']);
 <<<<<<< HEAD
+<<<<<<< HEAD
             $table->text('content');
 
 =======
             $table->text('content')->nullable();
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
             $table->timestamps();
 
             // Opcionális – ha 1 user + 1 kategória max 1 sor

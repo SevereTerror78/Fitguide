@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 use App\Models\Order;
 use App\Models\OrderItem;
@@ -25,6 +26,17 @@ class CheckoutController extends Controller
     {
         $cart = $request->session()->get('cart', []);
 =======
+=======
+use App\Models\Order;
+use App\Models\OrderItem;
+use App\Models\Product;
+use Stripe\StripeClient;
+use App\Mail\OrderPlaced;
+use Illuminate\Support\Facades\Mail;
+
+class CheckoutController extends Controller
+{
+>>>>>>> 5c55d34 (new features)
     private const PICKUP_POINTS = [
         'budapest' => 'Budapest — 1051, Arany János utca 10. (HU)',
         'debrecen' => 'Debrecen — 4025, Piac utca 12. (HU)',
@@ -33,7 +45,11 @@ class CheckoutController extends Controller
         'gyor'     => 'Győr — 9022, Baross Gábor út 18. (HU)',
     ];
 
+<<<<<<< HEAD
     public function quote(Request $request)
+=======
+   public function quote(Request $request)
+>>>>>>> 5c55d34 (new features)
     {
         $country = strtoupper(trim((string) $request->query('country', 'HU')));
         $method  = (string) $request->query('method', 'card');
@@ -55,6 +71,7 @@ class CheckoutController extends Controller
 
         $percent = $this->getDiscountPercent($request);
         $discountAmount = $this->calculateDiscountHuf($subtotal, $percent);
+<<<<<<< HEAD
         $shipping = $this->shippingHuf($country, $method);
         $total = max(0, $subtotal + $shipping - $discountAmount);
 
@@ -68,6 +85,23 @@ class CheckoutController extends Controller
                 'discount_percent' => $percent,
                 'discount_amount'  => $discountAmount,
                 'total'            => $total,
+=======
+        $discountedSubtotal = max(0, $subtotal - $discountAmount);
+        $shipping = $this->shippingHuf($country, $method);
+        $total = $discountedSubtotal + $shipping;
+
+        if ($request->expectsJson()) {
+            return response()->json([
+                'country'            => $country,
+                'method'             => $method,
+                'currency'           => 'HUF',
+                'subtotal'           => $subtotal,
+                'discountedSubtotal' => $discountedSubtotal,
+                'shipping'           => $shipping,
+                'discount_percent'   => $percent,
+                'discount_amount'    => $discountAmount,
+                'total'              => $total,
+>>>>>>> 5c55d34 (new features)
             ]);
         }
 
@@ -81,11 +115,15 @@ class CheckoutController extends Controller
     {
         $cart = $this->getCart($request);
 
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
         if (empty($cart)) {
             return redirect()->route('store.index')->with('error', 'Your cart is empty.');
         }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         $subtotal = collect($cart)->sum(fn ($item) => $item['price'] * $item['qty']);
         $shipping = 0.0;
@@ -96,6 +134,8 @@ class CheckoutController extends Controller
 
         $discountAmount = $percent > 0 ? round($subtotal * ($percent / 100), 2) : 0.0;
 =======
+=======
+>>>>>>> 5c55d34 (new features)
         $subtotal = $this->cartSubtotalHuf($cart);
 
         $selectedMethod = (string) $request->query(
@@ -126,12 +166,18 @@ class CheckoutController extends Controller
         $shipping = $this->shippingHuf($selectedCountry, $selectedMethod);
         $percent = $this->getDiscountPercent($request);
         $discountAmount = $this->calculateDiscountHuf($subtotal, $percent);
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
         $total = max(0, $subtotal + $shipping - $discountAmount);
+=======
+        $discountedSubtotal = max(0, $subtotal - $discountAmount);
+        $total = $discountedSubtotal + $shipping;
+>>>>>>> 5c55d34 (new features)
 
         return view('checkout.show', compact(
             'cart',
             'subtotal',
+<<<<<<< HEAD
             'shipping',
             'total',
             'percent',
@@ -142,21 +188,36 @@ class CheckoutController extends Controller
             'selectedCountry',
             'selectedMethod'
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+            'discountedSubtotal',
+            'shipping',
+            'total',
+            'percent',
+            'discountAmount',
+            'selectedCountry',
+            'selectedMethod'
+>>>>>>> 5c55d34 (new features)
         ));
     }
 
     public function place(Request $request)
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         $cart = $request->session()->get('cart', []);
 =======
         $cart = $this->getCart($request);
 
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+        $cart = $this->getCart($request);
+
+>>>>>>> 5c55d34 (new features)
         if (empty($cart)) {
             return redirect()->route('store.index')->with('error', 'Your cart is empty.');
         }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         $rawMethod = $request->input('payment_method', 'card');
         if (!in_array($rawMethod, ['card', 'cod', 'pickup'], true)) {
@@ -207,6 +268,8 @@ class CheckoutController extends Controller
         }
 
 =======
+=======
+>>>>>>> 5c55d34 (new features)
         $paymentMethod = $this->normalizePaymentMethod((string) $request->input('payment_method', 'card'));
         $request->session()->put('checkout_payment_method', $paymentMethod);
 
@@ -231,7 +294,10 @@ class CheckoutController extends Controller
         $shipping = $this->shippingHuf($countryCode, $paymentMethod);
         $total = max(0, $subtotal + $shipping - $discountAmount);
 
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
         try {
             $order = DB::transaction(function () use (
                 $cart,
@@ -239,6 +305,7 @@ class CheckoutController extends Controller
                 $subtotal,
                 $shipping,
                 $total,
+<<<<<<< HEAD
 <<<<<<< HEAD
                 $paymentMethod,
                 $existingPending
@@ -310,6 +377,8 @@ class CheckoutController extends Controller
                         'line_total' => $product->price * $item['qty'],
                     ]);
 =======
+=======
+>>>>>>> 5c55d34 (new features)
                 $paymentMethod
             ) {
                 $order = $this->createOrder($validated, $subtotal, $shipping, $total, $paymentMethod);
@@ -317,12 +386,16 @@ class CheckoutController extends Controller
 
                 if (in_array($paymentMethod, ['pickup', 'cod'], true) && is_null($order->fulfilled_at)) {
                     $order->forceFill(['fulfilled_at' => now()])->save();
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
                 }
 
                 return $order;
             });
 
+<<<<<<< HEAD
 <<<<<<< HEAD
             // ✅ COD / PICKUP: itt már “leadott”, töröld a sessiont (CART + DISCOUNT!)
             if ($paymentMethod !== 'card') {
@@ -377,12 +450,41 @@ class CheckoutController extends Controller
             if ($paymentMethod !== 'card') {
                 $order->update(['fulfillment_status' => 'processing']);
                 $request->session()->forget(['cart', 'discount']);
+=======
+            if ($paymentMethod !== 'card') {
+                $order->load(['items', 'user']);
+            
+                Mail::to($order->user->email)
+                    ->locale($order->user->language ?? 'hu')
+                    ->send(
+                        new OrderPlaced(
+                            $order->items->map(fn ($i) => [
+                                'product_id' => $i->product_id,
+                                'name'       => $i->name,
+                                'price'      => (int) $i->unit_price,
+                                'qty'        => (int) $i->qty,
+                            ])->toArray(),
+                            (int) $order->subtotal,
+                            (int) $order->shipping,
+                            (int) $order->total,
+                            $order
+                        )
+                    );
+            
+                $order->update(['fulfillment_status' => 'processing']);
+            
+                $request->session()->forget(['cart', 'discount']);
+            
+>>>>>>> 5c55d34 (new features)
                 return redirect()->route('checkout.success', ['order_id' => $order->id]);
             }
 
             $order->load('items');
             $session = $this->createStripeCheckoutSession($order, $discountAmount, $discountId);
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
 
             $order->update([
                 'stripe_checkout_session_id' => $session->id,
@@ -390,14 +492,18 @@ class CheckoutController extends Controller
 
             return redirect()->away($session->url);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
         } catch (\Exception $e) {
             return back()->with('error', 'Order failed: ' . $e->getMessage());
         }
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     /**
      * ✅ STRIPE SUCCESS LANDING
@@ -405,6 +511,8 @@ class CheckoutController extends Controller
      */
 =======
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
     public function success(Request $request)
     {
         $orderId = (int) $request->query('order_id');
@@ -418,11 +526,14 @@ class CheckoutController extends Controller
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         // Ha CARD, akkor lehet hogy a webhook még dolgozik pár pillanatig.
         // Ne töröljünk, amíg nincs tényleg paid.
         if ($order->payment_method === 'card' && $order->payment_status !== 'paid') {
             // (opcionális) itt renderelhetsz egy "Processing payment..." oldalt is
 =======
+=======
+>>>>>>> 5c55d34 (new features)
         if ($order->payment_method === 'card' && $order->payment_status !== 'paid') {
             try {
                 $stripe = new StripeClient(config('services.stripe.secret'));
@@ -444,24 +555,34 @@ class CheckoutController extends Controller
         }
 
         if ($order->payment_method === 'card' && $order->payment_status !== 'paid') {
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
             return redirect()->route('orders.index')
                 ->with('info', 'Payment is processing. Refresh in a moment.');
         }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         // ✅ itt a lényeg: CART + DISCOUNT törlés
         $request->session()->forget(['cart', 'discount']);
 =======
         $request->session()->forget(['cart', 'discount', 'checkout_country', 'checkout_payment_method']);
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+        $request->session()->forget(['cart', 'discount', 'checkout_country', 'checkout_payment_method']);
+>>>>>>> 5c55d34 (new features)
         $request->session()->regenerate();
 
         return redirect()->route('orders.index')->with('success', 'Payment successful!');
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
+=======
+>>>>>>> 5c55d34 (new features)
 
     private function getCart(Request $request): array
     {
@@ -730,5 +851,9 @@ class CheckoutController extends Controller
         'cancel_url'  => route('checkout.show', [], true) . '?cancelled=1',
     ]);
     }
+<<<<<<< HEAD
 }
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+}
+>>>>>>> 5c55d34 (new features)

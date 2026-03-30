@@ -31,6 +31,7 @@ class ProfileUpdateRequest extends FormRequest
             'gender' => ['nullable', 'string', 'in:male,female,other'],
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             'profile_picture' => [
                 'nullable',
                 'image',
@@ -38,6 +39,8 @@ class ProfileUpdateRequest extends FormRequest
             ],
 =======
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
         ];
     }
 

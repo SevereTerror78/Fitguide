@@ -2,9 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+
+>>>>>>> 5c55d34 (new features)
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\CartController;
@@ -14,13 +18,18 @@ use App\Http\Controllers\OrderController as UserOrderController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\FacebookController;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+
+>>>>>>> 5c55d34 (new features)
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\ProductController;
+<<<<<<< HEAD
 <<<<<<< HEAD
 use App\Http\Controllers\ExerciseController;
 use App\Http\Controllers\StripeWebhookController;
@@ -32,11 +41,17 @@ Route::get('/', fn () => view('welcome'))->name('home');
 
 
 =======
+=======
+>>>>>>> 5c55d34 (new features)
 
 use App\Http\Controllers\ExercisesController;
 use App\Http\Controllers\StripeWebhookController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\Admin\NotificationsController;
+<<<<<<< HEAD
+=======
+use App\Http\Controllers\NewsletterController;
+>>>>>>> 5c55d34 (new features)
 
 
 // =======================
@@ -55,17 +70,28 @@ Route::get('/store', [StoreController::class, 'index'])->name('store.index');
 Route::get('/advice', [AdviceController::class, 'index'])->name('advice.index');
 Route::post('/advice/bmi', [AdviceController::class, 'bmi'])->name('advice.bmi');
 
+<<<<<<< HEAD
+=======
+// =======================
+// EMAIL->subscribe button
+// =======================
+Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
+>>>>>>> 5c55d34 (new features)
 
 // =======================
 // DASHBOARD (auth + verified)
 // =======================
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
 Route::get('/dashboard', fn () => view('dashboard'))
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
 
 // =======================
+<<<<<<< HEAD
 <<<<<<< HEAD
 // PROFILE (auth required)
 // =======================
@@ -127,6 +153,8 @@ Route::get('/advice', [AdviceController::class, 'index'])->name('advice.index');
 Route::post('/advice/bmi', [AdviceController::class, 'calculateBMI'])->name('advice.bmi');
 
 =======
+=======
+>>>>>>> 5c55d34 (new features)
 // CART COUNT (public - shop.js)
 // =======================
 Route::get('/cart/count', [CartController::class, 'count'])->name('cart.count');
@@ -135,11 +163,15 @@ Route::get('/cart/count', [CartController::class, 'count'])->name('cart.count');
 // =======================
 // AUTH ROUTES (Breeze/Jetstream/etc.)
 // =======================
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
 require __DIR__.'/auth.php';
 
 
 // =======================
+<<<<<<< HEAD
 <<<<<<< HEAD
 // GOOGLE LOGIN
 // =======================
@@ -169,6 +201,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/orders/{order}', [UserOrderController::class, 'show'])
         ->name('orders.show');
 =======
+=======
+>>>>>>> 5c55d34 (new features)
 // SOCIAL LOGIN
 // =======================
 Route::get('/auth/google/redirect', [GoogleController::class, 'redirect'])->name('google.redirect');
@@ -227,13 +261,19 @@ Route::middleware('auth')->group(function () {
 
     
     Route::post('/settings/language', [SettingsController::class, 'updateLanguage'])->name('settings.language');
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
 });
 
 
 // =======================
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 5c55d34 (new features)
 // STRIPE / WEBHOOKS
 // =======================
 Route::post('/webhooks/stripe', [StripeWebhookController::class, 'handle']);
@@ -244,13 +284,17 @@ Route::get('/checkout/cancel', fn() => view('checkout.cancel'));
 
 
 // =======================
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
 // ADMIN
 // =======================
 Route::middleware(['auth', 'admin'])
     ->prefix('admin')
     ->name('admin.')
     ->group(function () {
+<<<<<<< HEAD
 <<<<<<< HEAD
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
         Route::resource('users', UserController::class);
@@ -298,6 +342,8 @@ Route::middleware('auth')->group(function () {
 });
 
 =======
+=======
+>>>>>>> 5c55d34 (new features)
 
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
@@ -313,4 +359,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/notifications/{notification}/read', [NotificationsController::class, 'markRead'])->name('notifications.read');
         Route::post('/notifications/read-all', [NotificationsController::class, 'markAllRead'])->name('notifications.readAll');
     });
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)

@@ -1,10 +1,14 @@
 @extends('layouts.main')
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 @section('title', 'Edit Profile • FitGuide')
 =======
 @section('title', __('profile.edit_page_title') . ' • FitGuide')
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+@section('title', __('profile.edit_page_title') . ' • FitGuide')
+>>>>>>> 5c55d34 (new features)
 
 @section('head')
 <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
@@ -14,6 +18,7 @@
 <div class="profile-container">
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     {{-- LEFT SIDEBAR --}}
     @include('profile.sidebar')
 
@@ -21,11 +26,16 @@
     <section class="profile-main">
         <h2 class="section-title">Edit Profile</h2>
 =======
+=======
+>>>>>>> 5c55d34 (new features)
     @include('profile.sidebar')
 
     <section class="profile-main">
         <h2 class="section-title">{{ __('profile.edit_title') }}</h2>
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
 
         <form method="POST" action="{{ route('profile.update') }}"
               enctype="multipart/form-data"
@@ -33,6 +43,7 @@
             @csrf
             @method('PATCH')
 
+<<<<<<< HEAD
 <<<<<<< HEAD
             {{-- PROFILE PICTURE --}}
             <div class="overview-item full">
@@ -47,10 +58,15 @@
             <div class="overview-item">
                 <label>{{ __('profile.full_name') }}</label>
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+            <div class="overview-item">
+                <label>{{ __('profile.full_name') }}</label>
+>>>>>>> 5c55d34 (new features)
                 <input class="profile-input" type="text" name="name"
                        value="{{ old('name', $user->name) }}" required>
             </div>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
             {{-- EMAIL --}}
             <div class="overview-item">
@@ -59,10 +75,15 @@
             <div class="overview-item">
                 <label>{{ __('profile.email') }}</label>
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+            <div class="overview-item">
+                <label>{{ __('profile.email') }}</label>
+>>>>>>> 5c55d34 (new features)
                 <input class="profile-input" type="email" name="email"
                        value="{{ old('email', $user->email) }}" required>
             </div>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
             {{-- PHONE --}}
             <div class="overview-item">
@@ -71,10 +92,15 @@
             <div class="overview-item">
                 <label>{{ __('profile.phone') }}</label>
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+            <div class="overview-item">
+                <label>{{ __('profile.phone') }}</label>
+>>>>>>> 5c55d34 (new features)
                 <input class="profile-input" type="text" name="phone"
                        value="{{ old('phone', $user->phone) }}">
             </div>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
             {{-- DOB --}}
             <div class="overview-item">
@@ -83,12 +109,17 @@
             <div class="overview-item">
                 <label>{{ __('profile.dob') }}</label>
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+            <div class="overview-item">
+                <label>{{ __('profile.dob') }}</label>
+>>>>>>> 5c55d34 (new features)
                 <input
                     class="profile-input"
                     type="date"
                     name="dob"
                     value="{{ old('dob', $user->dob ? \Carbon\Carbon::parse($user->dob)->format('Y-m-d') : '') }}"
                 >
+<<<<<<< HEAD
 <<<<<<< HEAD
 
             </div>
@@ -102,6 +133,8 @@
                     <option value="female" {{ old('gender', $user->gender) === 'female' ? 'selected' : '' }}>Female</option>
                     <option value="other" {{ old('gender', $user->gender) === 'other' ? 'selected' : '' }}>Other</option>
 =======
+=======
+>>>>>>> 5c55d34 (new features)
             </div>
 
             <div class="overview-item full">
@@ -117,22 +150,33 @@
                     <option value="other" {{ old('gender', $user->gender) === 'other' ? 'selected' : '' }}>
                         {{ __('profile.other') }}
                     </option>
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
                 </select>
             </div>
 
             <button type="submit" class="btn-primary full mt">
 <<<<<<< HEAD
+<<<<<<< HEAD
                 Save Changes
 =======
                 {{ __('profile.save_changes') }}
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+                {{ __('profile.save_changes') }}
+>>>>>>> 5c55d34 (new features)
             </button>
         </form>
     </section>
 </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 @endsection
 =======
 @endsection
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+@endsection
+>>>>>>> 5c55d34 (new features)

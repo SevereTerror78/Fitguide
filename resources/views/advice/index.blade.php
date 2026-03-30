@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <html lang="en">
 <head>
   @php($t = auth()->user()->theme ?? 'dark')
@@ -83,6 +84,8 @@
   @include('partials.footer')
  
 =======
+=======
+>>>>>>> 5c55d34 (new features)
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
   @php($t = auth()->user()?->theme ?? 'dark')
@@ -198,6 +201,9 @@
 
   {{-- FOOTER --}}
   @include('partials.footer')
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
 </body>
 </html>

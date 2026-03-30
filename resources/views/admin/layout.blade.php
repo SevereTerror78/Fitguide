@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>FitGuide Admin</title>
 =======
+=======
+>>>>>>> 5c55d34 (new features)
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="UTF-8">
     <title>{{ __('admin.layout.title') }}</title>
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}" />
 </head>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <body class="bg-gray-100">
 
@@ -24,6 +31,8 @@
 
             <div class="text-2xl font-bold">Admin</div>
 =======
+=======
+>>>>>>> 5c55d34 (new features)
 @php
     $adminUnreadNotifications = \App\Models\AdminNotification::whereNull('read_at')->count();
 @endphp
@@ -36,11 +45,15 @@
         <aside class="w-64 bg-gray-900 text-white p-6 space-y-8 flex-shrink-0 overflow-y-auto">
 
             <div class="text-2xl font-bold">{{ __('admin.layout.admin') }}</div>
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
 
             <nav class="space-y-3 text-gray-300">
 
                 <a href="{{ route('admin.dashboard') }}"
+<<<<<<< HEAD
 <<<<<<< HEAD
                 class="block px-3 py-2 rounded hover:bg-gray-700 {{ request()->is('admin/dashboard') ? 'bg-gray-700 text-white' : '' }}">
                 Dashboard
@@ -84,6 +97,8 @@
                         <i class="fa-solid fa-right-from-bracket"></i>
                         Logout
 =======
+=======
+>>>>>>> 5c55d34 (new features)
                    class="block px-3 py-2 rounded hover:bg-gray-700 {{ request()->is('admin/dashboard') ? 'bg-gray-700 text-white' : '' }}">
                     {{ __('admin.nav.dashboard') }}
                 </a>
@@ -135,7 +150,10 @@
                             class="w-full text-left flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-700 text-red-400">
                         <i class="fa-solid fa-right-from-bracket"></i>
                         {{ __('admin.nav.logout') }}
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
                     </button>
                 </form>
 
@@ -144,12 +162,17 @@
         </aside>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         {{-- MAIN --}}
         <main class="flex-1">
 =======
         {{-- MAIN CONTENT --}}
         <main class="flex-1 overflow-y-auto">
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+        {{-- MAIN CONTENT --}}
+        <main class="flex-1 overflow-y-auto">
+>>>>>>> 5c55d34 (new features)
             @yield('content')
         </main>
 
@@ -158,7 +181,11 @@
     @stack('scripts')
 </body>
 <<<<<<< HEAD
+<<<<<<< HEAD
 </html>
 =======
 </html>
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+</html>
+>>>>>>> 5c55d34 (new features)

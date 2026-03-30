@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+<<<<<<< HEAD
+=======
+use App\Mail\WelcomeMail;
+use Illuminate\Support\Facades\Mail;
+>>>>>>> 5c55d34 (new features)
 
 class RegisteredUserController extends Controller
 {
@@ -39,6 +44,7 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+<<<<<<< HEAD
         ]);
 
         event(new Registered($user));
@@ -46,6 +52,19 @@ class RegisteredUserController extends Controller
         $user->points = ($user->points ?? 0) + 50;
         $user->save();
 
+=======
+            'language' => app()->getLocale() === 'en' ? 'en' : 'hu',
+        ]);
+
+        event(new Registered($user));
+
+        $user->points = ($user->points ?? 0) + 50;
+        $user->save();
+
+        Mail::to($user->email)
+            ->locale($user->language ?? 'hu')
+            ->send(new WelcomeMail($user));
+>>>>>>> 5c55d34 (new features)
 
         Auth::login($user);
         $request->session()->regenerate();

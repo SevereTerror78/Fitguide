@@ -2,6 +2,7 @@
 
 @section('content')
 <<<<<<< HEAD
+<<<<<<< HEAD
 <div class="p-8">
 
     <h1 class="text-3xl font-bold mb-6">Orders</h1>
@@ -63,6 +64,8 @@
            class="px-4 py-2 rounded-lg border bg-white text-gray-700">
             Reset
 =======
+=======
+>>>>>>> 5c55d34 (new features)
 @php
     $currency = auth()->user()?->currency ?? session('currency', 'HUF');
 
@@ -130,7 +133,10 @@
         <a href="{{ route('admin.orders.index') }}"
            class="px-4 py-2 rounded-lg border bg-white text-gray-700">
             {{ __('admin.orders.filters.reset_button') }}
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
         </a>
     </form>
 
@@ -139,18 +145,24 @@
             <thead class="bg-gray-50 border-b text-gray-600">
                 <tr>
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <th class="py-3 px-4">Order</th>
                     <th class="py-3 px-4">User</th>
                     <th class="py-3 px-7">Total</th>
                     <th class="py-3 px-8">Date</th>
                     <th class="py-3 px-6">Status</th>
 =======
+=======
+>>>>>>> 5c55d34 (new features)
                     <th class="py-3 px-4">{{ __('admin.orders.table.order') }}</th>
                     <th class="py-3 px-4">{{ __('admin.orders.table.user') }}</th>
                     <th class="py-3 px-7">{{ __('admin.orders.table.total') }}</th>
                     <th class="py-3 px-8">{{ __('admin.orders.table.date') }}</th>
                     <th class="py-3 px-6">{{ __('admin.orders.table.status') }}</th>
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
                 </tr>
             </thead>
 
@@ -160,10 +172,14 @@
                     <td class="py-3 px-4 font-semibold">#{{ $order->id }}</td>
                     <td class="px-4">{{ $order->user->name }}</td>
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <td class="px-4">€{{ number_format($order->total, 2) }}</td>
 =======
                     <td class="px-4">{{ $formatMoney($order->total) }}</td>
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+                    <td class="px-4">{{ $formatMoney($order->total) }}</td>
+>>>>>>> 5c55d34 (new features)
                     <td class="px-4">{{ $order->created_at->format('M d, Y') }}</td>
                     <td class="px-4">
                         @include('admin.orders.status-badge', [
@@ -181,7 +197,11 @@
 
 </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 @endsection
 =======
 @endsection
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+@endsection
+>>>>>>> 5c55d34 (new features)

@@ -1,5 +1,6 @@
 /* =========================
 <<<<<<< HEAD
+<<<<<<< HEAD
    Settings – clean V2
    ========================= */
 
@@ -228,22 +229,54 @@
   align-items:center;
   justify-content:center;
   padding: 28px 18px 60px;
+=======
+   SETTINGS PAGE
+   Profile layouton belül
+========================= */
+
+/* A settings oldal a profile-main jobb oldali paneljén belül fusson */
+.settings-page-main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* A cím is a settings blokk szélességéhez igazodjon */
+.settings-page-main .section-title{
+  width: 100%;
+  max-width: 520px;
+  margin-bottom: 22px;
+>>>>>>> 5c55d34 (new features)
 }
 
 /* WRAP */
 .settings-wrap{
+<<<<<<< HEAD
   width:100%;
   max-width: 520px;
+=======
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+>>>>>>> 5c55d34 (new features)
 }
 
 /* FORM CARD */
 .settings-form{
+<<<<<<< HEAD
   width:100%;
+=======
+  width: 100%;
+>>>>>>> 5c55d34 (new features)
   border-radius: 20px;
   padding: 18px;
   background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
   border: 1px solid rgba(255,255,255,.10);
+<<<<<<< HEAD
   box-shadow: 0 22px 70px rgba(0,0,0,.45);
+=======
+  box-shadow: 0 22px 70px rgba(0,0,0,.25);
+>>>>>>> 5c55d34 (new features)
 }
 
 /* GROUPS */
@@ -256,31 +289,52 @@
 }
 
 .form-group label{
+<<<<<<< HEAD
   display:flex;
   align-items:center;
   gap:10px;
+=======
+  display: flex;
+  align-items: center;
+  gap: 10px;
+>>>>>>> 5c55d34 (new features)
   margin: 0 0 10px;
   font-weight: 800;
   font-size: 14px;
   letter-spacing: .2px;
 }
 
+<<<<<<< HEAD
 /* SELECT */
 .form-select{
   width:100%;
+=======
+/* =========================
+   SELECT
+========================= */
+.form-select{
+  width: 100%;
+>>>>>>> 5c55d34 (new features)
   padding: 12px 12px;
   border-radius: 14px;
   border: 1px solid rgba(255,255,255,.10);
   background: rgba(255,255,255,.05);
   color: var(--text, #e5e7eb);
   outline: none;
+<<<<<<< HEAD
   transition: border-color .18s ease, background .18s ease;
 }
+=======
+  transition: border-color .18s ease, background .18s ease, box-shadow .18s ease;
+}
+
+>>>>>>> 5c55d34 (new features)
 .form-select:focus{
   border-color: rgba(96,165,250,.55);
   background: rgba(255,255,255,.07);
 }
 
+<<<<<<< HEAD
 /* THEME TOGGLE */
 .theme-toggle{
   display:flex;
@@ -289,6 +343,102 @@
   border: 1px solid rgba(255,255,255,.12);
   background: rgba(255,255,255,.03);
   overflow:hidden;
+=======
+/* DARK THEME select */
+body[data-theme="dark"] .form-select,
+html[data-theme="dark"] .form-select{
+  background: rgba(255,255,255,.06);
+  color: #ffffff;
+  border: 1px solid rgba(108,136,255,.55);
+  color-scheme: dark;
+}
+
+body[data-theme="dark"] .form-select option,
+html[data-theme="dark"] .form-select option{
+  background: #10233f;
+  color: #ffffff;
+}
+
+body[data-theme="dark"] .form-select option:checked,
+html[data-theme="dark"] .form-select option:checked{
+  background: #2f6ff5;
+  color: #ffffff;
+}
+
+body[data-theme="dark"] .form-select:focus,
+html[data-theme="dark"] .form-select:focus{
+  outline: none;
+  border-color: #6c88ff;
+  box-shadow: 0 0 0 3px rgba(108,136,255,.18);
+}
+
+/* LIGHT THEME select */
+body[data-theme="light"] .form-select,
+html[data-theme="light"] .form-select{
+  background: rgba(255,255,255,.92);
+  color: #1f2937;
+  border: 1px solid rgba(148,163,184,.55);
+  color-scheme: light;
+}
+
+body[data-theme="light"] .form-select option,
+html[data-theme="light"] .form-select option{
+  background: #ffffff;
+  color: #1f2937;
+}
+
+body[data-theme="light"] .form-select option:checked,
+html[data-theme="light"] .form-select option:checked{
+  background: #dbeafe;
+  color: #111827;
+}
+
+body[data-theme="light"] .form-select:focus,
+html[data-theme="light"] .form-select:focus{
+  outline: none;
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 3px rgba(96,165,250,.18);
+}
+
+/* HIGH CONTRAST select */
+body[data-theme="hc"] .form-select,
+html[data-theme="hc"] .form-select{
+  background: #000000;
+  color: #ffd400;
+  border: 1px solid #ffd400;
+  color-scheme: dark;
+}
+
+body[data-theme="hc"] .form-select option,
+html[data-theme="hc"] .form-select option{
+  background: #000000;
+  color: #ffd400;
+}
+
+body[data-theme="hc"] .form-select option:checked,
+html[data-theme="hc"] .form-select option:checked{
+  background: #ffd400;
+  color: #000000;
+}
+
+body[data-theme="hc"] .form-select:focus,
+html[data-theme="hc"] .form-select:focus{
+  outline: none;
+  border-color: #ffd400;
+  box-shadow: 0 0 0 3px rgba(255,212,0,.28);
+}
+
+/* =========================
+   THEME TOGGLE
+========================= */
+.theme-toggle{
+  display: flex;
+  gap: 0;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.03);
+  overflow: hidden;
+>>>>>>> 5c55d34 (new features)
 }
 
 .theme-btn{
@@ -297,19 +447,67 @@
   border: 0;
   background: transparent;
   color: rgba(229,231,235,.85);
+<<<<<<< HEAD
   cursor:pointer;
+=======
+  cursor: pointer;
+>>>>>>> 5c55d34 (new features)
   font-weight: 800;
   letter-spacing: .2px;
   transition: background .18s ease, color .18s ease, transform .10s ease;
 }
+<<<<<<< HEAD
 .theme-btn:hover{
   background: rgba(255,255,255,.06);
 }
+=======
+
+.theme-btn:hover{
+  background: rgba(255,255,255,.06);
+}
+
+>>>>>>> 5c55d34 (new features)
 .theme-btn.active{
   color: #fff;
   background: linear-gradient(90deg, rgba(96,165,250,.9), rgba(59,130,246,.85));
 }
 
+<<<<<<< HEAD
+=======
+/* Light theme gombszínek */
+body[data-theme="light"] .theme-btn{
+  color: #334155;
+}
+
+body[data-theme="light"] .theme-btn:hover{
+  background: rgba(15,23,42,.06);
+}
+
+body[data-theme="light"] .theme-btn.active{
+  color: #ffffff;
+  background: linear-gradient(90deg, #60a5fa, #3b82f6);
+}
+
+/* HC theme gombszínek */
+body[data-theme="hc"] .theme-toggle{
+  border-color: #ffd400;
+  background: #000000;
+}
+
+body[data-theme="hc"] .theme-btn{
+  color: #ffd400;
+}
+
+body[data-theme="hc"] .theme-btn:hover{
+  background: rgba(255,212,0,.10);
+}
+
+body[data-theme="hc"] .theme-btn.active{
+  color: #000000;
+  background: #ffd400;
+}
+
+>>>>>>> 5c55d34 (new features)
 .theme-hint{
   margin: 10px 2px 0;
   color: rgba(148,163,184,.95);
@@ -317,21 +515,44 @@
   line-height: 1.35;
 }
 
+<<<<<<< HEAD
 /* ACTIONS */
 .settings-actions{
   display:flex;
   flex-direction:column;
   gap:10px;
+=======
+body[data-theme="light"] .theme-hint{
+  color: #64748b;
+}
+
+body[data-theme="hc"] .theme-hint{
+  color: #d1d5db;
+}
+
+/* =========================
+   ACTIONS
+========================= */
+.settings-actions{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+>>>>>>> 5c55d34 (new features)
   margin-top: 6px;
 }
 
 /* SAVE */
 .btn-save{
+<<<<<<< HEAD
   width:100%;
+=======
+  width: 100%;
+>>>>>>> 5c55d34 (new features)
   padding: 13px 14px;
   border-radius: 16px;
   border: 1px solid rgba(255,255,255,.14);
   background: linear-gradient(90deg, rgba(96,165,250,.95), rgba(59,130,246,.9));
+<<<<<<< HEAD
   color:#fff;
   font-weight: 900;
   letter-spacing: .25px;
@@ -339,36 +560,92 @@
   box-shadow: 0 18px 45px rgba(59,130,246,.25);
   transition: transform .12s ease, filter .18s ease;
 }
+=======
+  color: #fff;
+  font-weight: 900;
+  letter-spacing: .25px;
+  cursor: pointer;
+  box-shadow: 0 18px 45px rgba(59,130,246,.25);
+  transition: transform .12s ease, filter .18s ease;
+}
+
+>>>>>>> 5c55d34 (new features)
 .btn-save:hover{
   transform: translateY(-1px);
   filter: brightness(1.05);
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5c55d34 (new features)
 .btn-save:active{
   transform: translateY(0);
 }
 
+<<<<<<< HEAD
 /* BACK */
 .back-btn.secondary{
   text-align:center;
+=======
+/* HC save button */
+body[data-theme="hc"] .btn-save{
+  background: #ffd400;
+  color: #000;
+  border-color: #ffd400;
+  box-shadow: none;
+}
+
+/* BACK */
+.back-btn.secondary{
+  text-align: center;
+>>>>>>> 5c55d34 (new features)
   border: 1px solid rgba(255,255,255,.14);
   background: rgba(255,255,255,.03);
   color: var(--text, #e5e7eb);
   padding: 11px 14px;
   border-radius: 14px;
+<<<<<<< HEAD
   text-decoration:none;
+=======
+  text-decoration: none;
+>>>>>>> 5c55d34 (new features)
   font-weight: 800;
   letter-spacing: .2px;
   transition: transform .12s ease, background .18s ease, border-color .18s ease;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5c55d34 (new features)
 .back-btn.secondary:hover{
   transform: translateY(-1px);
   background: rgba(255,255,255,.06);
   border-color: rgba(255,255,255,.22);
 }
 
+<<<<<<< HEAD
 /* MESSAGES */
 .success-message{
   width:100%;
+=======
+body[data-theme="light"] .back-btn.secondary{
+  color: #1f2937;
+  background: rgba(255,255,255,.85);
+  border-color: rgba(148,163,184,.35);
+}
+
+body[data-theme="hc"] .back-btn.secondary{
+  background: #ffd400;
+  color: #000;
+  border-color: #ffd400;
+}
+
+/* =========================
+   MESSAGES
+========================= */
+.success-message{
+  width: 100%;
+>>>>>>> 5c55d34 (new features)
   margin: 0 0 12px;
   padding: 12px 14px;
   border-radius: 14px;
@@ -377,20 +654,91 @@
 }
 
 .error-message{
+<<<<<<< HEAD
   width:100%;
+=======
+  width: 100%;
+>>>>>>> 5c55d34 (new features)
   margin: 0 0 12px;
   padding: 12px 14px;
   border-radius: 14px;
   background: rgba(239,68,68,.12);
   border: 1px solid rgba(239,68,68,.35);
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5c55d34 (new features)
 .error-message ul{
   margin: 0;
   padding-left: 18px;
 }
+<<<<<<< HEAD
 @media (max-width: 320px) {
     body {
         min-width: 320px;
     }
 }
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+
+/* Ha a sessionben kulcsot látsz szöveg helyett */
+.success-message,
+.error-message{
+  word-break: break-word;
+}
+h2{
+  text-align: center;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 900px){
+  .settings-page-main .section-title{
+    max-width: 100%;
+  }
+
+  .settings-wrap{
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 640px){
+  .settings-form{
+    padding: 14px;
+    border-radius: 16px;
+  }
+
+  .form-group{
+    padding: 12px 12px 10px;
+    border-radius: 14px;
+  }
+
+  .theme-btn{
+    font-size: 13px;
+    padding: 10px 8px;
+  }
+
+  .btn-save,
+  .back-btn.secondary{
+    padding: 12px;
+  }
+}
+
+@media (max-width: 420px){
+  .theme-toggle{
+    flex-direction: column;
+  }
+
+  .theme-btn{
+    width: 100%;
+  }
+}
+
+@media (max-width: 320px){
+  body{
+    min-width: 320px;
+  }
+}
+>>>>>>> 5c55d34 (new features)

@@ -2,6 +2,7 @@
 
 @section('content')
 <<<<<<< HEAD
+<<<<<<< HEAD
 <div class="p-8 bg-gray-100 min-h-screen">
 
     <div class="max-w-4xl mx-auto">
@@ -91,6 +92,8 @@
 </div>
 @endsection
 =======
+=======
+>>>>>>> 5c55d34 (new features)
 <div class="p-8 max-w-3xl">
 
     <h1 class="text-3xl font-bold mb-6">{{ __('admin.products.edit_title') }}</h1>
@@ -201,5 +204,9 @@
 
     </form>
 </div>
+<<<<<<< HEAD
 @endsection
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+@endsection
+>>>>>>> 5c55d34 (new features)

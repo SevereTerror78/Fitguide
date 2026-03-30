@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <html lang="en">
 <head>
   @php($t = auth()->user()->theme ?? 'dark')
@@ -72,6 +73,8 @@
 
   </div>
 =======
+=======
+>>>>>>> 5c55d34 (new features)
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     @php($t = auth()->user()?->theme ?? 'dark')
@@ -83,6 +86,10 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/exercises.css') }}">
     <link rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}">
+<<<<<<< HEAD
+=======
+    <script src="{{ asset('js/shop.js') }}" defer></script>
+>>>>>>> 5c55d34 (new features)
     <script src="{{ asset('js/navbar.js') }}" defer></script>
 </head>
 
@@ -166,14 +173,21 @@
         </div>
 
     </div>
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
 </section>
 
 @include('partials.footer')
 
 </body>
 <<<<<<< HEAD
+<<<<<<< HEAD
 </html>
 =======
 </html>
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+</html>
+>>>>>>> 5c55d34 (new features)

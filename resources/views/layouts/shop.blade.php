@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>@yield('title', 'FitGuide')</title>
@@ -91,6 +92,8 @@
 
   {{-- OLDALTARTALOM --}}
 =======
+=======
+>>>>>>> 5c55d34 (new features)
   @php($t = auth()->check() ? (auth()->user()->theme ?? 'dark') : 'dark')
 
   <link id="theme-css" rel="stylesheet" href="{{ asset('css/themes/'.$t.'.css') }}?v={{ time() }}">
@@ -118,6 +121,7 @@
 </head>
 
 <body data-theme="{{ $t }}">
+<<<<<<< HEAD
 
   {{-- NAV --}}
   <nav class="navbar">
@@ -230,5 +234,14 @@
 
   @stack('scripts')
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+@include('partials.navbar')
+  {{-- CONTENT --}}
+  @yield('content')
+
+@include('partials.footer')
+
+  @stack('scripts')
+>>>>>>> 5c55d34 (new features)
 </body>
 </html>

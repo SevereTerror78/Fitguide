@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 (function () {
 =======
 
@@ -86,10 +87,20 @@
         b.classList.toggle("active", isActive);
         b.setAttribute("aria-pressed", isActive ? "true" : "false");
       });
+=======
+document.addEventListener("DOMContentLoaded", function () {
+  const THEMES = ["light", "dark", "hc"];
+  const themeButtons = document.querySelectorAll(".theme-btn");
+  const themeInput = document.getElementById("theme-input");
+
+  function setTheme(theme) {
+      const t = THEMES.includes(theme) ? theme : "dark";
+>>>>>>> 5c55d34 (new features)
 
       document.documentElement.setAttribute("data-theme", t);
       document.body.setAttribute("data-theme", t);
 
+<<<<<<< HEAD
       // Works only if <link id="theme-css" ...> exists on the page
       if (themeCss) {
         const dir = getCssDirFromHref(themeCss.href || themeCss.getAttribute("href"));
@@ -113,11 +124,41 @@
     } catch (e) {}
 
     const initial =
+=======
+      if (themeInput) {
+          themeInput.value = t;
+      }
+
+      const themeCss = document.getElementById("theme-css");
+      if (themeCss) {
+          themeCss.setAttribute("href", `/css/themes/${t}.css?v=${Date.now()}`);
+      }
+
+      themeButtons.forEach((btn) => {
+          const isActive = btn.dataset.theme === t;
+          btn.classList.toggle("active", isActive);
+          btn.setAttribute("aria-pressed", isActive ? "true" : "false");
+      });
+
+      try {
+          localStorage.setItem("fg_theme_preview", t);
+      } catch (e) {}
+  }
+
+  themeButtons.forEach((btn) => {
+      btn.addEventListener("click", function () {
+          setTheme(btn.dataset.theme);
+      });
+  });
+
+  let initialTheme =
+>>>>>>> 5c55d34 (new features)
       (themeInput && themeInput.value) ||
       document.body.getAttribute("data-theme") ||
       document.documentElement.getAttribute("data-theme") ||
       "dark";
 
+<<<<<<< HEAD
     applyTheme(initial);
   }
 
@@ -136,3 +177,14 @@
   });
 >>>>>>> fc7673c (frontend update and some new feature)
 })();
+=======
+  try {
+      const saved = localStorage.getItem("fg_theme_preview");
+      if (saved && THEMES.includes(saved)) {
+          initialTheme = saved;
+      }
+  } catch (e) {}
+
+  setTheme(initialTheme);
+});
+>>>>>>> 5c55d34 (new features)

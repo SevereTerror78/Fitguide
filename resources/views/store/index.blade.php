@@ -1,13 +1,18 @@
 @extends('layouts.main')
 <<<<<<< HEAD
+<<<<<<< HEAD
 @section('title', 'Store • FitGuide')
 =======
 @section('title', __('store.page_title') . ' • FitGuide')
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+@section('title', __('store.page_title') . ' • FitGuide')
+>>>>>>> 5c55d34 (new features)
 
 @push('head')
   <link rel="stylesheet" href="{{ asset('css/shop.css') }}" />
 @endpush
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 @push('scripts')
@@ -17,6 +22,10 @@
   <script src="{{ asset('js/shop.js') }}" defer></script>
   <script src="{{ asset('js/navbar.js') }}" defer></script>
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+  <script src="{{ asset('js/shop.js') }}" defer></script>
+  <script src="{{ asset('js/navbar.js') }}" defer></script>
+>>>>>>> 5c55d34 (new features)
 
 @section('content')
 
@@ -24,12 +33,17 @@
   <header class="container hero hero--tight" style="padding: 28px 0 22px;">
     <div style="max-width: 640px;">
 <<<<<<< HEAD
+<<<<<<< HEAD
       <h1 class="hero-title" style="margin-bottom:6px;">Store</h1>
       <p class="hero-sub">Shop supplements & fitness equipment.</p>
 =======
       <h1 class="hero-title" style="margin-bottom:6px;">{{ __('store.hero_title') }}</h1>
       <p class="hero-sub">{{ __('store.hero_sub') }}</p>
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+      <h1 class="hero-title" style="margin-bottom:6px;">{{ __('store.hero_title') }}</h1>
+      <p class="hero-sub">{{ __('store.hero_sub') }}</p>
+>>>>>>> 5c55d34 (new features)
     </div>
   </header>
 
@@ -42,24 +56,33 @@
         type="text"
         id="storeSearch"
 <<<<<<< HEAD
+<<<<<<< HEAD
         placeholder="Search products (e.g. whey, belt, hoodie)…"
 =======
         placeholder="{{ __('store.search_placeholder') }}"
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+        placeholder="{{ __('store.search_placeholder') }}"
+>>>>>>> 5c55d34 (new features)
         value="{{ request('search', '') }}"
         autocomplete="off"
       />
 
 <<<<<<< HEAD
+<<<<<<< HEAD
       <button type="button" class="search-clear" id="searchClear" aria-label="Clear search">
 =======
       <button type="button" class="search-clear" id="searchClear" aria-label="{{ __('store.clear_search') }}">
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+      <button type="button" class="search-clear" id="searchClear" aria-label="{{ __('store.clear_search') }}">
+>>>>>>> 5c55d34 (new features)
         <i class="fa-solid fa-xmark"></i>
       </button>
     </div>
   </div>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   {{-- FILTER + TERMÉKLISTA --}}
   <section class="section-cards" style="padding-top: 26px;">
@@ -89,6 +112,8 @@
             'accessories' => 'Accessories',
             'packages-gift' => 'Packages & gift'
 =======
+=======
+>>>>>>> 5c55d34 (new features)
   {{-- FILTER + PRODUCT LIST --}}
   <section class="section-cards" style="padding-top: 26px;">
     <div class="container">
@@ -116,7 +141,10 @@
             'clothing' => __('store.filters.clothing'),
             'accessories' => __('store.filters.accessories'),
             'packages-gift' => __('store.filters.packages_gift'),
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
           ] as $slug => $label)
             <option value="{{ $slug }}" @selected($active===$slug)>{{ $label }}</option>
           @endforeach
@@ -130,7 +158,11 @@
     </div>
   </section>
 <<<<<<< HEAD
+<<<<<<< HEAD
 @endsection
 =======
 @endsection
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+@endsection
+>>>>>>> 5c55d34 (new features)

@@ -11,6 +11,7 @@ class ProductTypeSeeder extends Seeder
     {
         $rows = [
 <<<<<<< HEAD
+<<<<<<< HEAD
             ['name' => 'Supplements',     'slug' => 'supplements'],
             ['name' => 'Snacks',          'slug' => 'snacks'],
             ['name' => 'Equipment',       'slug' => 'equipment'],
@@ -31,6 +32,8 @@ class ProductTypeSeeder extends Seeder
     }
 }
 =======
+=======
+>>>>>>> 5c55d34 (new features)
             ['name' => 'Supplements',     'name_hu' => 'Kiegészítők',        'slug' => 'supplements'],
             ['name' => 'Snacks',          'name_hu' => 'Snackek',            'slug' => 'snacks'],
             ['name' => 'Equipment',       'name_hu' => 'Felszerelés',        'slug' => 'equipment'],
@@ -49,5 +52,9 @@ class ProductTypeSeeder extends Seeder
             );
         }
     }
+<<<<<<< HEAD
 }
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+}
+>>>>>>> 5c55d34 (new features)

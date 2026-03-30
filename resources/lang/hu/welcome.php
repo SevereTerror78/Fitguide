@@ -25,4 +25,11 @@ return [
     'privacy' => 'Adatvédelem',
     'terms' => 'Felhasználási feltételek',
     'cookies' => 'Sütik',
+<<<<<<< HEAD
+=======
+
+    'cgame_downLoad' => 'C# játék letöltése',
+    'cgame_title' => 'Játssz a C# fitness játékunkkal',
+    'cgame_sub' => 'Tapasztald meg a fittség élményét egy szórakoztató és interaktív módon a C# játékunkkal. Töltsd le most, és kezd el a fitness kalandodat!',
+>>>>>>> 5c55d34 (new features)
 ];

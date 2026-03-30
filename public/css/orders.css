@@ -129,11 +129,18 @@
     box-shadow: 0 10px 26px rgba(90,51,232,.40), inset 0 1px 0 rgba(255,255,255,.20);
   }
 <<<<<<< HEAD
+<<<<<<< HEAD
   
 =======
+=======
+>>>>>>> 5c55d34 (new features)
   @media (max-width: 320px) {
     body {
         min-width: 320px;
     }
+<<<<<<< HEAD
 }
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+}
+>>>>>>> 5c55d34 (new features)

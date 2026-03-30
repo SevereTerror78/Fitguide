@@ -12,6 +12,7 @@ class RewardShopItemSeeder extends Seeder
         $items = [
             [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 'name' => 'FitGuide Shaker Bottle',
                 'description' => 'Stylish protein shaker',
                 'required_points' => 800,
@@ -29,6 +30,8 @@ class RewardShopItemSeeder extends Seeder
                 'required_points' => 500,
                 'image' => 'rewards/discount10.png',
 =======
+=======
+>>>>>>> 5c55d34 (new features)
                 'name' => '5% Discount Coupon',
                 'description' => '5% off your next purchase',
                 'required_points' => 200,
@@ -45,7 +48,10 @@ class RewardShopItemSeeder extends Seeder
                 'description' => '20% off your next purchase',
                 'required_points' => 900,
                 'image' => 'images/discount20.png',
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
             ],
         ];
 
@@ -54,7 +60,11 @@ class RewardShopItemSeeder extends Seeder
         }
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 }
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+}
+>>>>>>> 5c55d34 (new features)

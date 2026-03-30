@@ -11,7 +11,10 @@ class ProductType extends Model
         return $this->belongsTo(ProductType::class);
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 5c55d34 (new features)
     public function getTranslatedNameAttribute(): string
     {
         $locale = app()->getLocale();
@@ -22,5 +25,8 @@ class ProductType extends Model
 
         return $this->name;
     }
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
 }

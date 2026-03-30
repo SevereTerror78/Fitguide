@@ -4,15 +4,19 @@
   $pm = $payment_method ?? 'card';
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   $pretty = fn($s) => ucfirst(str_replace('_', ' ', $s));
 
 =======
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+>>>>>>> 5c55d34 (new features)
   // Színek – visszafogott, de informatív
   $color = match($ps) {
     'paid' => 'text-green-700',
     'failed' => 'text-red-700',
     'pending' => 'text-yellow-700',
+<<<<<<< HEAD
 <<<<<<< HEAD
     default => 'text-gray-700', // unpaid
   };
@@ -35,6 +39,8 @@
   ({{ $method }})
 </span>
 =======
+=======
+>>>>>>> 5c55d34 (new features)
     default => 'text-gray-700', // unpaid, refunded, stb.
   };
 
@@ -52,5 +58,9 @@
 </span>
 <span class="text-gray-400">
   ({{ $pmLabel }})
+<<<<<<< HEAD
 </span>
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+</span>
+>>>>>>> 5c55d34 (new features)

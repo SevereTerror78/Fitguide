@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 class AdvicesSeeder extends Seeder
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     /**
      * Run the database seeds.
      */
@@ -42,6 +43,8 @@ class AdvicesSeeder extends Seeder
     }
 }
 =======
+=======
+>>>>>>> 5c55d34 (new features)
     public function run(): void
     {
         DB::table('advices')->upsert([
@@ -51,5 +54,9 @@ class AdvicesSeeder extends Seeder
             ['category' => 'obese',       'created_at' => now(), 'updated_at' => now()],
         ], ['category'], ['updated_at']);
     }
+<<<<<<< HEAD
 }
 >>>>>>> fc7673c (frontend update and some new feature)
+=======
+}
+>>>>>>> 5c55d34 (new features)
