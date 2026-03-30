@@ -1,0 +1,643 @@
+(function () {
+   if (window.__FG_STORE_JS_LOADED) return;
+    window.__FG_STORE_JS_LOADED = true;
+  // =========================================================
+  //  CONFIG
+  // =========================================================
+  const CART_COUNT_URL = (window.FG && window.FG.cartCountUrl) || null;
+  const STORE_URL = window.STORE_URL || '/store';
+  const CSRF = document.querySelector('meta[name="csrf-token"]')?.content || '';
+
+  // =========================================================
+  //  CART BADGE HELPERS
+  // =========================================================
+  const cartLink = document.querySelector('.nav-cart');
+
+  function getBadgeEl() {
+    return cartLink ? cartLink.querySelector('.cart-badge') : null;
+  }
+  function getBadgeCount() {
+    const b = getBadgeEl();
+    const n = b ? parseInt(b.textContent, 10) : 0;
+    return Number.isFinite(n) ? n : 0;
+  }
+  function setBadgeCount(n) {
+    if (!cartLink) return;
+    let b = getBadgeEl();
+    if (!b) {
+      b = document.createElement('span');
+      b.className = 'cart-badge';
+      cartLink.appendChild(b);
+    }
+    b.textContent = Math.max(0, n);
+    b.classList.remove('bump');
+    void b.offsetWidth;
+    b.classList.add('bump');
+  }
+  async function refreshCartBadge() {
+    if (!CART_COUNT_URL) return;
+    try {
+      const res = await fetch(CART_COUNT_URL, {
+        headers: { 'X-Requested-With': 'XMLHttpRequest' },
+        credentials: 'same-origin'
+      });
+      if (!res.ok) return;
+      const data = await res.json();
+      if (typeof data.count === 'number') setBadgeCount(data.count);
+    } catch (_) { /* ignore */ }
+  }
+
+  // =========================================================
+  //  AJAX FILTERING + PAGINATION + SEARCH (STORE OLDAL)
+  // =========================================================
+  function wireAjaxFiltering() {
+    const list = document.getElementById('product-list');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const filterSelect = document.getElementById('product-filter');
+
+    // Search UI (optional - ha nincs a DOM-ban, nem crash-el)
+    const searchInput = document.getElementById('storeSearch');
+    const clearBtn = document.getElementById('searchClear');
+
+    // -------- helpers
+    function getSearchValue() {
+      const v = (searchInput?.value || '').trim();
+      return v;
+    }
+
+    function setSearchValue(v) {
+      if (!searchInput) return;
+      searchInput.value = v || '';
+      toggleClear();
+    }
+
+    function toggleClear() {
+      if (!clearBtn) return;
+      const has = getSearchValue().length > 0;
+      clearBtn.classList.toggle('show', has);
+      clearBtn.style.display = has ? '' : 'none';
+    }
+
+    function debounce(fn, ms = 320) {
+      let t;
+      return (...args) => {
+        clearTimeout(t);
+        t = setTimeout(() => fn(...args), ms);
+      };
+    }
+
+    function setActiveBySlug(slug) {
+      filterBtns.forEach(a => {
+        const href = a.getAttribute('href') || '';
+        const u = new URL(href, window.location.origin);
+        const t = u.searchParams.get('type') || 'all';
+        a.classList.toggle('active', t === slug);
+      });
+      if (filterSelect) filterSelect.value = slug;
+    }
+
+    // build url úgy, hogy a jelenlegi URL paramjai alapból megmaradjanak
+    // és csak amit felülírsz, azt írja át
+    function buildUrl(base, params) {
+      const current = new URL(window.location.href);
+      const url = new URL(base, window.location.origin);
+
+      // kiindulás: a current search paramjai
+      current.searchParams.forEach((val, key) => {
+        url.searchParams.set(key, val);
+      });
+
+      // felülírás: a params
+      Object.entries(params).forEach(([k, v]) => {
+        if (v == null || v === '' || v === 'all') url.searchParams.delete(k);
+        else url.searchParams.set(k, v);
+      });
+
+      return url.toString();
+    }
+
+    async function loadProducts(url) {
+      if (!list) { window.location.href = url; return; }
+      try {
+        list.classList.add('loading');
+
+        // Nálad a controller ajax()-ot néz, de te ajax=1-et is adsz.
+        // Ez oké, nem zavar be, és a X-Requested-With is ott van.
+        const ajaxUrl = (url.includes('?') ? url + '&' : url + '?') + 'ajax=1';
+
+        const res = await fetch(ajaxUrl, {
+          headers: { 'X-Requested-With': 'XMLHttpRequest' },
+          credentials: 'same-origin'
+        });
+        if (!res.ok) throw new Error('Bad response');
+
+        const html = await res.text();
+        list.innerHTML = html;
+
+        const cleanUrl = ajaxUrl
+          .replace(/([?&])ajax=1(&|$)/, '$1')
+          .replace(/[?&]$/, '');
+
+        window.history.pushState({}, '', cleanUrl);
+
+        wirePagination();
+        list.classList.remove('loading');
+        window.scrollTo({ top: list.offsetTop - 40, behavior: 'smooth' });
+      } catch (e) {
+        console.error(e);
+        list.classList.remove('loading');
+        window.location.href = url;
+      }
+    }
+
+    // -------- FILTER BUTTONS (megőrzi a search-t)
+    function wireFilterButtons() {
+      filterBtns.forEach(a => {
+        a.addEventListener('click', (e) => {
+          e.preventDefault();
+
+          const href = a.getAttribute('href') || STORE_URL;
+          const u = new URL(href, window.location.origin);
+          const type = u.searchParams.get('type') || 'all';
+
+          setActiveBySlug(type);
+
+          const url = buildUrl(STORE_URL, {
+            type,
+            search: getSearchValue(),
+            page: '' // reset page filter váltáskor
+          });
+
+          loadProducts(url);
+        });
+      });
+    }
+
+    // -------- SELECT (megőrzi a search-t)
+    function wireSelect() {
+      if (!filterSelect) return;
+      filterSelect.addEventListener('change', () => {
+        const type = filterSelect.value;
+        setActiveBySlug(type);
+
+        const url = buildUrl(STORE_URL, {
+          type,
+          search: getSearchValue(),
+          page: '' // reset page
+        });
+
+        loadProducts(url);
+      });
+    }
+
+    // -------- PAGINATION (ha valamiért nincs benne search/type, hozzáadjuk)
+    function wirePagination() {
+      const listEl = document.getElementById('product-list');
+      if (!listEl) return;
+
+      listEl.querySelectorAll('.pagination a, .fitguide-pagination a').forEach(a => {
+        a.addEventListener('click', (e) => {
+          e.preventDefault();
+
+          const href = a.getAttribute('href');
+          if (!href) return;
+
+          const u = new URL(href, window.location.origin);
+
+          const page = u.searchParams.get('page');
+
+          const url = buildUrl(STORE_URL, {
+            page, // ✅ EZ A KULCS
+            type: (new URL(window.location.href)).searchParams.get('type') || (filterSelect?.value || 'all'),
+            search: getSearchValue()
+          });
+
+
+          loadProducts(url);
+        });
+      });
+    }
+
+    // -------- SEARCH (debounce + clear + enter + esc)
+    function wireSearch() {
+      if (!searchInput) return;
+
+      // init: ha URL-ben van search, töltsük vissza
+      const fromUrl = (new URL(window.location.href)).searchParams.get('search') || '';
+      if (fromUrl && !searchInput.value) searchInput.value = fromUrl;
+      toggleClear();
+
+      const doSearch = () => {
+        const type = (new URL(window.location.href)).searchParams.get('type') || (filterSelect?.value || 'all');
+        const url = buildUrl(STORE_URL, {
+          type,
+          search: getSearchValue(),
+          page: '' // kereséskor reset
+        });
+        loadProducts(url);
+      };
+
+      const debounced = debounce(doSearch, 320);
+
+      searchInput.addEventListener('input', () => {
+        toggleClear();
+        debounced();
+      });
+
+      searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          doSearch();
+        }
+        if (e.key === 'Escape') {
+          e.preventDefault();
+          setSearchValue('');
+          doSearch();
+        }
+      });
+
+      if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+          setSearchValue('');
+          doSearch();
+          searchInput.focus();
+        });
+      }
+    }
+
+    // init active type from URL
+    const currentType = new URL(window.location.href).searchParams.get('type') || 'all';
+    setActiveBySlug(currentType);
+
+    wireFilterButtons();
+    wireSelect();
+    wirePagination();
+    wireSearch();
+
+    // back/forward: UI sync
+    window.addEventListener('popstate', () => {
+      const u = new URL(window.location.href);
+      const type = u.searchParams.get('type') || 'all';
+      const s = u.searchParams.get('search') || '';
+
+      setActiveBySlug(type);
+      setSearchValue(s);
+
+      loadProducts(u.toString());
+    }, { once: false });
+  }
+
+  // =========================================================
+  //  ADD TO CART (AJAX)
+  // =========================================================
+  let BADGE_VERSION = 0;
+
+document.addEventListener('submit', async (e) => {
+  const form = e.target;
+  if (!form.matches('.add-to-cart-form')) return;
+  if (!window.fetch) return;
+
+  e.preventDefault();
+
+  // ✅ HARD LOCK: if already submitting, ignore
+  if (form.dataset.submitting === '1') return;
+  form.dataset.submitting = '1';
+
+  const qtyInput = form.querySelector('input[name="qty"]');
+  const qty = qtyInput ? Math.max(1, parseInt(qtyInput.value || '1', 10)) : 1;
+
+  const btn = form.querySelector('.add-btn') || form.querySelector('.btn.pill');
+  if (btn) { btn.classList.add('adding'); btn.disabled = true; }
+
+  const before = (() => {
+    const b = document.querySelector('.nav-cart .cart-badge');
+    return b ? (parseInt(b.textContent || '0', 10) || 0) : 0;
+  })();
+
+  setBadgeCount(before + qty);
+
+  const thisVersion = ++BADGE_VERSION;
+
+  try {
+    const res = await fetch(form.action, {
+      method: 'POST',
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        'X-CSRF-TOKEN': CSRF,
+        'Accept': 'application/json'
+      },
+      body: new FormData(form),
+      credentials: 'same-origin'
+    });
+
+    const data = await res.json().catch(() => null);
+
+    if (!res.ok || !data || data.ok !== true || typeof data.count !== 'number') {
+      throw new Error('Add to cart failed');
+    }
+
+    if (thisVersion === BADGE_VERSION) setBadgeCount(data.count);
+
+  } catch (err) {
+    setBadgeCount(before);
+    console.error(err);
+    alert('Sajnos nem sikerült a kosárhoz adni. Próbáld újra.');
+  } finally {
+    // ✅ UNLOCK
+    delete form.dataset.submitting;
+
+    setTimeout(() => {
+      if (btn) { btn.classList.remove('adding'); btn.disabled = false; }
+    }, 180);
+  }
+});
+
+  // =========================================================
+  //  CART PAGE: QTY HANDLING, OPTIMISTIC TOTALS
+  // =========================================================
+  const fmt = (n) => Number(n).toLocaleString('de-DE', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }) + ' €';
+
+  function getDiscountPercent(){
+    const card = document.querySelector('.summary-card');
+    if(!card) return 0;
+    const p = parseFloat(card.dataset.discountPercent || '0');
+    return Number.isFinite(p) ? Math.max(0, Math.min(100, p)) : 0;
+  }
+
+  function setDiscountPercent(p){
+    const card = document.querySelector('.summary-card');
+    if(!card) return;
+    card.dataset.discountPercent = String(p || 0);
+  }
+
+  function updateRowLineTotal(row){
+    if(!row) return;
+    const priceEl = row.querySelector('.line-total') || row.querySelector('[data-price]');
+    const unitPrice = parseFloat(priceEl?.dataset.price || '0');
+    const qty = parseInt(row.querySelector('.qty-input')?.value || '1', 10);
+    if(priceEl) priceEl.textContent = fmt(unitPrice * qty);
+  }
+
+  function recalcCartTotals(){
+    let subtotal = 0;
+    document.querySelectorAll('.cart-row').forEach(row=>{
+      const priceHolder = row.querySelector('.line-total') || row.querySelector('[data-price]');
+      const unitPrice = parseFloat(priceHolder?.dataset.price || '0');
+      const qty = parseInt(row.querySelector('.qty-input')?.value || '1', 10);
+      subtotal += unitPrice * qty;
+    });
+
+    const shipEl = document.getElementById('cart-shipping');
+    const shipping = shipEl ? parseFloat((shipEl.textContent || '').replace(/[^\d.]/g,'') || '0') : 0;
+
+    const percent = getDiscountPercent();
+    const discount = percent > 0 ? (subtotal * (percent / 100)) : 0;
+
+    const total = Math.max(0, subtotal + shipping - discount);
+
+    const subEl = document.getElementById('cart-subtotal');
+    const totEl = document.getElementById('cart-total');
+    if(subEl) subEl.textContent = fmt(subtotal);
+    if(totEl) totEl.textContent = fmt(total);
+
+    const dLine = document.getElementById('discount-line');
+    const dEl = document.getElementById('cart-discount');
+    if(dLine && dEl){
+      if(percent > 0){
+        dLine.style.display = 'flex';
+        dEl.textContent = fmt(discount);
+      } else {
+        dLine.style.display = 'none';
+        dEl.textContent = fmt(0);
+      }
+    }
+  }
+
+  async function persistQty(form, qty){
+    const url = form?.dataset?.updateUrl;
+    if(!url) return;
+
+    try{
+      const fd = new FormData();
+      fd.append('qty', qty);
+
+      const res = await fetch(url, {
+        method:'POST',
+        headers:{ 'X-Requested-With':'XMLHttpRequest', 'X-CSRF-TOKEN':CSRF, 'Accept':'application/json' },
+        body: fd,
+        credentials:'same-origin'
+      });
+
+      const data = await res.json().catch(()=>null);
+      if(!data || typeof data !== 'object') return;
+
+      const row = form.closest('.cart-row');
+
+      if(row && typeof data.lineTotal === 'string'){
+        const lt = row.querySelector('.line-total');
+        if(lt) lt.textContent = fmt(parseFloat(data.lineTotal));
+      }
+
+      if(typeof data.subtotal === 'string'){
+        const subEl = document.getElementById('cart-subtotal');
+        if(subEl) subEl.textContent = fmt(parseFloat(data.subtotal));
+      }
+
+      if(typeof data.shipping === 'string'){
+        const shipEl = document.getElementById('cart-shipping');
+        if(shipEl) shipEl.textContent = fmt(parseFloat(data.shipping));
+      }
+
+      if(typeof data.discount === 'string'){
+        const disc = parseFloat(data.discount);
+        const dLine = document.getElementById('discount-line');
+        const dEl = document.getElementById('cart-discount');
+
+        if(dLine && dEl){
+          if(disc > 0){
+            dLine.style.display = 'flex';
+            dEl.textContent = fmt(disc);
+          } else {
+            dLine.style.display = 'none';
+            dEl.textContent = fmt(0);
+          }
+        }
+      }
+
+      if(typeof data.total === 'string'){
+        const totEl = document.getElementById('cart-total');
+        if(totEl) totEl.textContent = fmt(parseFloat(data.total));
+      }
+
+    }catch(e){
+      console.warn('cart.update error, keeping optimistic totals', e);
+    }
+  }
+
+  function wireCartQty(){
+    const table = document.querySelector('.cart-table');
+    if(!table) return;
+
+    table.addEventListener('click', (e)=>{
+      const btn = e.target.closest('.qty-btn');
+      if(!btn) return;
+      const form = btn.closest('.qty-form');
+      const input = form?.querySelector('.qty-input');
+      const row = btn.closest('.cart-row');
+      if(!input || !row) return;
+
+      const min = parseInt(input.getAttribute('min') || '1', 10);
+      let val = parseInt(input.value || '1', 10);
+      if(btn.classList.contains('plus')) val += 1;
+      if(btn.classList.contains('minus')) val = Math.max(min, val - 1);
+      input.value = val;
+      updateRowLineTotal(row);
+      recalcCartTotals();
+      persistQty(form, val);
+    });
+
+    table.addEventListener('input', (e)=>{
+      const input = e.target.closest('.qty-input');
+      if(!input) return;
+      const form = input.closest('.qty-form');
+      const row = input.closest('.cart-row');
+      let val = Math.max(parseInt(input.getAttribute('min')||'1',10), parseInt(input.value||'1',10) || 1);
+      input.value = val;
+      updateRowLineTotal(row);
+      recalcCartTotals();
+      clearTimeout(input._t);
+      input._t = setTimeout(()=> persistQty(form, val), 300);
+    });
+
+    recalcCartTotals();
+  }
+
+  function wireDiscountBox(){
+    const input = document.getElementById('discount-code');
+    const btn = document.getElementById('apply-discount');
+    const msg = document.getElementById('discount-message');
+    if(!input || !btn || !msg) return;
+
+    const showMsg = (text, ok) => {
+      msg.textContent = text;
+      msg.classList.remove('ok','err');
+      msg.classList.add(ok ? 'ok' : 'err');
+      msg.style.display = 'block';
+    };
+
+    const postJson = async (url, payload) => {
+      const res = await fetch(url, {
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json',
+          'X-CSRF-TOKEN':CSRF,
+          'Accept':'application/json',
+          'X-Requested-With':'XMLHttpRequest'
+        },
+        body: JSON.stringify(payload || {}),
+        credentials:'same-origin'
+      });
+      const data = await res.json().catch(()=>null);
+      return { res, data };
+    };
+
+    const applyUrl = '/cart/discount/apply';
+    const removeUrl = '/cart/discount/remove';
+
+    btn.addEventListener('click', async () => {
+      const isRemove = (btn.textContent || '').toLowerCase().includes('remove');
+
+      btn.disabled = true;
+
+      try{
+        if(isRemove){
+          const { data } = await postJson(removeUrl, {});
+          if(!data || !data.ok) return showMsg(data?.msg || 'Failed.', false);
+
+          setDiscountPercent(0);
+          input.value = '';
+          btn.textContent = 'Apply';
+
+          document.getElementById('cart-subtotal').textContent = fmt(parseFloat(data.subtotal));
+          document.getElementById('cart-shipping').textContent = fmt(parseFloat(data.shipping));
+          document.getElementById('cart-total').textContent = fmt(parseFloat(data.total));
+
+          const dLine = document.getElementById('discount-line');
+          if(dLine) dLine.style.display = 'none';
+
+          showMsg(data.msg, true);
+          recalcCartTotals();
+          return;
+        }
+
+        const code = (input.value || '').trim();
+        if(!code) return showMsg('Enter a code.', false);
+
+        const { data } = await postJson(applyUrl, { code });
+
+        if(!data || !data.ok){
+          return showMsg(data?.msg || 'Failed.', false);
+        }
+
+        const percent = parseFloat(data.percent || '0');
+        setDiscountPercent(percent);
+
+        document.getElementById('cart-subtotal').textContent = fmt(parseFloat(data.subtotal));
+        document.getElementById('cart-shipping').textContent = fmt(parseFloat(data.shipping));
+        document.getElementById('cart-total').textContent = fmt(parseFloat(data.total));
+
+        const dLine = document.getElementById('discount-line');
+        const dEl = document.getElementById('cart-discount');
+        if(dLine && dEl){
+          dLine.style.display = 'flex';
+          dEl.textContent = fmt(parseFloat(data.discount));
+        }
+
+        btn.textContent = 'Remove';
+        showMsg(data.msg, true);
+        recalcCartTotals();
+
+      }catch(e){
+        showMsg('Network error.', false);
+      }finally{
+        btn.disabled = false;
+      }
+    });
+
+    recalcCartTotals();
+  }
+
+  // =========================================================
+  //  HAMBURGER MENU
+  // =========================================================
+  function wireHamburgerMenu() {
+    const toggle  = document.getElementById('navToggle');
+    const navMenu = document.getElementById('navMenu');   // csak EZT kezeljük
+    if (!toggle || !navMenu) return;
+
+    toggle.setAttribute('aria-expanded', 'false');
+
+    toggle.addEventListener('click', () => {
+      const isOpen = navMenu.classList.toggle('open');
+      toggle.classList.toggle('active', isOpen);
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      toggle.innerHTML = isOpen
+        ? '<i class="fa-solid fa-xmark"></i>'
+        : '<i class="fa-solid fa-bars"></i>';
+    });
+  }
+
+  // =========================================================
+  //  STARTUP
+  // =========================================================
+  document.addEventListener('DOMContentLoaded', () => {
+    wireAjaxFiltering();
+    refreshCartBadge();
+    wireCartQty();
+    wireDiscountBox();
+    wireHamburgerMenu();
+  });
+})();
