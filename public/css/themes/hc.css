@@ -1,0 +1,357 @@
+/* =====================================================
+   FITGUIDE – HIGH CONTRAST (Accessibility Theme)
+   ===================================================== */
+
+/* =========================
+   ROOT TOKENS
+   ========================= */
+
+:root{
+  --bg:#000000;
+  --panel:#000000;
+  --panel-2:#000000;
+  --text:#ffffff;
+  --muted:#e5e5e5;
+  --border:#ffffff;
+  --shadow:none;
+
+  --primary:#ffd400;
+  --primary-2:#ffea00;
+
+  --success:#00ff00;
+  --warn:#ffcc00;
+  --danger:#ff2e2e;
+  --info:#00ffff;
+}
+
+/* =========================
+   BASE
+   ========================= */
+
+html,body{
+  background:#000;
+  color:#fff;
+}
+
+*{
+  box-shadow:none !important;
+  text-shadow:none !important;
+}
+
+/* =========================
+   NAV
+   ========================= */
+
+.navbar{
+  background:#000 !important;
+  border-bottom:2px solid #fff !important;
+}
+
+.nav-links a,
+.user-btn{
+  color:#fff !important;
+  text-decoration:underline;
+}
+
+.dropdown-menu{
+  background:#000 !important;
+  border:2px solid #fff !important;
+}
+
+.dropdown-item{
+  color:#fff !important;
+}
+
+/* =========================
+   CARDS / PANELS
+   ========================= */
+
+.product-card,
+.cart-card__main,
+.summary-card,
+.checkout-main,
+.settings-form,
+.profile-main,
+.profile-sidebar,
+.order-card,
+.reward-item,
+.bmi-card{
+  background:#000 !important;
+  border:2px solid #fff !important;
+  color:#fff !important;
+}
+
+/* =========================
+   HERO
+   ========================= */
+
+.hero{
+  background:#000 !important;
+}
+
+.hero-title,
+.hero-sub{
+  color:#fff !important;
+}
+
+/* =========================
+   BUTTONS – FORCE YELLOW IN HC
+   ========================= */
+
+/* minden igazi gomb + gomb-szerű link */
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+a.btn,
+.btn,
+.btn.pill,
+.btn-save,
+.hero-cta,
+.nl-btn,
+.filter-btn,
+.theme-btn,
+.qty-btn,
+.search-clear,
+.back-btn,
+.fitguide-pagination a{
+  background:#ffd400 !important;
+  color:#000 !important;
+  border:2px solid #ffd400 !important;
+  font-weight:900 !important;
+  text-decoration:none !important; /* gomb ne legyen aláhúzva */
+  box-shadow:none !important;
+}
+
+/* hover */
+button:hover,
+a.btn:hover,
+.btn:hover,
+.btn.pill:hover,
+.btn-save:hover,
+.hero-cta:hover,
+.nl-btn:hover,
+.filter-btn:hover,
+.theme-btn:hover,
+.qty-btn:hover,
+.search-clear:hover,
+.back-btn:hover,
+.fitguide-pagination a:hover{
+  background:#ffea00 !important;
+  border-color:#ffea00 !important;
+}
+
+/* aktív/selected állapotok (pl. settings theme toggle, shop filter) */
+.theme-btn.active,
+.filter-btn.active,
+.fitguide-pagination .active{
+  background:#ffd400 !important;
+  color:#000 !important;
+  border:2px solid #ffd400 !important;
+}
+
+/* disabled gombok */
+button:disabled,
+.btn:disabled,
+.btn.is-disabled,
+.add-btn:disabled,
+.add-btn.is-disabled{
+  background:#111 !important;
+  color:#fff !important;
+  border:2px solid #fff !important;
+  opacity:0.8 !important;
+  cursor:not-allowed !important;
+}
+
+/* danger / törlés maradjon piros (nehogy sárga legyen a DELETE) */
+.icon-btn,
+.btn.ghost.danger,
+.clear-cart-btn,
+.logout-item,
+.dropdown-item.text-red-600{
+  background:#000 !important;
+  color:#ff2e2e !important;
+  border:2px solid #ff2e2e !important;
+  text-decoration:none !important;
+}
+.icon-btn:hover,
+.btn.ghost.danger:hover,
+.clear-cart-btn:hover,
+.logout-item:hover{
+  background:#220000 !important;
+}
+
+/* success jellegű (ha van ilyen gombod) */
+.btn.success,
+.btn-success{
+  background:#00ff00 !important;
+  color:#000 !important;
+  border:2px solid #00ff00 !important;
+}
+/* =========================
+   INPUTS
+   ========================= */
+
+input,
+select,
+textarea{
+  background:#000 !important;
+  color:#fff !important;
+  border:2px solid #fff !important;
+}
+
+input::placeholder,
+textarea::placeholder{
+  color:#ccc !important;
+}
+
+/* =========================
+   LINKS
+   ========================= */
+
+a{
+  color:#00ffff !important;
+  text-decoration:underline !important;
+}
+
+/* =========================
+   STATUS
+   ========================= */
+
+.flash--success{
+  background:#002200 !important;
+  border:2px solid #00ff00 !important;
+  color:#00ff00 !important;
+}
+
+.flash--error{
+  background:#220000 !important;
+  border:2px solid #ff2e2e !important;
+  color:#ff2e2e !important;
+}
+
+/* =========================
+   TABLE / CART ROWS
+   ========================= */
+
+.cart-row,
+.item-row{
+  background:#000 !important;
+  border:2px solid #fff !important;
+}
+
+.sum-row,
+.line-total{
+  color:#fff !important;
+}
+
+/* =========================
+   PAGINATION
+   ========================= */
+
+.fitguide-pagination a,
+.fitguide-pagination span{
+  background:#000 !important;
+  border:2px solid #fff !important;
+  color:#fff !important;
+}
+
+.fitguide-pagination .active{
+  background:#ffd400 !important;
+  color:#000 !important;
+}
+
+/* =========================
+   FOCUS (keyboard accessibility)
+   ========================= */
+
+*:focus-visible{
+  outline:3px solid #ffd400 !important;
+  outline-offset:3px;
+}
+/* =========================
+   NAVBAR FIX (NE LEGYEN SÁRGA)
+   ========================= */
+
+/* profil / admin gomb ne legyen sárga */
+.navbar .user-btn,
+.navbar .dropdown-toggle,
+.navbar .nav-links a{
+  background:#000 !important;
+  color:#fff !important;
+  border:none !important;
+  text-decoration:underline !important;
+  font-weight:600 !important;
+}
+
+/* dropdown panel */
+.navbar .dropdown-menu{
+  background:#000 !important;
+  border:2px solid #fff !important;
+}
+
+/* dropdown item */
+.navbar .dropdown-item{
+  background:#000 !important;
+  color:#fff !important;
+  border:none !important;
+  text-decoration:underline !important;
+}
+
+/* hover */
+.navbar .dropdown-item:hover{
+  background:#111 !important;
+}
+
+/* logout maradjon piros */
+.navbar .logout-item{
+  color:#ff2e2e !important;
+  text-decoration:underline !important;
+}
+/* SETTINGS FORCE FIX */
+
+.settings-wrap .btn-save,
+.settings-wrap .theme-btn,
+.settings-wrap .back-btn{
+  background:#ffd400 !important;
+  color:#000 !important;
+  border:2px solid #ffd400 !important;
+}
+
+.settings-wrap .theme-btn.active{
+  background:#ffd400 !important;
+  color:#000 !important;
+}
+/* =========================================
+   SETTINGS – FORCE YELLOW IN HC
+   ========================================= */
+
+body[data-theme="hc"] .settings-wrap .theme-btn,
+body[data-theme="hc"] .settings-wrap .btn-save,
+body[data-theme="hc"] .settings-wrap .back-btn{
+  background:#ffd400 !important;
+  color:#000 !important;
+  border:2px solid #ffd400 !important;
+  background-image:none !important;   /* gradient kill */
+  box-shadow:none !important;
+}
+
+/* active state */
+body[data-theme="hc"] .settings-wrap .theme-btn.active{
+  background:#ffd400 !important;
+  color:#000 !important;
+  border:2px solid #ffd400 !important;
+}
+
+/* hover */
+body[data-theme="hc"] .settings-wrap .theme-btn:hover,
+body[data-theme="hc"] .settings-wrap .btn-save:hover,
+body[data-theme="hc"] .settings-wrap .back-btn:hover{
+  background:#ffea00 !important;
+  border-color:#ffea00 !important;
+}
+@media (max-width: 320px) {
+    body {
+        min-width: 320px;
+    }
+}

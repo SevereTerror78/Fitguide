@@ -30,11 +30,14 @@ class ProfileUpdateRequest extends FormRequest
             'dob' => ['nullable', 'date'],
             'gender' => ['nullable', 'string', 'in:male,female,other'],
 
+<<<<<<< HEAD
             'profile_picture' => [
                 'nullable',
                 'image',
                 'max:2048', // 2MB limit
             ],
+=======
+>>>>>>> fc7673c (frontend update and some new feature)
         ];
     }
 

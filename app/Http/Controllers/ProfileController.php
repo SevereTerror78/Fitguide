@@ -72,6 +72,7 @@ class ProfileController extends Controller
         $user = $request->user();
         $validatedData = $request->validated();
 
+<<<<<<< HEAD
         // Profilkép
         if ($request->hasFile('profile_picture')) {
             if ($user->profile_picture) {
@@ -81,6 +82,8 @@ class ProfileController extends Controller
                 $request->file('profile_picture')->store('profile_pictures', 'public');
         }
 
+=======
+>>>>>>> fc7673c (frontend update and some new feature)
         // Mentés ELŐTT: teljes volt-e már?
         $previousCompleted = ($user->phone && $user->dob && $user->gender);
 

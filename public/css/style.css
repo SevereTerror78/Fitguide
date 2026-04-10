@@ -1,11 +1,17 @@
 /* ===== Reset & Base ===== */
 *{box-sizing:border-box}
+<<<<<<< HEAD
 html,body{height:100%}
+=======
+html,body{height:100%; overflow-x:hidden;} /* ✅ FIX: oldalirányú csúszás megfogása */
+
+>>>>>>> fc7673c (frontend update and some new feature)
 body{
   margin:0;
   font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
   color:#e7f0ff;
 
+<<<<<<< HEAD
 
   background:
     radial-gradient(1100px 700px at 18% 8%, #1f53a6 0%, #0d2a57 35%, rgba(13,42,87,0) 62%),
@@ -14,6 +20,15 @@ body{
   background-repeat: no-repeat;
   background-size: cover;
   background-color: #0a1930;     
+=======
+  background:
+    radial-gradient(1100px 700px at 18% 8%, #1f53a6 0%, #0d2a57 35%, rgba(13,42,87,0) 62%),
+    linear-gradient(180deg, #0c1d33 0%, #0a1930 55%, #081629 100%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #0a1930;
+>>>>>>> fc7673c (frontend update and some new feature)
 }
 
 /* ===== Layout ===== */
@@ -26,7 +41,14 @@ body{
   background:rgba(6,20,44,.35);
   border-bottom:1px solid rgba(255,255,255,.07);
 }
+<<<<<<< HEAD
 .navbar-inner{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+=======
+.navbar-inner{
+  display:flex; align-items:center; justify-content:space-between; padding:14px 0;
+  position:relative; /* ✅ FIX: mobil .nav-links absolute ehhez igazodjon */
+}
+>>>>>>> fc7673c (frontend update and some new feature)
 .nav-links{display:flex; gap:28px; align-items:center; flex-wrap:wrap}
 .nav-links a{
   color:#dfe9ff; text-decoration:none; font-weight:600; letter-spacing:.02em;
@@ -179,6 +201,12 @@ body{
   .hero{grid-template-columns:1fr; gap:24px; padding-top:36px; text-align:center}
   .hero>div{margin:0 auto}
   .footer-grid{ grid-template-columns:1fr 1fr; }
+<<<<<<< HEAD
+=======
+
+  /* ✅ FIX: a margin-left:30px ne tolja el mobilon */
+  .hero > div{ margin-left:0; max-width:100%; }
+>>>>>>> fc7673c (frontend update and some new feature)
 }
 
 @media (max-width:768px){
@@ -216,6 +244,7 @@ body{
   display: flex;
   align-items: center;
   gap: 10px;
+<<<<<<< HEAD
   flex-wrap: nowrap;       
 }
 .nl-form input {
@@ -225,19 +254,38 @@ body{
 .nl-btn {
   flex: 0 0 auto;          
   white-space: nowrap;    
+=======
+  flex-wrap: nowrap;
+}
+.nl-form input {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.nl-btn {
+  flex: 0 0 auto;
+  white-space: nowrap;
+>>>>>>> fc7673c (frontend update and some new feature)
 }
 
 .footer-socials { flex-wrap: wrap; }
 @media (max-width: 768px) {
   .nl-form {
+<<<<<<< HEAD
     flex-wrap: wrap;       
+=======
+    flex-wrap: wrap;
+>>>>>>> fc7673c (frontend update and some new feature)
     gap: 8px;
   }
   .nl-form input {
     flex: 1 1 100%;
   }
   .nl-btn {
+<<<<<<< HEAD
     width: 100%;           
+=======
+    width: 100%;
+>>>>>>> fc7673c (frontend update and some new feature)
     text-align: center;
   }
 }
@@ -333,7 +381,11 @@ body{
 
   /* A linkek alapból rejtve, a lenyíló panel a nav alatt */
   .nav-links {
+<<<<<<< HEAD
     display: none;                 /* rejtve alapból */
+=======
+    display: none;
+>>>>>>> fc7673c (frontend update and some new feature)
     position: absolute;
     left: 0;
     right: 0;
@@ -352,6 +404,7 @@ body{
   /* Auth + cart marad a jobb oldalon, nem tűnik el */
   .auth-buttons { display: flex; align-items: center; gap: 10px; }
 }
+<<<<<<< HEAD
 /* ========== NAV: CART BADGE (globális, de maradhat) ========== */
 .nav-cart{ 
   position:relative; 
@@ -382,6 +435,39 @@ body{
 }
 .nav-cart .cart-badge.bump{ 
   animation:cart-bump .35s ease; 
+=======
+
+/* ========== NAV: CART BADGE (globális, de maradhat) ========== */
+.nav-cart{
+  position:relative;
+  display:inline-block;
+  color:#fff;
+  font-size:24px;
+}
+.nav-cart .cart-badge{
+  position:absolute;
+  top:-8px;
+  right:-8px;
+  width:20px;
+  height:20px;
+  background:#e60023;
+  color:#fff;
+  font-size:12px;
+  font-weight:700;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 0 0 2px #0a1a2f;
+}
+@keyframes cart-bump{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.2)}
+  100%{transform:scale(1)}
+}
+.nav-cart .cart-badge.bump{
+  animation:cart-bump .35s ease;
+>>>>>>> fc7673c (frontend update and some new feature)
 }
 
 /* ====================== USER DROPDOWN (ÚJ, FIX) ====================== */
@@ -478,6 +564,10 @@ body{
     transform-origin: top center;
   }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> fc7673c (frontend update and some new feature)
 /* USER AREA ONE-LINE ALIGNMENT */
 .user-area {
   display: flex;
@@ -567,13 +657,20 @@ body{
   transform: translateX(3px);
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> fc7673c (frontend update and some new feature)
 /* ONE LINE FIX */
 .user-area {
   display: flex;
   align-items: center;
   gap: 22px;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> fc7673c (frontend update and some new feature)
 .order-page{ padding: 18px 0 60px; }
 
 .order-top{
@@ -670,3 +767,63 @@ body{
   .order-summary{ position:static; }
   .order-top{ align-items:flex-start; }
 }
+<<<<<<< HEAD
+=======
+
+/* =========================================================
+   FINAL OVERRIDES (EZEK DÖNTENEK)  ✅
+   - mobil background fixed glitch off
+   - dropdown egységesítve (mert több helyen volt definiálva)
+========================================================= */
+@media (max-width: 900px){
+  body{ background-attachment: scroll; } /* ✅ FIX */
+}
+
+/* ✅ Dropdown végleges (a duplikáltakat felülírja) */
+.user-dropdown{ position:relative; }
+.user-dropdown .dropdown-menu{
+  width:190px;
+  background: rgba(12, 28, 63, 0.92);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 14px;
+  padding: 8px 0;
+  box-shadow: 0 15px 35px rgba(0,0,0,.45);
+  backdrop-filter: blur(12px);
+
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  z-index: 999;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: .18s ease-in-out;
+}
+.user-dropdown:hover .dropdown-menu{
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.user-dropdown .dropdown-item{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:10px 16px;
+  font-size:14px;
+  color:#e7efff;
+  text-decoration:none;
+  transition:.18s ease;
+}
+.user-dropdown .dropdown-item:hover{
+  background: rgba(255,255,255,.10);
+  color:#fff;
+  transform: translateX(3px);
+}
+@media (max-width: 320px) {
+    body {
+        min-width: 320px;
+    }
+}
+>>>>>>> fc7673c (frontend update and some new feature)

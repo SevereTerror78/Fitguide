@@ -1,8 +1,17 @@
+<<<<<<< HEAD
 (function () {
+=======
+
+(function () {
+  // =========================
+  // THEME PREVIEW (your code)
+  // =========================
+>>>>>>> fc7673c (frontend update and some new feature)
   const themeButtons = document.querySelectorAll(".theme-btn");
   const themeInput = document.getElementById("theme-input");
   const themeCss = document.getElementById("theme-css");
 
+<<<<<<< HEAD
   if (!themeButtons.length) return;
 
   const THEMES = ["light", "dark", "colorblind"];
@@ -57,4 +66,73 @@
     "dark";
 
   applyTheme(initial);
+=======
+  if (themeButtons.length) {
+    const THEMES = ["light", "dark", "hc"];
+
+    function getCssDirFromHref(href) {
+      if (!href) return "/css/themes/";
+      const clean = href.split("?")[0].split("#")[0];
+      return clean.substring(0, clean.lastIndexOf("/") + 1);
+    }
+
+    function applyTheme(t, opts = {}) {
+      if (!THEMES.includes(t)) t = "dark";
+
+      if (themeInput) themeInput.value = t;
+
+      themeButtons.forEach((b) => {
+        const isActive = b.dataset.theme === t;
+        b.classList.toggle("active", isActive);
+        b.setAttribute("aria-pressed", isActive ? "true" : "false");
+      });
+
+      document.documentElement.setAttribute("data-theme", t);
+      document.body.setAttribute("data-theme", t);
+
+      // Works only if <link id="theme-css" ...> exists on the page
+      if (themeCss) {
+        const dir = getCssDirFromHref(themeCss.href || themeCss.getAttribute("href"));
+        const url = dir + t + ".css" + (opts.bust ? `?v=${Date.now()}` : "");
+        themeCss.setAttribute("href", url);
+      }
+
+      try { localStorage.setItem("fg_theme_preview", t); } catch (e) {}
+    }
+
+    themeButtons.forEach((btn) => {
+      btn.addEventListener("click", () => applyTheme(btn.dataset.theme, { bust: true }));
+    });
+
+    // On load preview
+    try {
+      const saved = localStorage.getItem("fg_theme_preview");
+      if (saved && THEMES.includes(saved)) {
+        applyTheme(saved);
+      }
+    } catch (e) {}
+
+    const initial =
+      (themeInput && themeInput.value) ||
+      document.body.getAttribute("data-theme") ||
+      document.documentElement.getAttribute("data-theme") ||
+      "dark";
+
+    applyTheme(initial);
+  }
+
+  // =========================
+  // LANGUAGE SWITCH (NEW)
+  // =========================
+  const langSelect = document.getElementById("language-select");
+  const langForm = document.getElementById("lang-form");
+  const langHidden = document.getElementById("lang-hidden");
+
+  if (!langSelect || !langForm || !langHidden) return;
+
+  langSelect.addEventListener("change", function () {
+    langHidden.value = langSelect.value;
+    langForm.submit(); // saves + reloads
+  });
+>>>>>>> fc7673c (frontend update and some new feature)
 })();

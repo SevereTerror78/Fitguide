@@ -10,4 +10,17 @@ class ProductType extends Model
     {
         return $this->belongsTo(ProductType::class);
     }
+<<<<<<< HEAD
+=======
+    public function getTranslatedNameAttribute(): string
+    {
+        $locale = app()->getLocale();
+
+        if ($locale === 'hu' && $this->name_hu) {
+            return $this->name_hu;
+        }
+
+        return $this->name;
+    }
+>>>>>>> fc7673c (frontend update and some new feature)
 }

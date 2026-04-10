@@ -30,7 +30,15 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
+<<<<<<< HEAD
         }
+=======
+        },
+         "files": [
+            "app/helpers.php"
+        ]
+        
+>>>>>>> fc7673c (frontend update and some new feature)
     },
     "autoload-dev": {
         "psr-4": {

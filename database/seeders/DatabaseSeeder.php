@@ -18,8 +18,16 @@ class DatabaseSeeder extends Seeder
         ProductSeeder::class,
         AdvicesSeeder::class,
         MusclesSeeder::class,
+<<<<<<< HEAD
         AdminDiscountSeeder::class,
         RewardShopItemSeeder::class,
+=======
+        MusclesHuSeeder::class,
+        AdminDiscountSeeder::class,
+        RewardShopItemSeeder::class,
+        ExercisesSeeder::class,
+        
+>>>>>>> fc7673c (frontend update and some new feature)
     ]);
 
     }

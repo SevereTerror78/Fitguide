@@ -160,3 +160,11 @@
     gap: 12px;
   }
 }
+<<<<<<< HEAD
+=======
+@media (max-width: 320px) {
+    body {
+        min-width: 320px;
+    }
+}
+>>>>>>> fc7673c (frontend update and some new feature)

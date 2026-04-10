@@ -12,8 +12,17 @@ return new class extends Migration
             $table->id();
 
             $table->string('name');
+<<<<<<< HEAD
             $table->text('description')->nullable();
             $table->decimal('price', 8, 2);
+=======
+            $table->string('name_hu');
+
+            $table->text('description')->nullable();
+            $table->text('description_hu')->nullable();
+
+            $table->unsignedInteger('price_huf');
+>>>>>>> fc7673c (frontend update and some new feature)
             $table->string('image')->nullable();
 
             $table->unsignedInteger('stock')->default(100);

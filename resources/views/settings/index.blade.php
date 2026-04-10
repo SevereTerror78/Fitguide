@@ -4,6 +4,11 @@
 @section('content')
 @php($t = auth()->user()->theme ?? 'dark')
 
+<<<<<<< HEAD
+=======
+<div class="settings-wrap">
+
+>>>>>>> fc7673c (frontend update and some new feature)
 @if (session('success'))
   <div class="success-message">{{ session('success') }}</div>
 @endif
@@ -19,6 +24,7 @@
 @endif
 
 <form method="POST" action="{{ route('settings.update') }}" class="settings-form">
+<<<<<<< HEAD
   @csrf
   @method('PUT')
 
@@ -79,4 +85,45 @@
 </form>
 
 <script src="{{ asset('js/settings-theme.js') }}?v={{ time() }}" defer></script>
+=======
+@csrf
+@method('PUT')
+
+<div class="form-group">
+  <label>🌍 Language</label>
+  <select name="language" class="form-select">
+    <option value="en" @selected(auth()->user()->language === 'en')>English</option>
+    <option value="hu" @selected(auth()->user()->language === 'hu')>Magyar</option>
+  </select>
+</div>
+
+<div class="form-group">
+  <label>🎨 Theme</label>
+
+  <div class="theme-toggle">
+    <button type="button" class="theme-btn {{ $t==='light'?'active':'' }}" data-theme="light">Light</button>
+    <button type="button" class="theme-btn {{ $t==='dark'?'active':'' }}" data-theme="dark">Dark</button>
+    <button type="button" class="theme-btn {{ $t==='hc'?'active':'' }}" data-theme="hc">High Contrast</button>
+  </div>
+
+  <p class="theme-hint">High contrast colors, color-safe palette.</p>
+  <input type="hidden" id="theme-input" name="theme" value="{{ $t }}">
+</div>
+
+<div class="form-group">
+  <label>💱 Currency</label>
+  <select name="currency" class="form-select">
+    <option value="HUF" @selected(auth()->user()->currency === 'HUF')>HUF – Forint</option>
+    <option value="EUR" @selected(auth()->user()->currency === 'EUR')>EUR – Euro</option>
+  </select>
+</div>
+
+<div class="settings-actions">
+  <button type="submit" class="btn-save">Save changes</button>
+  <a href="/profile" class="back-btn secondary">← Back</a>
+</div>
+
+</form>
+</div>
+>>>>>>> fc7673c (frontend update and some new feature)
 @endsection

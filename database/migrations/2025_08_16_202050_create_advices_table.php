@@ -11,8 +11,12 @@ return new class extends Migration
         Schema::create('advices', function (Blueprint $table) {
             $table->id();
             $table->enum('category', ['underweight', 'normal', 'overweight', 'obese']);
+<<<<<<< HEAD
             $table->text('content');
 
+=======
+            $table->text('content')->nullable();
+>>>>>>> fc7673c (frontend update and some new feature)
             $table->timestamps();
 
             // Opcionális – ha 1 user + 1 kategória max 1 sor

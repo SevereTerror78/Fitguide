@@ -29,7 +29,10 @@ return new class extends Migration
             $table->string('currency', 5)->default('HUF');    // HUF | EUR | USD
 
             // 🔥 PROFIL MEZŐK
+<<<<<<< HEAD
             $table->string('profile_picture')->nullable();
+=======
+>>>>>>> fc7673c (frontend update and some new feature)
             $table->string('phone')->nullable();
             $table->date('dob')->nullable();
             $table->string('gender')->nullable();
@@ -77,7 +80,10 @@ return new class extends Migration
             'theme'             => 'dark',
             'currency'          => 'HUF',
 
+<<<<<<< HEAD
             'profile_picture'   => null,
+=======
+>>>>>>> fc7673c (frontend update and some new feature)
             'phone'             => null,
             'dob'               => null,
             'gender'            => null,

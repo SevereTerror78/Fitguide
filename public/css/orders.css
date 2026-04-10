@@ -128,4 +128,12 @@
     transform: translateY(0);
     box-shadow: 0 10px 26px rgba(90,51,232,.40), inset 0 1px 0 rgba(255,255,255,.20);
   }
+<<<<<<< HEAD
   
+=======
+  @media (max-width: 320px) {
+    body {
+        min-width: 320px;
+    }
+}
+>>>>>>> fc7673c (frontend update and some new feature)

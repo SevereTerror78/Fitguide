@@ -172,4 +172,13 @@
     line-height: 1.6;
     margin-top: 8px;
     white-space: pre-line;
+<<<<<<< HEAD
 }
+=======
+}
+@media (max-width: 320px) {
+    body {
+        min-width: 320px;
+    }
+}
+>>>>>>> fc7673c (frontend update and some new feature)
