@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 (function () {
 =======
 
@@ -88,6 +89,8 @@
         b.setAttribute("aria-pressed", isActive ? "true" : "false");
       });
 =======
+=======
+>>>>>>> 9e16f42 (Újabb push)
 document.addEventListener("DOMContentLoaded", function () {
   const THEMES = ["light", "dark", "hc"];
   const themeButtons = document.querySelectorAll(".theme-btn");
@@ -95,11 +98,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function setTheme(theme) {
       const t = THEMES.includes(theme) ? theme : "dark";
+<<<<<<< HEAD
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
 
       document.documentElement.setAttribute("data-theme", t);
       document.body.setAttribute("data-theme", t);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
       // Works only if <link id="theme-css" ...> exists on the page
       if (themeCss) {
@@ -125,6 +132,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const initial =
 =======
+=======
+>>>>>>> 9e16f42 (Újabb push)
       if (themeInput) {
           themeInput.value = t;
       }
@@ -152,12 +161,16 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   let initialTheme =
+<<<<<<< HEAD
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
       (themeInput && themeInput.value) ||
       document.body.getAttribute("data-theme") ||
       document.documentElement.getAttribute("data-theme") ||
       "dark";
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     applyTheme(initial);
   }
@@ -178,6 +191,8 @@ document.addEventListener("DOMContentLoaded", function () {
 >>>>>>> fc7673c (frontend update and some new feature)
 })();
 =======
+=======
+>>>>>>> 9e16f42 (Újabb push)
   try {
       const saved = localStorage.getItem("fg_theme_preview");
       if (saved && THEMES.includes(saved)) {
@@ -186,5 +201,9 @@ document.addEventListener("DOMContentLoaded", function () {
   } catch (e) {}
 
   setTheme(initialTheme);
+<<<<<<< HEAD
 });
 >>>>>>> 5c55d34 (new features)
+=======
+});
+>>>>>>> 9e16f42 (Újabb push)

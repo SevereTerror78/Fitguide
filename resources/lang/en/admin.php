@@ -56,6 +56,8 @@ return [
     'actions' => [
         'edit_title' => 'Edit User',
         'delete_title' => 'Delete User',
+        'back' => 'Back',
+
     ],
 
     'confirm_delete' => 'Are you sure you want to delete this user?',

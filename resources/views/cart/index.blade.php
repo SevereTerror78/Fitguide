@@ -1,13 +1,5 @@
 @extends('layouts.main')
-<<<<<<< HEAD
-<<<<<<< HEAD
-@section('title', 'Cart • FitGuide')
-=======
 @section('title', __('cart.page_title') . ' • FitGuide')
->>>>>>> fc7673c (frontend update and some new feature)
-=======
-@section('title', __('cart.page_title') . ' • FitGuide')
->>>>>>> 5c55d34 (new features)
 
 @push('head')
   <link rel="stylesheet" href="{{ asset('css/cart.css') }}" />
@@ -15,23 +7,11 @@
 
 @push('scripts')
   <script src="{{ asset('js/shop.js') }}" defer></script>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
   <script src="{{ asset('js/navbar.js') }}" defer></script>
->>>>>>> fc7673c (frontend update and some new feature)
-=======
-  <script src="{{ asset('js/navbar.js') }}" defer></script>
->>>>>>> 5c55d34 (new features)
 @endpush
 
 @section('content')
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 5c55d34 (new features)
 @php
   $currency = auth()->user()?->currency ?? session('currency', 'HUF');
 
@@ -45,27 +25,13 @@
   };
 @endphp
 
-<<<<<<< HEAD
->>>>>>> fc7673c (frontend update and some new feature)
-=======
->>>>>>> 5c55d34 (new features)
   <div class="cart-header">
     <div class="cart-icon">
       <i class="fa-solid fa-cart-shopping"></i>
     </div>
     <div class="cart-text">
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <h1>Shopping Cart</h1>
-      <p>Review your items and proceed to checkout</p>
-=======
       <h1>{{ __('cart.title') }}</h1>
       <p>{{ __('cart.subtitle') }}</p>
->>>>>>> fc7673c (frontend update and some new feature)
-=======
-      <h1>{{ __('cart.title') }}</h1>
-      <p>{{ __('cart.subtitle') }}</p>
->>>>>>> 5c55d34 (new features)
     </div>
   </div>
 
@@ -77,23 +43,11 @@
           <div class="empty-cart__icon">
             <i class="fa-solid fa-store"></i>
           </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-          <h2>Your cart is empty</h2>
-          <p>Looks like you haven’t added anything yet.</p>
-          <a class="btn pill empty-cart__cta" href="{{ route('store.index') }}">Go to store</a>
-=======
-=======
->>>>>>> 5c55d34 (new features)
           <h2>{{ __('cart.empty.title') }}</h2>
           <p>{{ __('cart.empty.subtitle') }}</p>
           <a class="btn pill empty-cart__cta" href="{{ route('store.index') }}">
             {{ __('cart.empty.go_to_store') }}
           </a>
-<<<<<<< HEAD
->>>>>>> fc7673c (frontend update and some new feature)
-=======
->>>>>>> 5c55d34 (new features)
         </div>
 
       @else
@@ -103,23 +57,6 @@
             <div class="cart-table">
 
               <div class="cart-head row">
-<<<<<<< HEAD
-<<<<<<< HEAD
-                <div class="Fejlec">Product</div>
-                <div class="Fejlec">Price</div>
-                <div class="Fejlec">Quantity</div>
-                <div class="Fejlec">Total</div>
-                <div class="Fejlec">Actions</div>
-              </div>
-
-              @foreach ($cart as $item)
-                <div class="cart-row row">
-
-                  <div class="cell cell--name">
-                    <div class="title">{{ $item['name'] }}</div>
-=======
-=======
->>>>>>> 5c55d34 (new features)
                 <div class="Fejlec">{{ __('cart.table.product') }}</div>
                 <div class="Fejlec">{{ __('cart.table.price') }}</div>
                 <div class="Fejlec">{{ __('cart.table.quantity') }}</div>
@@ -142,23 +79,11 @@
                       @endphp
                       {{ $p?->translated_name ?? $item['name'] }}
                     </div>
-<<<<<<< HEAD
->>>>>>> fc7673c (frontend update and some new feature)
-=======
->>>>>>> 5c55d34 (new features)
                   </div>
 
                   <div class="cell cell--price">
                     <span class="price">
-<<<<<<< HEAD
-<<<<<<< HEAD
-                      {{ number_format($item['price'], 2, ',', ' ') }} €
-=======
                       {{ $formatMoney($unitPriceHuf) }}
->>>>>>> fc7673c (frontend update and some new feature)
-=======
-                      {{ $formatMoney($unitPriceHuf) }}
->>>>>>> 5c55d34 (new features)
                     </span>
                   </div>
 
@@ -172,18 +97,8 @@
                   </div>
 
                   <div class="cell cell--total">
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    <span class="line-total" data-price="{{ $item['price'] }}">
-                      {{ number_format($item['price'] * $item['qty'], 2, ',', ' ') }} €
-=======
                     <span class="line-total" data-price-huf="{{ $unitPriceHuf }}">
                       {{ $formatMoney($lineTotalHuf) }}
->>>>>>> fc7673c (frontend update and some new feature)
-=======
-                    <span class="line-total" data-price-huf="{{ $unitPriceHuf }}">
-                      {{ $formatMoney($lineTotalHuf) }}
->>>>>>> 5c55d34 (new features)
                     </span>
                   </div>
 
@@ -204,17 +119,8 @@
             <form method="POST" action="{{ route('cart.clear') }}">
               @csrf
               <button class="btn ghost danger clear-cart-btn">
-<<<<<<< HEAD
-<<<<<<< HEAD
-                <i class="fa-solid fa-trash-can"></i> Clear cart
-=======
                 <i class="fa-solid fa-trash-can"></i>
                 {{ __('cart.clear_cart') }}
->>>>>>> fc7673c (frontend update and some new feature)
-=======
-                <i class="fa-solid fa-trash-can"></i>
-                {{ __('cart.clear_cart') }}
->>>>>>> 5c55d34 (new features)
               </button>
             </form>
 
@@ -225,55 +131,21 @@
               data-discount-percent="{{ session('discount.percent', 0) }}"
               data-discount-code="{{ session('discount.code', '') }}">
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-              <h3>Order summary</h3>
-
-              <div class="discount-box">
-                <label class="discount-label">Have a discount code?</label>
-=======
-=======
->>>>>>> 5c55d34 (new features)
               <h3>{{ __('cart.summary.title') }}</h3>
 
               <div class="discount-box">
                 <label class="discount-label">{{ __('cart.summary.discount_label') }}</label>
-<<<<<<< HEAD
->>>>>>> fc7673c (frontend update and some new feature)
-=======
->>>>>>> 5c55d34 (new features)
 
                 <div class="discount-row">
                   <input
                     type="text"
                     id="discount-code"
                     class="discount-input"
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    placeholder="Enter discount code"
-=======
                     placeholder="{{ __('cart.summary.discount_placeholder') }}"
->>>>>>> fc7673c (frontend update and some new feature)
-=======
-                    placeholder="{{ __('cart.summary.discount_placeholder') }}"
->>>>>>> 5c55d34 (new features)
                     autocomplete="off"
                     value="{{ session('discount.code', '') }}"
                   />
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-                  <button type="button" id="apply-discount" class="btn pill discount-apply">
-                    {{ session()->has('discount') ? 'Remove' : 'Apply' }}
-                  </button>
-                </div>
-
-                <div id="discount-message" class="discount-message">
-                  @if(session()->has('discount'))
-                    Discount applied ({{ session('discount.percent') }}%).
-=======
-=======
->>>>>>> 5c55d34 (new features)
                   <button
                     type="button"
                     id="apply-discount"
@@ -295,41 +167,11 @@
                   >
                   @if(session()->has('discount'))
                     {{ __('cart.summary.discount_applied', ['percent' => session('discount.percent')]) }}
-<<<<<<< HEAD
->>>>>>> fc7673c (frontend update and some new feature)
-=======
->>>>>>> 5c55d34 (new features)
                   @endif
                 </div>
               </div>
 
               <div class="sum-row">
-<<<<<<< HEAD
-<<<<<<< HEAD
-                <span>Subtotal</span>
-                <strong id="cart-subtotal">{{ number_format($subtotal, 2, ',', ' ') }} €</strong>
-              </div>
-
-              <div class="sum-row {{ session()->has('discount') ? '' : 'is-hidden' }}" id="discount-line">
-                <span>Discount</span>
-                <strong id="cart-discount">{{ number_format($discount ?? 0, 2, ',', ' ') }} €</strong>
-              </div>
-
-              <div class="sum-row">
-                <span>Shipping</span>
-                <strong id="cart-shipping">{{ number_format($shipping, 2, ',', ' ') }} €</strong>
-              </div>
-
-              <div class="sum-row total">
-                <span>Total</span>
-                <strong id="cart-total">{{ number_format($total, 2, ',', ' ') }} €</strong>
-              </div>
-
-              <a href="{{ route('checkout.show') }}" class="btn pill large" style="width:100%; margin-top:12px;">
-                Proceed to checkout
-=======
-=======
->>>>>>> 5c55d34 (new features)
                 <span>{{ __('cart.summary.subtotal') }}</span>
                 <strong id="cart-subtotal">{{ $formatMoney($subtotal) }}</strong>
               </div>
@@ -346,10 +188,6 @@
 
               <a href="{{ route('checkout.show') }}" class="btn pill large" style="width:100%; margin-top:12px;">
                 {{ __('cart.summary.checkout') }}
-<<<<<<< HEAD
->>>>>>> fc7673c (frontend update and some new feature)
-=======
->>>>>>> 5c55d34 (new features)
               </a>
 
             </div>
@@ -361,12 +199,4 @@
     </div>
   </section>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 @endsection
-=======
-@endsection
->>>>>>> fc7673c (frontend update and some new feature)
-=======
-@endsection
->>>>>>> 5c55d34 (new features)

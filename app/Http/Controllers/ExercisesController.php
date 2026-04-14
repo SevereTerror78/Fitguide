@@ -4,27 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Muscle;
-<<<<<<< HEAD
-=======
 use App\Models\Exercise;
->>>>>>> 5c55d34 (new features)
 
 class ExercisesController extends Controller
 {
     public function index(Request $request)
     {
-<<<<<<< HEAD
-        $category  = $request->get('category', 'all');
-        $muscleSlug = $request->get('muscle');
-        $type      = $request->get('type'); // free / equipment
-
-        // Only keys here. Labels come from lang files in the view.
-=======
         $category   = $request->get('category', 'all');
         $muscleSlug = $request->get('muscle');
         $type       = $request->get('type');
 
->>>>>>> 5c55d34 (new features)
         $categories = [
             'arm'  => 'arm',
             'body' => 'body',
@@ -37,23 +26,6 @@ class ExercisesController extends Controller
             })
             ->get();
 
-<<<<<<< HEAD
-        $exercises = collect();
-
-        if ($muscleSlug) {
-            $muscle = Muscle::where('slug', $muscleSlug)->first();
-
-            if ($muscle) {
-                $exercises = $muscle->exercises()
-                    ->when($type, function ($q) use ($type) {
-                        // Filenames like: abs_free_xxx.mp4
-                        $q->where('video_url', 'like', "%_{$type}%");
-                    })
-                    ->get();
-            }
-        }
-
-=======
 
         $query = Exercise::query();
 
@@ -75,7 +47,6 @@ class ExercisesController extends Controller
 
         $exercises = $query->get();
 
->>>>>>> 5c55d34 (new features)
         return view('exercises.index', compact(
             'categories',
             'category',

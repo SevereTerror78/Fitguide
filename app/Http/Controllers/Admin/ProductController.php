@@ -5,14 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\ProductType;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 use App\Models\AdminNotification;
->>>>>>> fc7673c (frontend update and some new feature)
-=======
-use App\Models\AdminNotification;
->>>>>>> 5c55d34 (new features)
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -27,12 +20,6 @@ class ProductController extends Controller
         $products = Product::query()
             ->with('productType')
             ->when($search, function ($q) use ($search) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-                $q->where('name', 'like', "%$search%");
-=======
-=======
->>>>>>> 5c55d34 (new features)
                 $q->where(function ($qq) use ($search) {
                     if (app()->getLocale() === 'hu') {
                         $qq->where('name_hu', 'like', "%{$search}%")
@@ -42,10 +29,6 @@ class ProductController extends Controller
                            ->orWhere('name_hu', 'like', "%{$search}%");
                     }
                 });
-<<<<<<< HEAD
->>>>>>> fc7673c (frontend update and some new feature)
-=======
->>>>>>> 5c55d34 (new features)
             })
             ->when($category !== 'all', function ($q) use ($category) {
                 $q->where('product_type_id', $category);
@@ -73,57 +56,25 @@ class ProductController extends Controller
         $data = $request->validate([
             'name'            => 'required|string|max:255',
             'description'     => 'nullable|string',
-<<<<<<< HEAD
-<<<<<<< HEAD
-            'price'           => 'required|numeric|min:0',
-=======
             'price_huf'       => 'required|integer|min:0',
->>>>>>> fc7673c (frontend update and some new feature)
-=======
-            'price_huf'       => 'required|integer|min:0',
->>>>>>> 5c55d34 (new features)
             'stock'           => 'required|integer|min:0',
             'product_type_id' => 'required|exists:product_types,id',
             'image'           => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'is_active'       => 'nullable|boolean',
         ]);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-        // stock alapján aktív/inaktív
-        $data['is_active'] = ((int)$data['stock']) > 0;
+        $rawName = $data['name'];
 
-        // kép mentés public/images alá
-=======
-=======
->>>>>>> 5c55d34 (new features)
-        if (app()->getLocale() === 'hu') {
-            $data['name_hu'] = $data['name'];
-            unset($data['name']);
-        }
+        $data['name'] = $rawName;
+        $data['name_hu'] = $rawName;
 
-        $data['is_active'] = ((int) $data['stock']) > 0;
+        $data['is_active'] = (bool) ($data['is_active'] ?? (((int) $data['stock']) > 0));
 
-<<<<<<< HEAD
->>>>>>> fc7673c (frontend update and some new feature)
-=======
->>>>>>> 5c55d34 (new features)
         $imageName = null;
         if ($request->hasFile('image')) {
             $imageName = time() . '-' . $request->file('image')->getClientOriginalName();
             $request->file('image')->move(public_path('images'), $imageName);
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
-        $data['image'] = $imageName;
-
-        Product::create($data);
-
-        return redirect()
-            ->route('admin.products.index')
-            ->with('success', 'Product created successfully!');
-=======
-=======
->>>>>>> 5c55d34 (new features)
 
         $data['image'] = $imageName;
 
@@ -134,23 +85,11 @@ class ProductController extends Controller
         return redirect()
             ->route('admin.products.index')
             ->with('success', __('admin.products.flash.created'));
-<<<<<<< HEAD
->>>>>>> fc7673c (frontend update and some new feature)
-=======
->>>>>>> 5c55d34 (new features)
     }
 
     public function edit(Product $product)
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
-        $productTypes = ProductType::all();
-=======
         $productTypes = ProductType::orderBy('name')->get();
->>>>>>> fc7673c (frontend update and some new feature)
-=======
-        $productTypes = ProductType::orderBy('name')->get();
->>>>>>> 5c55d34 (new features)
         return view('admin.products.edit', compact('product', 'productTypes'));
     }
 
@@ -158,43 +97,21 @@ class ProductController extends Controller
     {
         $data = $request->validate([
             'name'            => 'required|string|max:255',
-<<<<<<< HEAD
-<<<<<<< HEAD
-            'price'           => 'required|numeric|min:0',
-=======
             'price_huf'       => 'required|integer|min:0',
->>>>>>> fc7673c (frontend update and some new feature)
-=======
-            'price_huf'       => 'required|integer|min:0',
->>>>>>> 5c55d34 (new features)
             'stock'           => 'required|integer|min:0',
             'product_type_id' => 'required|exists:product_types,id',
             'image'           => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'is_active'       => 'nullable|boolean',
         ]);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-        // ha stock 0, legyen inaktív
-        $data['is_active'] = ((int)$data['stock']) > 0;
+        $rawName = $data['name'];
 
-        // ha jött új kép: régit töröljük + újat mentjük
-        if ($request->hasFile('image')) {
-            // régi törlés
-=======
-=======
->>>>>>> 5c55d34 (new features)
-        if (app()->getLocale() === 'hu') {
-            $data['name_hu'] = $data['name'];
-            unset($data['name']);
-        }
+        $data['name'] = $rawName;
+        $data['name_hu'] = $rawName;
 
-        $data['is_active'] = ((int) $data['stock']) > 0;
+        $data['is_active'] = (bool) ($data['is_active'] ?? (((int) $data['stock']) > 0));
 
         if ($request->hasFile('image')) {
-<<<<<<< HEAD
->>>>>>> fc7673c (frontend update and some new feature)
-=======
->>>>>>> 5c55d34 (new features)
             if ($product->image) {
                 $oldPath = public_path('images/' . $product->image);
                 if (File::exists($oldPath)) {
@@ -202,57 +119,24 @@ class ProductController extends Controller
                 }
             }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-            // új mentés
-=======
->>>>>>> fc7673c (frontend update and some new feature)
-=======
->>>>>>> 5c55d34 (new features)
             $imageName = time() . '-' . $request->file('image')->getClientOriginalName();
             $request->file('image')->move(public_path('images'), $imageName);
             $data['image'] = $imageName;
         } else {
-<<<<<<< HEAD
-<<<<<<< HEAD
-            // ha nem töltesz fel újat, ne írja nullára
-=======
->>>>>>> fc7673c (frontend update and some new feature)
-=======
->>>>>>> 5c55d34 (new features)
             unset($data['image']);
         }
 
         $product->update($data);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-        return redirect()
-            ->route('admin.products.index')
-            ->with('success', 'Product updated successfully.');
-=======
-=======
->>>>>>> 5c55d34 (new features)
         $this->handleLowStockNotification($product);
 
         return redirect()
             ->route('admin.products.index')
             ->with('success', __('admin.products.flash.updated'));
-<<<<<<< HEAD
->>>>>>> fc7673c (frontend update and some new feature)
-=======
->>>>>>> 5c55d34 (new features)
     }
 
     public function destroy(Product $product)
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
-        // kép törlés törlés előtt
-=======
->>>>>>> fc7673c (frontend update and some new feature)
-=======
->>>>>>> 5c55d34 (new features)
         if ($product->image) {
             $path = public_path('images/' . $product->image);
             if (File::exists($path)) {
@@ -264,14 +148,6 @@ class ProductController extends Controller
 
         return redirect()
             ->route('admin.products.index')
-<<<<<<< HEAD
-<<<<<<< HEAD
-            ->with('success', 'Product deleted successfully.');
-    }
-}
-=======
-=======
->>>>>>> 5c55d34 (new features)
             ->with('success', __('admin.products.flash.deleted'));
     }
 
@@ -310,9 +186,4 @@ class ProductController extends Controller
             AdminNotification::create($payload);
         }
     }
-<<<<<<< HEAD
 }
->>>>>>> fc7673c (frontend update and some new feature)
-=======
-}
->>>>>>> 5c55d34 (new features)

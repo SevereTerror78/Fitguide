@@ -5,14 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 use App\Models\RedeemedReward;
->>>>>>> fc7673c (frontend update and some new feature)
-=======
-use App\Models\RedeemedReward;
->>>>>>> 5c55d34 (new features)
 use App\Models\Order;
 use App\Models\Discount;
 
@@ -28,20 +21,8 @@ class User extends Authenticatable
     'phone',
     'dob',
     'gender',
-<<<<<<< HEAD
-<<<<<<< HEAD
-    'profile_picture',
     'role',
     'points',
-
-=======
-    'role',
-    'points',
->>>>>>> fc7673c (frontend update and some new feature)
-=======
-    'role',
-    'points',
->>>>>>> 5c55d34 (new features)
     'first_login_bonus_claimed',
     'profile_bonus_claimed',
     'first_login_bonus_claimed_at',

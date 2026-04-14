@@ -54,6 +54,10 @@ return [
         'mark_read' => 'Olvasottra',
     ],
 
+    'actions' => [
+        'back' => 'Vissza',
+    ],
+
     'empty' => [
         'title' => 'Még nincs értesítés.',
         'subtitle' => 'Az alacsony készlet és rendszerüzenetek itt fognak megjelenni.',
@@ -150,6 +154,7 @@ return [
         'actions' => [
             'edit_title' => 'Szerkesztés',
             'delete_title' => 'Törlés',
+            'back' => 'Vissza',
         ],
 
         'no_products_found' => 'Nincs találat.',

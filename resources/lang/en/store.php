@@ -30,10 +30,7 @@ return [
     'to' => 'to',
     'of' => 'of',
     'results' => 'results',
-<<<<<<< HEAD
-=======
     'quantity' => 'Quantity',
     'qty_increase' => 'Increase quantity',
     'qty_decrease' => 'Decrease quantity',
->>>>>>> 5c55d34 (new features)
 ];

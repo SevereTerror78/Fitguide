@@ -10,30 +10,6 @@ class ProductTypeSeeder extends Seeder
     public function run(): void
     {
         $rows = [
-<<<<<<< HEAD
-<<<<<<< HEAD
-            ['name' => 'Supplements',     'slug' => 'supplements'],
-            ['name' => 'Snacks',          'slug' => 'snacks'],
-            ['name' => 'Equipment',       'slug' => 'equipment'],
-            ['name' => 'Clothing',        'slug' => 'clothing'],
-            ['name' => 'Accessories',     'slug' => 'accessories'],
-            ['name' => 'Packages & Gift', 'slug' => 'packages-gift'],
-        ];
-
-        // Válaszd EGYIKET:
-        foreach ($rows as $r) {
-            ProductType::updateOrCreate(
-                ['slug' => $r['slug']],   // egyedi kulcs
-                ['name' => $r['name']]    // frissítendő mezők
-            );
-        }
-        // VAGY:
-        // ProductType::upsert($rows, ['slug'], ['name']);
-    }
-}
-=======
-=======
->>>>>>> 5c55d34 (new features)
             ['name' => 'Supplements',     'name_hu' => 'Kiegészítők',        'slug' => 'supplements'],
             ['name' => 'Snacks',          'name_hu' => 'Snackek',            'slug' => 'snacks'],
             ['name' => 'Equipment',       'name_hu' => 'Felszerelés',        'slug' => 'equipment'],
@@ -52,9 +28,4 @@ class ProductTypeSeeder extends Seeder
             );
         }
     }
-<<<<<<< HEAD
 }
->>>>>>> fc7673c (frontend update and some new feature)
-=======
-}
->>>>>>> 5c55d34 (new features)

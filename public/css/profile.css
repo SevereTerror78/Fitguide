@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* === PROFILE PAGE LAYOUT === */
 =======
 /* =========================
@@ -78,6 +79,8 @@
     flex-direction: column;
     gap: 10px;
 =======
+=======
+>>>>>>> 9e16f42 (Újabb push)
 /* =========================
    PROFILE PAGE LAYOUT
 ========================= */
@@ -213,11 +216,15 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+<<<<<<< HEAD
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
 }
 
 .sidebar-menu a,
 .sidebar-menu button {
+<<<<<<< HEAD
 <<<<<<< HEAD
     display: flex;
     align-items: center;
@@ -348,6 +355,8 @@
     text-align: left;
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> 9e16f42 (Újabb push)
   display: flex;
   align-items: center;
   gap: 12px;
@@ -365,11 +374,15 @@
   cursor: pointer;
   text-align: left;
   width: 100%;
+<<<<<<< HEAD
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
 }
 
 .sidebar-menu a:hover,
 .sidebar-menu button:hover {
+<<<<<<< HEAD
 <<<<<<< HEAD
     background: rgba(90,115,255,.25);
     transform: translateX(4px);
@@ -1725,6 +1738,8 @@ input[type="file"].profile-input:hover {
 }
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
+=======
+>>>>>>> 9e16f42 (Újabb push)
   background: rgba(90,115,255,.25);
   transform: translateX(4px);
 }
@@ -2695,5 +2710,9 @@ input[type="file"].profile-input:hover {
     margin-right: auto;
     text-align: left;
   }
+<<<<<<< HEAD
 }
 >>>>>>> 5c55d34 (new features)
+=======
+}
+>>>>>>> 9e16f42 (Újabb push)

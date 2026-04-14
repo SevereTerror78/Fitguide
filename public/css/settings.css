@@ -1,6 +1,7 @@
 /* =========================
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
    Settings – clean V2
    ========================= */
 
@@ -230,6 +231,8 @@
   justify-content:center;
   padding: 28px 18px 60px;
 =======
+=======
+>>>>>>> 9e16f42 (Újabb push)
    SETTINGS PAGE
    Profile layouton belül
 ========================= */
@@ -246,11 +249,15 @@
   width: 100%;
   max-width: 520px;
   margin-bottom: 22px;
+<<<<<<< HEAD
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
 }
 
 /* WRAP */
 .settings-wrap{
+<<<<<<< HEAD
 <<<<<<< HEAD
   width:100%;
   max-width: 520px;
@@ -259,24 +266,37 @@
   max-width: 520px;
   margin: 0 auto;
 >>>>>>> 5c55d34 (new features)
+=======
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+>>>>>>> 9e16f42 (Újabb push)
 }
 
 /* FORM CARD */
 .settings-form{
 <<<<<<< HEAD
+<<<<<<< HEAD
   width:100%;
 =======
   width: 100%;
 >>>>>>> 5c55d34 (new features)
+=======
+  width: 100%;
+>>>>>>> 9e16f42 (Újabb push)
   border-radius: 20px;
   padding: 18px;
   background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
   border: 1px solid rgba(255,255,255,.10);
 <<<<<<< HEAD
+<<<<<<< HEAD
   box-shadow: 0 22px 70px rgba(0,0,0,.45);
 =======
   box-shadow: 0 22px 70px rgba(0,0,0,.25);
 >>>>>>> 5c55d34 (new features)
+=======
+  box-shadow: 0 22px 70px rgba(0,0,0,.25);
+>>>>>>> 9e16f42 (Újabb push)
 }
 
 /* GROUPS */
@@ -290,6 +310,7 @@
 
 .form-group label{
 <<<<<<< HEAD
+<<<<<<< HEAD
   display:flex;
   align-items:center;
   gap:10px;
@@ -298,6 +319,11 @@
   align-items: center;
   gap: 10px;
 >>>>>>> 5c55d34 (new features)
+=======
+  display: flex;
+  align-items: center;
+  gap: 10px;
+>>>>>>> 9e16f42 (Újabb push)
   margin: 0 0 10px;
   font-weight: 800;
   font-size: 14px;
@@ -305,22 +331,29 @@
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* SELECT */
 .form-select{
   width:100%;
 =======
+=======
+>>>>>>> 9e16f42 (Újabb push)
 /* =========================
    SELECT
 ========================= */
 .form-select{
   width: 100%;
+<<<<<<< HEAD
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
   padding: 12px 12px;
   border-radius: 14px;
   border: 1px solid rgba(255,255,255,.10);
   background: rgba(255,255,255,.05);
   color: var(--text, #e5e7eb);
   outline: none;
+<<<<<<< HEAD
 <<<<<<< HEAD
   transition: border-color .18s ease, background .18s ease;
 }
@@ -329,11 +362,17 @@
 }
 
 >>>>>>> 5c55d34 (new features)
+=======
+  transition: border-color .18s ease, background .18s ease, box-shadow .18s ease;
+}
+
+>>>>>>> 9e16f42 (Újabb push)
 .form-select:focus{
   border-color: rgba(96,165,250,.55);
   background: rgba(255,255,255,.07);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* THEME TOGGLE */
 .theme-toggle{
@@ -344,6 +383,8 @@
   background: rgba(255,255,255,.03);
   overflow:hidden;
 =======
+=======
+>>>>>>> 9e16f42 (Újabb push)
 /* DARK THEME select */
 body[data-theme="dark"] .form-select,
 html[data-theme="dark"] .form-select{
@@ -438,7 +479,10 @@ html[data-theme="hc"] .form-select:focus{
   border: 1px solid rgba(255,255,255,.12);
   background: rgba(255,255,255,.03);
   overflow: hidden;
+<<<<<<< HEAD
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
 }
 
 .theme-btn{
@@ -448,32 +492,45 @@ html[data-theme="hc"] .form-select:focus{
   background: transparent;
   color: rgba(229,231,235,.85);
 <<<<<<< HEAD
+<<<<<<< HEAD
   cursor:pointer;
 =======
   cursor: pointer;
 >>>>>>> 5c55d34 (new features)
+=======
+  cursor: pointer;
+>>>>>>> 9e16f42 (Újabb push)
   font-weight: 800;
   letter-spacing: .2px;
   transition: background .18s ease, color .18s ease, transform .10s ease;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 .theme-btn:hover{
   background: rgba(255,255,255,.06);
 }
 =======
+=======
+>>>>>>> 9e16f42 (Újabb push)
 
 .theme-btn:hover{
   background: rgba(255,255,255,.06);
 }
 
+<<<<<<< HEAD
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
 .theme-btn.active{
   color: #fff;
   background: linear-gradient(90deg, rgba(96,165,250,.9), rgba(59,130,246,.85));
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 9e16f42 (Újabb push)
 /* Light theme gombszínek */
 body[data-theme="light"] .theme-btn{
   color: #334155;
@@ -507,7 +564,10 @@ body[data-theme="hc"] .theme-btn.active{
   background: #ffd400;
 }
 
+<<<<<<< HEAD
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
 .theme-hint{
   margin: 10px 2px 0;
   color: rgba(148,163,184,.95);
@@ -516,12 +576,15 @@ body[data-theme="hc"] .theme-btn.active{
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* ACTIONS */
 .settings-actions{
   display:flex;
   flex-direction:column;
   gap:10px;
 =======
+=======
+>>>>>>> 9e16f42 (Újabb push)
 body[data-theme="light"] .theme-hint{
   color: #64748b;
 }
@@ -537,21 +600,29 @@ body[data-theme="hc"] .theme-hint{
   display: flex;
   flex-direction: column;
   gap: 10px;
+<<<<<<< HEAD
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
   margin-top: 6px;
 }
 
 /* SAVE */
 .btn-save{
 <<<<<<< HEAD
+<<<<<<< HEAD
   width:100%;
 =======
   width: 100%;
 >>>>>>> 5c55d34 (new features)
+=======
+  width: 100%;
+>>>>>>> 9e16f42 (Újabb push)
   padding: 13px 14px;
   border-radius: 16px;
   border: 1px solid rgba(255,255,255,.14);
   background: linear-gradient(90deg, rgba(96,165,250,.95), rgba(59,130,246,.9));
+<<<<<<< HEAD
 <<<<<<< HEAD
   color:#fff;
   font-weight: 900;
@@ -561,6 +632,8 @@ body[data-theme="hc"] .theme-hint{
   transition: transform .12s ease, filter .18s ease;
 }
 =======
+=======
+>>>>>>> 9e16f42 (Újabb push)
   color: #fff;
   font-weight: 900;
   letter-spacing: .25px;
@@ -569,24 +642,34 @@ body[data-theme="hc"] .theme-hint{
   transition: transform .12s ease, filter .18s ease;
 }
 
+<<<<<<< HEAD
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
 .btn-save:hover{
   transform: translateY(-1px);
   filter: brightness(1.05);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 5c55d34 (new features)
+=======
+
+>>>>>>> 9e16f42 (Újabb push)
 .btn-save:active{
   transform: translateY(0);
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* BACK */
 .back-btn.secondary{
   text-align:center;
 =======
+=======
+>>>>>>> 9e16f42 (Újabb push)
 /* HC save button */
 body[data-theme="hc"] .btn-save{
   background: #ffd400;
@@ -598,25 +681,36 @@ body[data-theme="hc"] .btn-save{
 /* BACK */
 .back-btn.secondary{
   text-align: center;
+<<<<<<< HEAD
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
   border: 1px solid rgba(255,255,255,.14);
   background: rgba(255,255,255,.03);
   color: var(--text, #e5e7eb);
   padding: 11px 14px;
   border-radius: 14px;
 <<<<<<< HEAD
+<<<<<<< HEAD
   text-decoration:none;
 =======
   text-decoration: none;
 >>>>>>> 5c55d34 (new features)
+=======
+  text-decoration: none;
+>>>>>>> 9e16f42 (Újabb push)
   font-weight: 800;
   letter-spacing: .2px;
   transition: transform .12s ease, background .18s ease, border-color .18s ease;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 5c55d34 (new features)
+=======
+
+>>>>>>> 9e16f42 (Újabb push)
 .back-btn.secondary:hover{
   transform: translateY(-1px);
   background: rgba(255,255,255,.06);
@@ -624,10 +718,13 @@ body[data-theme="hc"] .btn-save{
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* MESSAGES */
 .success-message{
   width:100%;
 =======
+=======
+>>>>>>> 9e16f42 (Újabb push)
 body[data-theme="light"] .back-btn.secondary{
   color: #1f2937;
   background: rgba(255,255,255,.85);
@@ -645,7 +742,10 @@ body[data-theme="hc"] .back-btn.secondary{
 ========================= */
 .success-message{
   width: 100%;
+<<<<<<< HEAD
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
   margin: 0 0 12px;
   padding: 12px 14px;
   border-radius: 14px;
@@ -655,10 +755,14 @@ body[data-theme="hc"] .back-btn.secondary{
 
 .error-message{
 <<<<<<< HEAD
+<<<<<<< HEAD
   width:100%;
 =======
   width: 100%;
 >>>>>>> 5c55d34 (new features)
+=======
+  width: 100%;
+>>>>>>> 9e16f42 (Újabb push)
   margin: 0 0 12px;
   padding: 12px 14px;
   border-radius: 14px;
@@ -666,13 +770,18 @@ body[data-theme="hc"] .back-btn.secondary{
   border: 1px solid rgba(239,68,68,.35);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 5c55d34 (new features)
+=======
+
+>>>>>>> 9e16f42 (Újabb push)
 .error-message ul{
   margin: 0;
   padding-left: 18px;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 @media (max-width: 320px) {
     body {
@@ -681,6 +790,8 @@ body[data-theme="hc"] .back-btn.secondary{
 }
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
+=======
+>>>>>>> 9e16f42 (Újabb push)
 
 /* Ha a sessionben kulcsot látsz szöveg helyett */
 .success-message,
@@ -740,5 +851,9 @@ h2{
   body{
     min-width: 320px;
   }
+<<<<<<< HEAD
 }
 >>>>>>> 5c55d34 (new features)
+=======
+}
+>>>>>>> 9e16f42 (Újabb push)

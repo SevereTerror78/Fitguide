@@ -2,6 +2,7 @@
 *{box-sizing:border-box}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 html,body{height:100%}
 =======
 html,body{height:100%; overflow-x:hidden;} /* ✅ FIX: oldalirányú csúszás megfogása */
@@ -11,11 +12,16 @@ html,body{height:100%; overflow-x:hidden;} /* ✅ FIX: oldalirányú csúszás m
 html,body{height:100%; overflow-x:hidden;} /* ✅ FIX: oldalirányú csúszás megfogása */
 
 >>>>>>> 5c55d34 (new features)
+=======
+html,body{height:100%; overflow-x:hidden;} /* ✅ FIX: oldalirányú csúszás megfogása */
+
+>>>>>>> 9e16f42 (Újabb push)
 body{
   margin:0;
   font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
   color:#e7f0ff;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 
@@ -29,6 +35,8 @@ body{
 =======
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
   background:
     radial-gradient(1100px 700px at 18% 8%, #1f53a6 0%, #0d2a57 35%, rgba(13,42,87,0) 62%),
     linear-gradient(180deg, #0c1d33 0%, #0a1930 55%, #081629 100%);
@@ -37,9 +45,12 @@ body{
   background-size: cover;
   background-color: #0a1930;
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
 }
 
 /* ===== Layout ===== */
@@ -54,18 +65,24 @@ body{
 }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 .navbar-inner{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
 =======
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
 .navbar-inner{
   display:flex; align-items:center; justify-content:space-between; padding:14px 0;
   position:relative; /* ✅ FIX: mobil .nav-links absolute ehhez igazodjon */
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
 .nav-links{display:flex; gap:28px; align-items:center; flex-wrap:wrap}
 .nav-links a{
   color:#dfe9ff; text-decoration:none; font-weight:600; letter-spacing:.02em;
@@ -92,9 +109,12 @@ body{
 .hero::before{
   content:""; position:absolute; inset:0; pointer-events:none;
 <<<<<<< HEAD
+<<<<<<< HEAD
   background:radial-gradient(700px 520px at 92% 12%, rgba(90,145,255,.35) 0%, rgba(90,145,255,0) 65%);
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
 }
 .hero > div{
   background:rgba(10,20,40,.45);
@@ -127,7 +147,10 @@ body{
 .btn.pill:hover{background:linear-gradient(135deg,#8d6aff,#6c4ef0); transform:translateY(-2px)}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 9e16f42 (Újabb push)
 /* ===== Hero2 ===== */
 .hero2{
   position: relative;
@@ -284,7 +307,10 @@ body{
     padding: 13px 16px;
   }
 }
+<<<<<<< HEAD
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
 /* ===== Footer (bővített) ===== */
 .footer{
   margin-top:8px;
@@ -373,6 +399,7 @@ body{
 .footer-bottom .legal a:hover{ opacity:1; text-decoration:underline }
 
 /* ===== Responsive ===== */
+<<<<<<< HEAD
 @media (max-width:1200px){ .hero{gap:36px} }
 
 @media (max-width:980px){
@@ -493,6 +520,215 @@ body{
   .footer-grid { gap: 18px; }
 }
 
+=======
+@media (max-width:1200px){
+  .hero{gap:36px}
+}
+
+@media (max-width:980px){
+  .container{width:min(840px,92%)}
+
+  .hero{
+    grid-template-columns:1fr;
+    gap:24px;
+    padding-top:36px;
+    text-align:center;
+  }
+
+  .hero>div{
+    margin:0 auto;
+    margin-left:0;
+    max-width:100%;
+  }
+
+  .footer-grid{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+/* ===== TABLET / MOBILE ===== */
+@media (max-width:768px){
+
+  .cards.cards--two{grid-template-columns:1fr}
+  .card{min-height:auto}
+  .card-icon{font-size:66px}
+
+  /* ✅ FOOTER FULL COLUMN */
+  .footer-grid{
+    grid-template-columns:1fr;
+    gap:22px;
+  }
+
+  /* ✅ NEWSLETTER FIX */
+  .nl-form{
+    display:flex;
+    flex-direction:column;      /* 🔥 EZ A LÉNYEG */
+    align-items:stretch;
+    gap:10px;
+    width:100%;
+  }
+
+  .nl-form input{
+    width:100%;
+  }
+
+  .nl-btn{
+    width:100%;
+    text-align:center;
+  }
+
+  /* ✅ SOCIALS */
+  .footer-socials{
+    flex-wrap:wrap;
+    justify-content:flex-start; /* vagy center */
+  }
+}
+
+/* ===== SMALL MOBILE ===== */
+@media (max-width:560px){
+
+  .container{width:94%}
+
+  .navbar-inner{padding:10px 0}
+
+  .nav-links{gap:14px}
+  .nav-links a{font-size:14px}
+
+  .auth-buttons{gap:8px}
+
+  .btn-login{
+    padding:7px 10px;
+    border-radius:10px;
+    font-size:13px;
+  }
+
+  .hero-title{font-size:clamp(30px,9vw,38px)}
+  .hero-sub{font-size:14px; margin-bottom:20px}
+
+  .hero-cta{
+    font-size:14px;
+    padding:11px 18px;
+    border-radius:12px;
+    width:100%;
+  }
+
+  .card{padding:22px}
+  .card-title.xl{font-size:24px}
+  .card-icon{font-size:58px}
+
+  .footer-bottom{
+    flex-direction:column;
+    gap:10px;
+  }
+
+  .footer-grid{
+    gap:18px;
+  }
+
+  .footer .container{
+    padding-left:4px;
+    padding-right:4px;
+  }
+}
+
+/* ===== EXTRA SMALL ===== */
+@media (max-width:400px){
+  .nav-links{gap:10px}
+
+  .btn-login{
+    padding:6px 8px;
+    font-size:12px;
+    border-radius:9px;
+  }
+
+  .card-icon{font-size:50px}
+}
+
+/* ===== FIXES ===== */
+.footer-grid > * {
+  min-width: 0;
+}
+@media (max-width: 768px) {
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  /* ✅ FitGuide középre + full width */
+  .footer-brand {
+    grid-column: 1 / -1;
+    text-align: center;
+  }
+
+  /* ✅ Értesítések full width alul */
+  .footer-newsletter {
+    grid-column: 1 / -1;
+  }
+
+  /* opcionális középre */
+  .footer-brand .tagline {
+    text-align: center;
+  }
+
+  /* ✅ Newsletter form maradjon szép */
+  .nl-form {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nl-btn {
+    width: 100%;
+  }
+}@media (max-width: 768px) {
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    text-align: center; /* 🔥 EZ KÖZPONTOSÍT MINDENT */
+  }
+
+  /* FitGuide középen full width */
+  .footer-brand {
+    grid-column: 1 / -1;
+    text-align: center;
+  }
+
+  /* Két oszlop is középre igazítva */
+  .footer-links {
+    text-align: center;
+    justify-self: center; /* 🔥 ez rakja középre a blokkot */
+  }
+
+  /* Newsletter full width + középre */
+  .footer-newsletter {
+    grid-column: 1 / -1;
+    text-align: center;
+  }
+
+  /* Input + button */
+  .nl-form {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nl-form input {
+    width: 100%;
+    max-width: 320px; /* szebb mobilon */
+  }
+
+  .nl-btn {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  /* Social ikonok középre */
+  .footer-socials {
+    justify-content: center;
+  }
+}
+>>>>>>> 9e16f42 (Újabb push)
 /* ===== Store ===== */
 .store-grid{
   display:grid;
@@ -582,6 +818,7 @@ body{
   .nav-links {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     display: none;                 /* rejtve alapból */
 =======
     display: none;
@@ -589,6 +826,9 @@ body{
 =======
     display: none;
 >>>>>>> 5c55d34 (new features)
+=======
+    display: none;
+>>>>>>> 9e16f42 (Újabb push)
     position: absolute;
     left: 0;
     right: 0;
@@ -607,6 +847,7 @@ body{
   /* Auth + cart marad a jobb oldalon, nem tűnik el */
   .auth-buttons { display: flex; align-items: center; gap: 10px; }
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 /* ========== NAV: CART BADGE (globális, de maradhat) ========== */
@@ -642,6 +883,8 @@ body{
 =======
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
 
 /* ========== NAV: CART BADGE (globális, de maradhat) ========== */
 .nav-cart{
@@ -674,9 +917,12 @@ body{
 .nav-cart .cart-badge.bump{
   animation:cart-bump .35s ease;
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
 }
 
 /* ====================== USER DROPDOWN (ÚJ, FIX) ====================== */
@@ -775,12 +1021,16 @@ body{
 }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 
 >>>>>>> 5c55d34 (new features)
+=======
+
+>>>>>>> 9e16f42 (Újabb push)
 /* USER AREA ONE-LINE ALIGNMENT */
 .user-area {
   display: flex;
@@ -872,11 +1122,14 @@ body{
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
 /* ONE LINE FIX */
 .user-area {
   display: flex;
@@ -885,12 +1138,16 @@ body{
 }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 
 >>>>>>> 5c55d34 (new features)
+=======
+
+>>>>>>> 9e16f42 (Újabb push)
 .order-page{ padding: 18px 0 60px; }
 
 .order-top{
@@ -989,9 +1246,12 @@ body{
 }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
 
 /* =========================================================
    FINAL OVERRIDES (EZEK DÖNTENEK)  ✅
@@ -1050,6 +1310,9 @@ body{
     }
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)

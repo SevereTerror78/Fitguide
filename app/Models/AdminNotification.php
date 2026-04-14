@@ -2,10 +2,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-<<<<<<< HEAD
-=======
 
->>>>>>> 5c55d34 (new features)
 class AdminNotification extends Model
 {
     protected $fillable = [

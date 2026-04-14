@@ -12,23 +12,12 @@ return new class extends Migration
             $table->id();
 
             $table->string('name');
-<<<<<<< HEAD
-<<<<<<< HEAD
-            $table->text('description')->nullable();
-            $table->decimal('price', 8, 2);
-=======
-=======
->>>>>>> 5c55d34 (new features)
             $table->string('name_hu');
 
             $table->text('description')->nullable();
             $table->text('description_hu')->nullable();
 
             $table->unsignedInteger('price_huf');
-<<<<<<< HEAD
->>>>>>> fc7673c (frontend update and some new feature)
-=======
->>>>>>> 5c55d34 (new features)
             $table->string('image')->nullable();
 
             $table->unsignedInteger('stock')->default(100);

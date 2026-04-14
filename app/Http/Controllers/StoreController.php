@@ -19,17 +19,6 @@ class StoreController extends Controller
 
         $products = Product::with('productType')
             ->when($type !== 'all', function ($q) use ($type) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-                $q->whereHas('productType', fn($t) => $t->where('slug', $type));
-            })
-            ->when($search !== '', function ($q) use ($search) {
-                $q->where(function ($qq) use ($search) {
-                    $qq->where('name', 'like', "%{$search}%")
-                    ->orWhere('description', 'like', "%{$search}%");
-=======
-=======
->>>>>>> 5c55d34 (new features)
                 $q->whereHas('productType', fn ($t) => $t->where('slug', $type));
             })
             ->when($search !== '', function ($q) use ($search) {
@@ -45,10 +34,6 @@ class StoreController extends Controller
                            ->orWhere('name_hu', 'like', "%{$search}%")
                            ->orWhere('description_hu', 'like', "%{$search}%");
                     }
-<<<<<<< HEAD
->>>>>>> fc7673c (frontend update and some new feature)
-=======
->>>>>>> 5c55d34 (new features)
                 });
             })
             ->orderBy('name')
@@ -67,13 +52,4 @@ class StoreController extends Controller
         return view('store.index', compact('products', 'productTypes'))
             ->with('active', $type);
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-
 }
-=======
-}
->>>>>>> fc7673c (frontend update and some new feature)
-=======
-}
->>>>>>> 5c55d34 (new features)

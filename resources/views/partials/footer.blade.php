@@ -4,6 +4,7 @@
       <div class="logo">FitGuide</div>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <p class="tagline">Your personal guide to a healthier lifestyle.</p>
     </div>
 
@@ -30,6 +31,8 @@
 =======
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
       <p class="tagline">{{ __('footer.tagline') }}</p>
     </div>
 
@@ -51,17 +54,23 @@
       <h4>{{ __('footer.get_updates') }}</h4>
       <p>{{ __('footer.newsletter_text') }}</p>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <form class="nl-form" method="post" action="#">
         <input type="email" name="email" placeholder="{{ __('footer.email_placeholder') }}" required>
         <button type="submit" class="nl-btn">{{ __('footer.subscribe') }}</button>
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
+=======
+>>>>>>> 9e16f42 (Újabb push)
       <form class="nl-form" method="POST" action="{{ route('newsletter.subscribe') }}">
         @csrf
         <input type="hidden" name="language" value="{{ app()->getLocale() }}">
         <input type="email" name="email" placeholder="{{ __('footer.email_placeholder') }}" required>
         <button type="submit" class="nl-btn">{{ __('footer.subscribe') }}</button>
+<<<<<<< HEAD
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
       </form>
       <div class="footer-socials">
         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -77,6 +86,7 @@
     <div class="legal">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <a href="#">Privacy</a><span>•</span>
       <a href="#">Terms</a><span>•</span>
       <a href="#">Cookies</a>
@@ -86,14 +96,20 @@
 =======
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
       <a href="#">{{ __('footer.privacy') }}</a><span>•</span>
       <a href="#">{{ __('footer.terms') }}</a><span>•</span>
       <a href="#">{{ __('footer.cookies') }}</a>
     </div>
   </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 </footer>
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 </footer>
 >>>>>>> 5c55d34 (new features)
+=======
+</footer>
+>>>>>>> 9e16f42 (Újabb push)

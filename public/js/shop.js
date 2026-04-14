@@ -1,6 +1,7 @@
 (function () {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   // =========================================================
   //  CONFIG
   // =========================================================
@@ -14,6 +15,8 @@
 =======
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
   if (window.__FG_STORE_JS_LOADED) return;
   window.__FG_STORE_JS_LOADED = true;
 
@@ -23,14 +26,18 @@
   const currency = document.body?.dataset?.currency || 'HUF';
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
   const cartLink = document.querySelector('.nav-cart');
 
   function getBadgeEl() {
     return cartLink ? cartLink.querySelector('.cart-badge') : null;
   }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
   function getBadgeCount() {
@@ -44,6 +51,9 @@
 =======
 
 >>>>>>> 5c55d34 (new features)
+=======
+
+>>>>>>> 9e16f42 (Újabb push)
   function setBadgeCount(n) {
     if (!cartLink) return;
     let b = getBadgeEl();
@@ -59,12 +69,16 @@
   }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 
 >>>>>>> 5c55d34 (new features)
+=======
+
+>>>>>>> 9e16f42 (Újabb push)
   async function refreshCartBadge() {
     if (!CART_COUNT_URL) return;
     try {
@@ -75,6 +89,7 @@
       if (!res.ok) return;
       const data = await res.json();
       if (typeof data.count === 'number') setBadgeCount(data.count);
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     } catch (_) { /* ignore */ }
@@ -99,6 +114,8 @@
 =======
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
     } catch (_) {}
   }
 
@@ -114,9 +131,12 @@
     function getSearchValue() {
       return (searchInput?.value || '').trim();
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
     }
 
     function setSearchValue(v) {
@@ -152,16 +172,20 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     // build url úgy, hogy a jelenlegi URL paramjai alapból megmaradjanak
     // és csak amit felülírsz, azt írja át
 =======
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
     function buildUrl(base, params) {
       const current = new URL(window.location.href);
       const url = new URL(base, window.location.origin);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
       // kiindulás: a current search paramjai
@@ -169,10 +193,13 @@
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
       current.searchParams.forEach((val, key) => {
         url.searchParams.set(key, val);
       });
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
       // felülírás: a params
@@ -180,6 +207,8 @@
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
       Object.entries(params).forEach(([k, v]) => {
         if (v == null || v === '' || v === 'all') url.searchParams.delete(k);
         else url.searchParams.set(k, v);
@@ -189,6 +218,7 @@
     }
 
     async function loadProducts(url) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
       if (!list) { window.location.href = url; return; }
@@ -207,6 +237,11 @@
         list.classList.add('loading');
 
 >>>>>>> 5c55d34 (new features)
+=======
+      try {
+        list.classList.add('loading');
+
+>>>>>>> 9e16f42 (Újabb push)
         const ajaxUrl = (url.includes('?') ? url + '&' : url + '?') + 'ajax=1';
 
         const res = await fetch(ajaxUrl, {
@@ -225,10 +260,13 @@
         window.history.pushState({}, '', cleanUrl);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         wirePagination();
         list.classList.remove('loading');
         window.scrollTo({ top: list.offsetTop - 40, behavior: 'smooth' });
 =======
+=======
+>>>>>>> 9e16f42 (Újabb push)
       wirePagination();
       list.classList.remove('loading');
 
@@ -236,7 +274,10 @@
         behavior: 'smooth',
         block: 'start'
       });
+<<<<<<< HEAD
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
       } catch (e) {
         console.error(e);
         list.classList.remove('loading');
@@ -246,11 +287,14 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     // -------- FILTER BUTTONS (megőrzi a search-t)
 =======
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
     function wireFilterButtons() {
       filterBtns.forEach(a => {
         a.addEventListener('click', (e) => {
@@ -267,6 +311,7 @@
             search: getSearchValue(),
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             page: '' // reset page filter váltáskor
 =======
             page: ''
@@ -274,6 +319,9 @@
 =======
             page: ''
 >>>>>>> 5c55d34 (new features)
+=======
+            page: ''
+>>>>>>> 9e16f42 (Újabb push)
           });
 
           loadProducts(url);
@@ -283,11 +331,14 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     // -------- SELECT (megőrzi a search-t)
 =======
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
     function wireSelect() {
       if (!filterSelect) return;
       filterSelect.addEventListener('change', () => {
@@ -299,6 +350,7 @@
           search: getSearchValue(),
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           page: '' // reset page
 =======
           page: ''
@@ -306,6 +358,9 @@
 =======
           page: ''
 >>>>>>> 5c55d34 (new features)
+=======
+          page: ''
+>>>>>>> 9e16f42 (Újabb push)
         });
 
         loadProducts(url);
@@ -314,11 +369,14 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     // -------- PAGINATION (ha valamiért nincs benne search/type, hozzáadjuk)
 =======
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
     function wirePagination() {
       const listEl = document.getElementById('product-list');
       if (!listEl) return;
@@ -333,6 +391,7 @@
           const u = new URL(href, window.location.origin);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
           const page = u.searchParams.get('page');
 
@@ -341,30 +400,39 @@
 =======
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
           const page = u.searchParams.get('page');
 
           const url = buildUrl(STORE_URL, {
             page,
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
             type: (new URL(window.location.href)).searchParams.get('type') || (filterSelect?.value || 'all'),
             search: getSearchValue()
           });
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
           loadProducts(url);
         });
       });
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     // -------- SEARCH (debounce + clear + enter + esc)
@@ -382,6 +450,11 @@
       if (!searchInput) return;
 
 >>>>>>> 5c55d34 (new features)
+=======
+    function wireSearch() {
+      if (!searchInput) return;
+
+>>>>>>> 9e16f42 (Újabb push)
       const fromUrl = (new URL(window.location.href)).searchParams.get('search') || '';
       if (fromUrl && !searchInput.value) searchInput.value = fromUrl;
       toggleClear();
@@ -393,6 +466,7 @@
           search: getSearchValue(),
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           page: '' // kereséskor reset
 =======
           page: ''
@@ -400,6 +474,9 @@
 =======
           page: ''
 >>>>>>> 5c55d34 (new features)
+=======
+          page: ''
+>>>>>>> 9e16f42 (Újabb push)
         });
         loadProducts(url);
       };
@@ -434,11 +511,14 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     // init active type from URL
 =======
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
     const currentType = new URL(window.location.href).searchParams.get('type') || 'all';
     setActiveBySlug(currentType);
 
@@ -449,11 +529,14 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     // back/forward: UI sync
 =======
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
     window.addEventListener('popstate', () => {
       const u = new URL(window.location.href);
       const type = u.searchParams.get('type') || 'all';
@@ -463,15 +546,19 @@
       setSearchValue(s);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
       loadProducts(u.toString());
     }, { once: false });
   }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
   // =========================================================
@@ -481,6 +568,8 @@
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
   let BADGE_VERSION = 0;
 
   document.addEventListener('submit', async (e) => {
@@ -492,6 +581,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     if (form.dataset.submitting === '1') return;
     form.dataset.submitting = '1';
@@ -502,12 +592,18 @@
     form.dataset.submitting = '1';
 
 >>>>>>> 5c55d34 (new features)
+=======
+    if (form.dataset.submitting === '1') return;
+    form.dataset.submitting = '1';
+
+>>>>>>> 9e16f42 (Újabb push)
     const qtyInput = form.querySelector('input[name="qty"]');
     const qty = qtyInput ? Math.max(1, parseInt(qtyInput.value || '1', 10)) : 1;
 
     const btn = form.querySelector('.add-btn') || form.querySelector('.btn.pill');
     if (btn) { btn.classList.add('adding'); btn.disabled = true; }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     const before = (function(){
@@ -517,15 +613,20 @@
 =======
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
     const before = (() => {
       const b = document.querySelector('.nav-cart .cart-badge');
       return b ? (parseInt(b.textContent || '0', 10) || 0) : 0;
     })();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
     setBadgeCount(before + qty);
 
     const thisVersion = ++BADGE_VERSION;
@@ -544,6 +645,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       let data = null;
       try { data = await res.json(); } catch (_) {}
 =======
@@ -552,6 +654,9 @@
 =======
       const data = await res.json().catch(() => null);
 >>>>>>> 5c55d34 (new features)
+=======
+      const data = await res.json().catch(() => null);
+>>>>>>> 9e16f42 (Újabb push)
 
       if (!res.ok || !data || data.ok !== true || typeof data.count !== 'number') {
         throw new Error('Add to cart failed');
@@ -565,6 +670,7 @@
     } finally {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       delete form.dataset.submitting;
 
@@ -573,12 +679,17 @@
       delete form.dataset.submitting;
 
 >>>>>>> 5c55d34 (new features)
+=======
+      delete form.dataset.submitting;
+
+>>>>>>> 9e16f42 (Újabb push)
       setTimeout(() => {
         if (btn) { btn.classList.remove('adding'); btn.disabled = false; }
       }, 180);
     }
   });
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
   // =========================================================
@@ -595,6 +706,8 @@
 =======
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
   function fmtFromHuf(n) {
     const num = Number(n || 0);
 
@@ -612,13 +725,17 @@
     const card = document.querySelector('.summary-card');
     if (!card) return 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
     const p = parseFloat(card.dataset.discountPercent || '0');
     return Number.isFinite(p) ? Math.max(0, Math.min(100, p)) : 0;
   }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
   function setDiscountPercent(p){
@@ -643,6 +760,8 @@
 =======
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
   function setDiscountPercent(p) {
     const card = document.querySelector('.summary-card');
     if (!card) return;
@@ -664,14 +783,18 @@
       const priceHolder = row.querySelector('.line-total');
       const unitPrice = parseFloat(priceHolder?.dataset.priceHuf || '0');
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
       const qty = parseInt(row.querySelector('.qty-input')?.value || '1', 10);
       subtotal += unitPrice * qty;
     });
 
     const shipEl = document.getElementById('cart-shipping');
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     const shipping = shipEl ? parseFloat((shipEl.textContent || '').replace(/[^\d.]/g,'') || '0') : 0;
@@ -682,18 +805,24 @@
 =======
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
     const shipping = shipEl?.dataset.shippingHuf ? parseFloat(shipEl.dataset.shippingHuf) : 0;
 
     const percent = getDiscountPercent();
     const discount = percent > 0 ? (subtotal * (percent / 100)) : 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
     const total = Math.max(0, subtotal + shipping - discount);
 
     const subEl = document.getElementById('cart-subtotal');
     const totEl = document.getElementById('cart-total');
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     if(subEl) subEl.textContent = fmt(subtotal);
@@ -711,6 +840,8 @@
 =======
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
 
     if (subEl) subEl.textContent = fmtFromHuf(subtotal);
     if (totEl) totEl.textContent = fmtFromHuf(total);
@@ -726,13 +857,17 @@
         dLine.style.display = 'none';
         dEl.textContent = fmtFromHuf(0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
       }
     }
   }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
   async function persistQty(form, qty){
@@ -743,19 +878,25 @@
 =======
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
   async function persistQty(form, qty) {
     const url = form?.dataset?.updateUrl;
     if (!url) return;
 
     try {
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
       const fd = new FormData();
       fd.append('qty', qty);
 
       const res = await fetch(url, {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         method:'POST',
@@ -799,6 +940,8 @@
 =======
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
         method: 'POST',
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
@@ -845,13 +988,17 @@
             dLine.style.display = 'none';
             dEl.textContent = fmtFromHuf(0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
           }
         }
       }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
       if(typeof data.total === 'string'){
@@ -863,19 +1010,25 @@
 =======
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
       if (typeof data.total !== 'undefined') {
         const totEl = document.getElementById('cart-total');
         if (totEl) totEl.textContent = fmtFromHuf(data.total);
       }
     } catch (e) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
       console.warn('cart.update error, keeping optimistic totals', e);
     }
   }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
   function wireCartQty(){
@@ -897,6 +1050,8 @@
 =======
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
   function wireCartQty() {
     const table = document.querySelector('.cart-table');
     if (!table) return;
@@ -917,15 +1072,19 @@
       if (btn.classList.contains('minus')) val = Math.max(min, val - 1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
       input.value = val;
       updateRowLineTotal(row);
       recalcCartTotals();
       persistQty(form, val);
     });
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     table.addEventListener('input', (e)=>{
@@ -942,6 +1101,8 @@
 =======
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
     table.addEventListener('input', (e) => {
       const input = e.target.closest('.qty-input');
       if (!input) return;
@@ -957,13 +1118,17 @@
       clearTimeout(input._t);
       input._t = setTimeout(() => persistQty(form, val), 300);
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
     });
 
     recalcCartTotals();
   }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 <<<<<<< HEAD
@@ -978,6 +1143,8 @@
       msg.classList.remove('ok','err');
 =======
 =======
+=======
+>>>>>>> 9e16f42 (Újabb push)
   function wireStoreQtyPickers() {
     document.addEventListener('click', (e) => {
       const btn = e.target.closest('.qty-minus, .qty-plus');
@@ -1021,7 +1188,10 @@
     });
   }
 
+<<<<<<< HEAD
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
   function wireDiscountBox() {
     const input = document.getElementById('discount-code');
     const btn = document.getElementById('apply-discount');
@@ -1047,15 +1217,19 @@
       msg.textContent = text;
       msg.classList.remove('ok', 'err');
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
       msg.classList.add(ok ? 'ok' : 'err');
       msg.style.display = 'block';
     };
 
     const postJson = async (url, payload) => {
       const res = await fetch(url, {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         method:'POST',
@@ -1072,6 +1246,8 @@
 =======
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -1085,15 +1261,19 @@
 
       const data = await res.json().catch(() => null);
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
       return { res, data };
     };
 
     const applyUrl = '/cart/discount/apply';
     const removeUrl = '/cart/discount/remove';
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     btn.addEventListener('click', async () => {
@@ -1119,6 +1299,8 @@
 =======
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
     const safeSetMoney = (el, value) => {
       if (!el) return;
       const n = Number(value);
@@ -1150,9 +1332,12 @@
           if (dLine) dLine.style.display = 'none';
           if (dEl) dEl.textContent = fmtFromHuf(0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
 
           showMsg(data.msg, true);
           recalcCartTotals();
@@ -1160,6 +1345,7 @@
         }
 
         const code = (input.value || '').trim();
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         if(!code) return showMsg('Enter a code.', false);
@@ -1171,6 +1357,8 @@
 =======
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
         if (!code) {
           showMsg(I18N.enter, false);
           return;
@@ -1182,14 +1370,18 @@
           showMsg(data?.msg || I18N.failed, false);
           return;
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
         }
 
         const percent = parseFloat(data.percent || '0');
         setDiscountPercent(percent);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         document.getElementById('cart-subtotal').textContent = fmt(parseFloat(data.subtotal));
@@ -1213,6 +1405,8 @@
 =======
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
         safeSetMoney(elSubtotal, data.subtotal);
         safeSetMoney(elShipping, data.shipping);
         safeSetMoney(elTotal, data.total);
@@ -1232,9 +1426,12 @@
         showMsg(I18N.network, false);
       } finally {
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
         btn.disabled = false;
       }
     });
@@ -1242,6 +1439,7 @@
     recalcCartTotals();
   }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
   // =========================================================
@@ -1271,11 +1469,14 @@
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
   document.addEventListener('DOMContentLoaded', () => {
     wireAjaxFiltering();
     refreshCartBadge();
     wireCartQty();
     wireDiscountBox();
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     wireHamburgerMenu();
@@ -1285,6 +1486,9 @@
 =======
     wireStoreQtyPickers();
 >>>>>>> 5c55d34 (new features)
+=======
+    wireStoreQtyPickers();
+>>>>>>> 9e16f42 (Újabb push)
 
     if (typeof wireHamburgerMenu === 'function') {
       wireHamburgerMenu();
@@ -1292,6 +1496,9 @@
   });
 })();
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)

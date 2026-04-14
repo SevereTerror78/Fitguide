@@ -5,28 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-use App\Models\Order;
-use App\Models\OrderItem;
-use App\Models\Product;
-
-=======
-use App\Models\Order;
-use App\Models\OrderItem;
-use App\Models\Product;
->>>>>>> fc7673c (frontend update and some new feature)
-use Stripe\StripeClient;
-
-class CheckoutController extends Controller
-{
-<<<<<<< HEAD
-    public function show(Request $request)
-    {
-        $cart = $request->session()->get('cart', []);
-=======
-=======
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
@@ -36,7 +14,6 @@ use Illuminate\Support\Facades\Mail;
 
 class CheckoutController extends Controller
 {
->>>>>>> 5c55d34 (new features)
     private const PICKUP_POINTS = [
         'budapest' => 'Budapest — 1051, Arany János utca 10. (HU)',
         'debrecen' => 'Debrecen — 4025, Piac utca 12. (HU)',
@@ -45,11 +22,7 @@ class CheckoutController extends Controller
         'gyor'     => 'Győr — 9022, Baross Gábor út 18. (HU)',
     ];
 
-<<<<<<< HEAD
-    public function quote(Request $request)
-=======
    public function quote(Request $request)
->>>>>>> 5c55d34 (new features)
     {
         $country = strtoupper(trim((string) $request->query('country', 'HU')));
         $method  = (string) $request->query('method', 'card');
@@ -71,21 +44,6 @@ class CheckoutController extends Controller
 
         $percent = $this->getDiscountPercent($request);
         $discountAmount = $this->calculateDiscountHuf($subtotal, $percent);
-<<<<<<< HEAD
-        $shipping = $this->shippingHuf($country, $method);
-        $total = max(0, $subtotal + $shipping - $discountAmount);
-
-        if ($request->expectsJson()) {
-            return response()->json([
-                'country'          => $country,
-                'method'           => $method,
-                'currency'         => 'HUF',
-                'subtotal'         => $subtotal,
-                'shipping'         => $shipping,
-                'discount_percent' => $percent,
-                'discount_amount'  => $discountAmount,
-                'total'            => $total,
-=======
         $discountedSubtotal = max(0, $subtotal - $discountAmount);
         $shipping = $this->shippingHuf($country, $method);
         $total = $discountedSubtotal + $shipping;
@@ -101,7 +59,6 @@ class CheckoutController extends Controller
                 'discount_percent'   => $percent,
                 'discount_amount'    => $discountAmount,
                 'total'              => $total,
->>>>>>> 5c55d34 (new features)
             ]);
         }
 
@@ -115,27 +72,10 @@ class CheckoutController extends Controller
     {
         $cart = $this->getCart($request);
 
-<<<<<<< HEAD
->>>>>>> fc7673c (frontend update and some new feature)
-=======
->>>>>>> 5c55d34 (new features)
         if (empty($cart)) {
             return redirect()->route('store.index')->with('error', 'Your cart is empty.');
         }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-        $subtotal = collect($cart)->sum(fn ($item) => $item['price'] * $item['qty']);
-        $shipping = 0.0;
-
-        $discountSession = $request->session()->get('discount');
-        $percent = isset($discountSession['percent']) ? (float) $discountSession['percent'] : 0.0;
-        $percent = max(0, min(100, $percent));
-
-        $discountAmount = $percent > 0 ? round($subtotal * ($percent / 100), 2) : 0.0;
-=======
-=======
->>>>>>> 5c55d34 (new features)
         $subtotal = $this->cartSubtotalHuf($cart);
 
         $selectedMethod = (string) $request->query(
@@ -166,29 +106,12 @@ class CheckoutController extends Controller
         $shipping = $this->shippingHuf($selectedCountry, $selectedMethod);
         $percent = $this->getDiscountPercent($request);
         $discountAmount = $this->calculateDiscountHuf($subtotal, $percent);
-<<<<<<< HEAD
->>>>>>> fc7673c (frontend update and some new feature)
-        $total = max(0, $subtotal + $shipping - $discountAmount);
-=======
         $discountedSubtotal = max(0, $subtotal - $discountAmount);
         $total = $discountedSubtotal + $shipping;
->>>>>>> 5c55d34 (new features)
 
         return view('checkout.show', compact(
             'cart',
             'subtotal',
-<<<<<<< HEAD
-            'shipping',
-            'total',
-            'percent',
-<<<<<<< HEAD
-            'discountAmount'
-=======
-            'discountAmount',
-            'selectedCountry',
-            'selectedMethod'
->>>>>>> fc7673c (frontend update and some new feature)
-=======
             'discountedSubtotal',
             'shipping',
             'total',
@@ -196,80 +119,17 @@ class CheckoutController extends Controller
             'discountAmount',
             'selectedCountry',
             'selectedMethod'
->>>>>>> 5c55d34 (new features)
         ));
     }
 
     public function place(Request $request)
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
-        $cart = $request->session()->get('cart', []);
-=======
         $cart = $this->getCart($request);
 
->>>>>>> fc7673c (frontend update and some new feature)
-=======
-        $cart = $this->getCart($request);
-
->>>>>>> 5c55d34 (new features)
         if (empty($cart)) {
             return redirect()->route('store.index')->with('error', 'Your cart is empty.');
         }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-        $rawMethod = $request->input('payment_method', 'card');
-        if (!in_array($rawMethod, ['card', 'cod', 'pickup'], true)) {
-            $rawMethod = 'card';
-        }
-
-        $rules = [
-            'payment_method'  => 'required|in:card,cod,pickup',
-            'full_name'       => 'required|string|max:255',
-            'address_line2'   => 'nullable|string|max:255',
-            'pickup_location' => 'nullable|string|max:255',
-        ];
-
-        if ($rawMethod !== 'pickup') {
-            $rules = array_merge($rules, [
-                'address_line1' => 'required|string|max:255',
-                'city'          => 'required|string|max:255',
-                'postal_code'   => 'required|string|max:20',
-                'country'       => 'required|string|max:100',
-            ]);
-        }
-
-        $validated = $request->validate($rules);
-        $paymentMethod = $validated['payment_method'];
-
-        $subtotal = collect($cart)->sum(fn ($item) => $item['price'] * $item['qty']);
-        $shipping = 0.0;
-
-        // ✅ session discount
-        $discountSession = $request->session()->get('discount');
-        $discountId = $discountSession['id'] ?? null;
-
-        $percent = isset($discountSession['percent']) ? (float) $discountSession['percent'] : 0.0;
-        $percent = max(0, min(100, $percent));
-
-        $discountAmount = $percent > 0 ? round($subtotal * ($percent / 100), 2) : 0.0;
-        $total = max(0, $subtotal + $shipping - $discountAmount);
-
-        // 🔴 meglévő pending CARD order újrahasznosítása
-        $existingPending = null;
-        if ($paymentMethod === 'card') {
-            $existingPending = Order::where('user_id', Auth::id())
-                ->where('payment_method', 'card')
-                ->where('payment_status', 'pending')
-                ->whereNull('paid_at')
-                ->latest('id')
-                ->first();
-        }
-
-=======
-=======
->>>>>>> 5c55d34 (new features)
         $paymentMethod = $this->normalizePaymentMethod((string) $request->input('payment_method', 'card'));
         $request->session()->put('checkout_payment_method', $paymentMethod);
 
@@ -294,10 +154,6 @@ class CheckoutController extends Controller
         $shipping = $this->shippingHuf($countryCode, $paymentMethod);
         $total = max(0, $subtotal + $shipping - $discountAmount);
 
-<<<<<<< HEAD
->>>>>>> fc7673c (frontend update and some new feature)
-=======
->>>>>>> 5c55d34 (new features)
         try {
             $order = DB::transaction(function () use (
                 $cart,
@@ -305,80 +161,6 @@ class CheckoutController extends Controller
                 $subtotal,
                 $shipping,
                 $total,
-<<<<<<< HEAD
-<<<<<<< HEAD
-                $paymentMethod,
-                $existingPending
-            ) {
-                if ($paymentMethod === 'card' && $existingPending) {
-                    $order = $existingPending;
-
-                    $order->forceFill([
-                        'status'              => Order::STATUS_PENDING_PAYMENT,
-                        'payment_method'      => 'card',
-                        'payment_status'      => 'pending',
-                        'fulfillment_status'  => 'new',
-                        'currency'            => 'EUR',
-                        'subtotal'            => $subtotal,
-                        'shipping'            => $shipping,
-                        'total'               => $total,
-                        'full_name'           => $validated['full_name'],
-                        'address_line1'       => $validated['address_line1'] ?? null,
-                        'address_line2'       => $validated['address_line2'] ?? null,
-                        'city'                => $validated['city'] ?? null,
-                        'postal_code'         => $validated['postal_code'] ?? null,
-                        'country'             => $validated['country'] ?? null,
-                        'pickup_location'     => null,
-                    ])->save();
-
-                    $order->items()->delete();
-                } else {
-                    $order = Order::create([
-                        'user_id' => Auth::id(),
-                        'status'  => $paymentMethod === 'card'
-                            ? Order::STATUS_PENDING_PAYMENT
-                            : 'placed',
-                        'payment_method'     => $paymentMethod,
-                        'payment_status'     => $paymentMethod === 'card' ? 'pending' : 'unpaid',
-                        'fulfillment_status' => 'new',
-                        'currency' => 'EUR',
-                        'subtotal' => $subtotal,
-                        'shipping' => $shipping,
-                        'total'    => $total,
-                        'full_name'     => $validated['full_name'],
-                        'address_line1' => $validated['address_line1'] ?? null,
-                        'address_line2' => $validated['address_line2'] ?? null,
-                        'city'          => $validated['city'] ?? null,
-                        'postal_code'   => $validated['postal_code'] ?? null,
-                        'country'       => $validated['country'] ?? null,
-                        'pickup_location' => $paymentMethod === 'pickup'
-                            ? ($validated['pickup_location'] ?? 'Pickup point')
-                            : null,
-                    ]);
-                }
-
-                foreach ($cart as $item) {
-                    $product = Product::findOrFail($item['product_id']);
-
-                    if ($product->is_active === false) {
-                        throw new \Exception("Product {$product->name} is inactive.");
-                    }
-
-                    if (!is_null($product->stock) && $product->stock < $item['qty']) {
-                        throw new \Exception("Product {$product->name} not available.");
-                    }
-
-                    OrderItem::create([
-                        'order_id'   => $order->id,
-                        'product_id' => $product->id,
-                        'name'       => $product->name,
-                        'unit_price' => $product->price,
-                        'qty'        => $item['qty'],
-                        'line_total' => $product->price * $item['qty'],
-                    ]);
-=======
-=======
->>>>>>> 5c55d34 (new features)
                 $paymentMethod
             ) {
                 $order = $this->createOrder($validated, $subtotal, $shipping, $total, $paymentMethod);
@@ -386,71 +168,11 @@ class CheckoutController extends Controller
 
                 if (in_array($paymentMethod, ['pickup', 'cod'], true) && is_null($order->fulfilled_at)) {
                     $order->forceFill(['fulfilled_at' => now()])->save();
-<<<<<<< HEAD
->>>>>>> fc7673c (frontend update and some new feature)
-=======
->>>>>>> 5c55d34 (new features)
                 }
 
                 return $order;
             });
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-            // ✅ COD / PICKUP: itt már “leadott”, töröld a sessiont (CART + DISCOUNT!)
-            if ($paymentMethod !== 'card') {
-                $order->update(['fulfillment_status' => 'processing']);
-
-                // ✅ FIX: ne csak cart, hanem discount is
-                $request->session()->forget(['cart', 'discount']);
-
-                return redirect()->route('checkout.success', ['order_id' => $order->id]);
-            }
-
-            // ✅ CARD – Stripe
-            $order->load('items');
-            $stripe = new StripeClient(config('services.stripe.secret'));
-
-            $lineItems = $order->items->map(function ($it) use ($order) {
-                return [
-                    'price_data' => [
-                        'currency' => strtolower($order->currency),
-                        'product_data' => ['name' => $it->name],
-                        'unit_amount' => (int) round($it->unit_price * 100),
-                    ],
-                    'quantity' => (int) $it->qty,
-                ];
-            })->values()->all();
-
-            $couponId = null;
-            if ($percent > 0) {
-                $coupon = $stripe->coupons->create([
-                    'percent_off' => $percent,
-                    'duration'    => 'once',
-                    'name'        => 'FitGuide Discount',
-                ]);
-                $couponId = $coupon->id;
-            }
-
-            $session = $stripe->checkout->sessions->create([
-                'mode' => 'payment',
-                'payment_method_types' => ['card'],
-                'line_items' => $lineItems,
-                'discounts' => $couponId ? [['coupon' => $couponId]] : [],
-                'metadata' => [
-                    'order_id' => (string) $order->id,
-                    'user_id'  => (string) $order->user_id,
-                    'discount_id' => $discountId ? (string) $discountId : '',
-                ],
-                // ✅ használjuk a named route-ot
-                'success_url' => route('checkout.success', ['order_id' => $order->id]),
-                'cancel_url'  => route('checkout.show', [], true) . '?cancelled=1',
-            ]);
-=======
-            if ($paymentMethod !== 'card') {
-                $order->update(['fulfillment_status' => 'processing']);
-                $request->session()->forget(['cart', 'discount']);
-=======
             if ($paymentMethod !== 'card') {
                 $order->load(['items', 'user']);
             
@@ -475,44 +197,22 @@ class CheckoutController extends Controller
             
                 $request->session()->forget(['cart', 'discount']);
             
->>>>>>> 5c55d34 (new features)
                 return redirect()->route('checkout.success', ['order_id' => $order->id]);
             }
 
             $order->load('items');
             $session = $this->createStripeCheckoutSession($order, $discountAmount, $discountId);
-<<<<<<< HEAD
->>>>>>> fc7673c (frontend update and some new feature)
-=======
->>>>>>> 5c55d34 (new features)
 
             $order->update([
                 'stripe_checkout_session_id' => $session->id,
             ]);
 
             return redirect()->away($session->url);
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> fc7673c (frontend update and some new feature)
-=======
->>>>>>> 5c55d34 (new features)
         } catch (\Exception $e) {
             return back()->with('error', 'Order failed: ' . $e->getMessage());
         }
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    /**
-     * ✅ STRIPE SUCCESS LANDING
-     * Itt kell sessiont takarítani, mert ez a user böngésző requestje.
-     */
-=======
->>>>>>> fc7673c (frontend update and some new feature)
-=======
->>>>>>> 5c55d34 (new features)
     public function success(Request $request)
     {
         $orderId = (int) $request->query('order_id');
@@ -525,15 +225,6 @@ class CheckoutController extends Controller
             return redirect()->route('store.index')->with('error', 'Order not found.');
         }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-        // Ha CARD, akkor lehet hogy a webhook még dolgozik pár pillanatig.
-        // Ne töröljünk, amíg nincs tényleg paid.
-        if ($order->payment_method === 'card' && $order->payment_status !== 'paid') {
-            // (opcionális) itt renderelhetsz egy "Processing payment..." oldalt is
-=======
-=======
->>>>>>> 5c55d34 (new features)
         if ($order->payment_method === 'card' && $order->payment_status !== 'paid') {
             try {
                 $stripe = new StripeClient(config('services.stripe.secret'));
@@ -555,34 +246,15 @@ class CheckoutController extends Controller
         }
 
         if ($order->payment_method === 'card' && $order->payment_status !== 'paid') {
-<<<<<<< HEAD
->>>>>>> fc7673c (frontend update and some new feature)
-=======
->>>>>>> 5c55d34 (new features)
             return redirect()->route('orders.index')
                 ->with('info', 'Payment is processing. Refresh in a moment.');
         }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-        // ✅ itt a lényeg: CART + DISCOUNT törlés
-        $request->session()->forget(['cart', 'discount']);
-=======
         $request->session()->forget(['cart', 'discount', 'checkout_country', 'checkout_payment_method']);
->>>>>>> fc7673c (frontend update and some new feature)
-=======
-        $request->session()->forget(['cart', 'discount', 'checkout_country', 'checkout_payment_method']);
->>>>>>> 5c55d34 (new features)
         $request->session()->regenerate();
 
         return redirect()->route('orders.index')->with('success', 'Payment successful!');
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-}
-=======
-=======
->>>>>>> 5c55d34 (new features)
 
     private function getCart(Request $request): array
     {
@@ -851,9 +523,4 @@ class CheckoutController extends Controller
         'cancel_url'  => route('checkout.show', [], true) . '?cancelled=1',
     ]);
     }
-<<<<<<< HEAD
 }
->>>>>>> fc7673c (frontend update and some new feature)
-=======
-}
->>>>>>> 5c55d34 (new features)

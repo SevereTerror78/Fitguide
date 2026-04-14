@@ -11,14 +11,7 @@ return new class extends Migration
         Schema::create('product_types', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();          // pl. "Supplements", "Snacks"
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
              $table->string('name_hu')->nullable(); 
->>>>>>> fc7673c (frontend update and some new feature)
-=======
-             $table->string('name_hu')->nullable(); 
->>>>>>> 5c55d34 (new features)
             $table->string('slug')->unique();          // pl. "supplements"
             $table->timestamps();
         });

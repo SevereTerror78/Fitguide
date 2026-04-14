@@ -5,6 +5,7 @@
     <div class="nav-left">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <button class="nav-toggle" id="navToggle">
 =======
       <button class="nav-toggle" id="navToggle" aria-label="{{ __('nav.toggle_menu') }}">
@@ -12,10 +13,14 @@
 =======
       <button class="nav-toggle" id="navToggle" aria-label="{{ __('nav.toggle_menu') }}">
 >>>>>>> 5c55d34 (new features)
+=======
+      <button class="nav-toggle" id="navToggle" aria-label="{{ __('nav.toggle_menu') }}">
+>>>>>>> 9e16f42 (Újabb push)
         <i class="fa-solid fa-bars"></i>
       </button>
 
       <div class="nav-links" id="navMenu">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         <a href="/">HOME</a>
@@ -27,6 +32,8 @@
 =======
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
         <a href="/" class="{{ request()->routeIs('home') ? 'active' : '' }}">{{ __('nav.home') }}</a>
         <a href="/exercises" class="{{ request()->routeIs('exercises.*') ? 'active' : '' }}">{{ __('nav.exercises') }}</a>
         <a href="/store" class="{{ request()->routeIs('store.*') ? 'active' : '' }}">{{ __('nav.store') }}</a>
@@ -37,13 +44,17 @@
             {{ __('nav.admin_panel') }}
           </a>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
         @endif
       </div>
     </div>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
       <!-- JOBB OLDAL: Cart + Profile egy sorban -->
@@ -59,6 +70,8 @@
 =======
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
     <!-- JOBB OLDAL: Cart + Profile egy sorban -->
     <div class="user-area">
 
@@ -70,13 +83,17 @@
             {{ auth()->user()->name }}
             <i class="fa-solid fa-chevron-down"></i>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
           </button>
 
           <!-- DROPDOWN -->
           <div class="dropdown-menu">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
               <a href="{{ route('profile.index') }}" class="dropdown-item">
@@ -118,6 +135,8 @@
 =======
 =======
 >>>>>>> 5c55d34 (new features)
+=======
+>>>>>>> 9e16f42 (Újabb push)
             <a href="{{ route('profile.index') }}" class="dropdown-item">
               {{ __('nav.profile') }}
             </a>
@@ -154,8 +173,12 @@
 
   </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 </nav>
 >>>>>>> fc7673c (frontend update and some new feature)
 =======
 </nav>
 >>>>>>> 5c55d34 (new features)
+=======
+</nav>
+>>>>>>> 9e16f42 (Újabb push)

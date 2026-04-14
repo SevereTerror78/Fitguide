@@ -16,11 +16,8 @@ use App\Models\Discount;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Models\User;
-<<<<<<< HEAD
-=======
 use App\Mail\AccountDeletedMail;
 use Illuminate\Support\Facades\Mail;
->>>>>>> 5c55d34 (new features)
 
 
 class ProfileController extends Controller
@@ -77,21 +74,6 @@ class ProfileController extends Controller
         $user = $request->user();
         $validatedData = $request->validated();
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-        // Profilkép
-        if ($request->hasFile('profile_picture')) {
-            if ($user->profile_picture) {
-                Storage::delete('public/' . $user->profile_picture);
-            }
-            $validatedData['profile_picture'] =
-                $request->file('profile_picture')->store('profile_pictures', 'public');
-        }
-
-=======
->>>>>>> fc7673c (frontend update and some new feature)
-=======
->>>>>>> 5c55d34 (new features)
         // Mentés ELŐTT: teljes volt-e már?
         $previousCompleted = ($user->phone && $user->dob && $user->gender);
 
@@ -177,25 +159,6 @@ class ProfileController extends Controller
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [
-<<<<<<< HEAD
-            'password' => ['required', 'current_password'],
-        ]);
-
-        $user = $request->user();
-        Auth::logout();
-
-        if ($user->profile_picture) {
-            Storage::delete('public/' . $user->profile_picture);
-        }
-
-        $user->delete();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return Redirect::to('/');
-    }
-=======
             'confirmation_text' => ['required', 'string'],
         ]);
         
@@ -225,7 +188,6 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
     
->>>>>>> 5c55d34 (new features)
     public function security(Request $request)
     {
         return view('profile.security', ['user' => $request->user()]);

@@ -52,14 +52,7 @@ return Application::configure(basePath: dirname(__DIR__))
             \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class,
 
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
             \App\Http\Middleware\SetLocale::class,
->>>>>>> fc7673c (frontend update and some new feature)
-=======
-            \App\Http\Middleware\SetLocale::class,
->>>>>>> 5c55d34 (new features)
         ]);
 
         /*

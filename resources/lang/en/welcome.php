@@ -25,11 +25,8 @@ return [
     'privacy' => 'Privacy',
     'terms' => 'Terms',
     'cookies' => 'Cookies',
-<<<<<<< HEAD
-=======
 
     'cgame_downLoad' => 'Download C# Game',
     'cgame_title' => 'Play Our C# Fitness Game',
     'cgame_sub' => 'Experience fitness in a fun and interactive way with our C# game. Download now and start your fitness adventure!',
->>>>>>> 5c55d34 (new features)
 ];
