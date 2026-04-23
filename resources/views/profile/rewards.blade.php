@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'My Rewards • FitGuide')
+@section('title', __('profile.rewards.page_title') . ' • FitGuide')
 
 @section('head')
 <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
@@ -9,87 +9,83 @@
 @section('content')
 <div class="profile-container">
 
-    {{-- LEFT SIDEBAR --}}
     @include('profile.sidebar')
 
-    {{-- MAIN --}}
     <section class="profile-main">
-        <h2 class="section-title">My Rewards</h2>
+        <h2 class="section-title">{{ __('profile.rewards.title') }}</h2>
 
-        {{-- 🟦 TOTAL POINTS CARD --}}
-       <div class="points-card">
-        <div class="points-value">
-        <i class="fa-solid fa-coins"></i>{{ $totalPoints }} pts
+        {{-- TOTAL POINTS CARD --}}
+        <div class="points-card">
+            <div class="points-value">
+                <i class="fa-solid fa-coins"></i>{{ $totalPoints }} {{ __('profile.rewards.pts') }}
+            </div>
+            <div class="points-label">{{ __('profile.rewards.total_points') }}</div>
         </div>
-        <div class="points-label">Total Points</div>
-        </div>
 
-
-        {{-- 🛒 REWARD STORE --}}
-        <h3 class="sub-title">Reward Store</h3>
+        {{-- REWARD STORE --}}
+        <h3 class="sub-title">{{ __('profile.rewards.store_title') }}</h3>
 
         <div class="reward-store">
             @forelse ($shopItems as $item)
                 <div class="reward-item {{ $totalPoints < $item->required_points ? 'locked' : '' }}">
 
-                    {{-- Image --}}
                     @if($item->image)
-                        <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}">
+                        <img src="{{ asset($item->image) }}" alt="{{ $item->name }}">
                     @else
-                        <img src="{{ asset('images/reward-placeholder.png') }}" alt="Reward">
+                        <img src="{{ asset('images/reward-placeholder.png') }}" alt="{{ __('profile.rewards.reward_alt') }}">
                     @endif
 
                     <h4>{{ $item->name }}</h4>
 
-                    {{-- Optional description --}}
                     @if(!empty($item->description))
                         <p class="reward-desc">{{ $item->description }}</p>
                     @endif
 
                     <div class="price">
                         <i class="fa-solid fa-coins"></i>
-                        {{ $item->required_points }} pts
+                        {{ $item->required_points }} {{ __('profile.rewards.pts') }}
                     </div>
 
-                    {{-- 🔘 Redeem Logic --}}
                     @if($totalPoints >= $item->required_points)
                         <form method="POST" action="{{ route('profile.redeem', $item->id) }}">
                             @csrf
                             <button type="submit" class="btn-primary small">
-                                Redeem
+                                {{ __('profile.rewards.redeem') }}
                             </button>
                         </form>
                     @else
                         <button class="btn-disabled small" disabled>
-                            Need {{ $item->required_points - $totalPoints }} more
+                            {{ __('profile.rewards.need_more', ['points' => $item->required_points - $totalPoints]) }}
                         </button>
                     @endif
 
                 </div>
             @empty
-                <p style="color:#aaa">The reward shop is currently empty.</p>
+                <p style="color:#aaa">{{ __('profile.rewards.shop_empty') }}</p>
             @endforelse
         </div>
 
-        {{-- 📜 HISTORY --}}
-        <h3 class="sub-title" style="margin-top:30px;">History</h3>
+        {{-- HISTORY --}}
+        <h3 class="sub-title" style="margin-top:30px;">
+            {{ __('profile.rewards.history_title') }}
+        </h3>
 
         <div class="reward-history">
             @forelse ($redeemed as $r)
                 <div class="history-row">
                     <strong>{{ $r->item->name }}</strong>
-                    <span>Spent: {{ $r->points_spent }} pts</span>
+                    <span>{{ __('profile.rewards.spent') }}: {{ $r->points_spent }} {{ __('profile.rewards.pts') }}</span>
                     <small>{{ $r->created_at->format('Y-m-d') }}</small>
                 </div>
             @empty
-                <p style="color:#777">No redeemed rewards yet</p>
+                <p style="color:#777">{{ __('profile.rewards.no_history') }}</p>
             @endforelse
         </div>
 
     </section>
 </div>
 
-{{-- 🔔 Feedback Toast --}}
+{{-- FEEDBACK TOAST --}}
 @if(session('success'))
     <div class="toast success">{{ session('success') }}</div>
 @endif

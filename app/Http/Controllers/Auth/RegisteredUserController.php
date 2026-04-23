@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use App\Mail\WelcomeMail;
+use Illuminate\Support\Facades\Mail;
 
 class RegisteredUserController extends Controller
 {
@@ -39,13 +41,17 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'language' => app()->getLocale() === 'en' ? 'en' : 'hu',
         ]);
 
         event(new Registered($user));
-        
+
         $user->points = ($user->points ?? 0) + 50;
         $user->save();
 
+        Mail::to($user->email)
+            ->locale($user->language ?? 'hu')
+            ->send(new WelcomeMail($user));
 
         Auth::login($user);
         $request->session()->regenerate();

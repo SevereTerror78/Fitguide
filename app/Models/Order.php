@@ -69,6 +69,13 @@ class Order extends Model
         // ✅
         'fulfilled_at' => 'datetime',
     ];
+    public const PICKUP_LOCATIONS = [
+        'budapest' => 'Budapest – Váci út 23, 1132',
+        'debrecen' => 'Debrecen – Piac utca 12, 4024',
+        'miskolc'  => 'Miskolc – Széchenyi utca 45, 3525',
+        'szeged'   => 'Szeged – Kárász utca 8, 6720',
+        'gyor'     => 'Győr – Baross Gábor út 21, 9021',
+    ];
 
     public function user()
     {
@@ -87,33 +94,42 @@ class Order extends Model
      * FONTOS: nálad még a legacy status mezőt nézi.
      * Ha az új rendszert használod, ezt érdemes majd payment_status-ra átállítani.
      */
-    public function awardPointsIfEligible(): void
+   public function awardPointsIfEligible(): void
     {
-        if ($this->points_awarded) return;
-
-        // ✅ marad a legacy logika: csak akkor ad, ha status = paid és paid_at nem null
-        if ($this->status !== self::STATUS_PAID) return;
-        if (is_null($this->paid_at)) return;
-
-        $rate = 381;
-        $hufTotal = (int) round(((float) $this->total) * $rate);
-
-        // 1 pont / 400 Ft
+        if ($this->points_awarded) {
+            return;
+        }
+    
+        if ($this->payment_status !== 'paid') {
+            return;
+        }
+    
+        if (is_null($this->paid_at)) {
+            return;
+        }
+    
+        $user = $this->user()->first();
+        if (!$user) {
+            return;
+        }
+    
+        $hufTotal = (int) round((float) $this->total);
         $points = max(1, intdiv($hufTotal, 400));
-
-        $this->user->increment('points', $points);
-
+    
+        $user->increment('points', $points);
+    
         $this->forceFill([
             'points_awarded' => true,
             'points_awarded_at' => now(),
         ])->save();
     }
-
-    /**
-     * ✅ Ez fogja megakadályozni, hogy készlet/email/pont duplán menjen.
-     */
     public function isFulfilled(): bool
     {
         return !is_null($this->fulfilled_at);
+    }
+    public function canBeCancelledByUser(): bool
+    {
+        return in_array($this->payment_method, ['pickup', 'cod'])
+            && in_array($this->fulfillment_status, ['new', 'processing']);
     }
 }

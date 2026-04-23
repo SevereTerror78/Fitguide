@@ -1,34 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="csrf-token" content="{{ csrf_token() }}">
+<div class="store-grid">
+  @forelse ($products as $product)
+    <article class="product-card" data-category="{{ $product->productType->slug ?? 'unknown' }}">
+      <div class="product-thumb">
+        @php
+          $img = $product->image
+            ? (\Illuminate\Support\Str::startsWith($product->image, ['http://','https://'])
+                ? $product->image
+                : asset('images/' . ltrim($product->image, '/')))
+            : asset('images/placeholder-product.png');
+        @endphp
+        <img src="{{ $img }}" alt="{{ $product->name }}" />
+      </div>
 
-  <title>@yield('title', 'FitGuide')</title>
+      <div class="product-body">
+        <h3 class="product-name">{{ $product->name }}</h3>
+        @if($product->description)
+          <p class="product-desc">{{ \Illuminate\Support\Str::limit($product->description, 90) }}</p>
+        @endif
+      </div>
 
-  {{-- FitGuide CSS --}}
-  <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
-  <link rel="stylesheet" href="{{ asset('css/shop.css') }}" />
-  <link rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}" />
+      <div class="product-foot">
+        <div class="product-price">{{ number_format($product->price, 2, ',', ' ') }} €</div>
 
-  <script>
-    window.FG = { cartCountUrl: "{{ route('cart.count') }}" };
-  </script>
+        @auth
+          @php
+            $canBuy = ($product->is_active ?? false) && ((int)($product->stock ?? 0) > 0);
+          @endphp
 
-  <script src="{{ asset('js/script.js') }}" defer></script>
-  <script src="{{ asset('js/shop.js') }}" defer></script>
+          @if($canBuy)
+            <form method="POST" action="{{ route('cart.add', $product) }}" class="add-to-cart-form">
+              @csrf
+              <button type="submit" class="btn pill add-btn">
+                <span class="label">Add to cart</span>
+                <span class="check-icon" aria-hidden="true"><i class="fa-solid fa-check"></i></span>
+              </button>
+            </form>
+          @else
+            <button type="button" class="btn pill add-btn is-disabled" disabled>
+              <span class="label">Out of stock</span>
+            </button>
+          @endif
+        @else
+          <a class="btn pill" href="{{ route('login') }}?redirect={{ urlencode(request()->fullUrl()) }}">
+            Log in to buy
+          </a>
+        @endauth
+      </div>
+    </article>
+  @empty
+    <p style="color:#cfe3ff">No products yet.</p>
+  @endforelse
+</div>
 
-  @stack('head')
-</head>
+@if ($products->total() > 0)
+  <div class="pagi-stack">
+    <div class="page-links">
+      {{ $products->onEachSide(1)->links('vendor.pagination.fitguide') }}
+    </div>
 
-<body>
-  @include('partials.navbar')
-
-  <main>
-    @yield('content')
-  </main>
-
-  @include('partials.footer')
-</body>
-</html>
+    <div class="pagination-info">
+      Showing {{ $products->firstItem() }}
+      to {{ $products->lastItem() }}
+      of {{ $products->total() }} results
+    </div>
+  </div>
+@endif

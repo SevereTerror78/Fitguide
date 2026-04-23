@@ -9,24 +9,18 @@ use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
-    /**
-     * LISTA + FILTEREK
-     */
     public function index(Request $request)
     {
         $query = Order::with('user')->latest();
 
-        // 🔹 Payment status filter
         if ($request->filled('payment_status') && $request->payment_status !== 'all') {
             $query->where('payment_status', $request->payment_status);
         }
 
-        // 🔹 Fulfillment status filter
         if ($request->filled('fulfillment_status') && $request->fulfillment_status !== 'all') {
             $query->where('fulfillment_status', $request->fulfillment_status);
         }
 
-        // 🔹 Payment method filter
         if ($request->filled('payment_method') && $request->payment_method !== 'all') {
             $query->where('payment_method', $request->payment_method);
         }
@@ -36,78 +30,57 @@ class OrderController extends Controller
         return view('admin.orders.index', compact('orders'));
     }
 
-    /**
-     * ORDER RÉSZLETEI
-     */
     public function show(Order $order)
     {
         $order->load(['items.product', 'user']);
         return view('admin.orders.show', compact('order'));
     }
 
-    /**
-     * STATUS UPDATE (ADMIN)
-     */
     public function updateStatus(Request $request, Order $order)
-    {
-        $validated = $request->validate([
-            'payment_status'     => 'nullable|in:unpaid,pending,paid,failed,refunded',
-            'fulfillment_status' => 'nullable|in:new,processing,ready_for_pickup,shipped,delivered,completed,cancelled',
-        ]);
+{
+    $validated = $request->validate([
+        'payment_status'     => 'nullable|in:unpaid,pending,paid,failed,refunded',
+        'fulfillment_status' => 'nullable|in:new,processing,ready_for_pickup,shipped,delivered,completed,cancelled',
+    ]);
 
-        DB::transaction(function () use ($order, $validated) {
+    DB::transaction(function () use ($order, $validated) {
+        if (!empty($validated['fulfillment_status'])) {
+            $order->fulfillment_status = $validated['fulfillment_status'];
 
-            /**
-             * 1️⃣ FULFILLMENT STATUS
-             */
-            if (!empty($validated['fulfillment_status'])) {
-                $order->fulfillment_status = $validated['fulfillment_status'];
-
-                // lezárt állapot → fulfilled_at
-                if (
-                    in_array($validated['fulfillment_status'], ['delivered', 'completed'], true) &&
-                    is_null($order->fulfilled_at)
-                ) {
-                    $order->fulfilled_at = now();
-                }
+            if (
+                in_array($validated['fulfillment_status'], ['delivered', 'completed'], true) &&
+                is_null($order->fulfilled_at)
+            ) {
+                $order->fulfilled_at = now();
             }
+        }
 
-            /**
-             * 2️⃣ PAYMENT STATUS
-             */
-            if (!empty($validated['payment_status'])) {
-                $previous = $order->payment_status;
-                $order->payment_status = $validated['payment_status'];
+        if (!empty($validated['payment_status'])) {
+            $previous = $order->payment_status;
+            $order->payment_status = $validated['payment_status'];
 
-                // ➜ most lett paid
-                if ($validated['payment_status'] === 'paid' && $previous !== 'paid') {
-                    $order->paid_at = now();
-                    $order->payment_failed_at = null;
-                    $order->payment_last_error = null;
-
-                    // ✅ COD / PICKUP PONT KIOSZTÁS
-                    $order->awardPointsIfEligible();
-                }
-
-                // ➜ failed
-                if ($validated['payment_status'] === 'failed') {
-                    $order->payment_failed_at = now();
-                }
-            }
-
-            /**
-             * 3️⃣ RÉGI STATUS (legacy – opcionális)
-             * Nem használjuk logikára, csak kompatibilitás
-             */
-            if ($order->payment_status === 'paid') {
+            if ($validated['payment_status'] === 'paid') {
                 $order->status = 'paid';
-            } elseif ($order->payment_status === 'failed') {
+            } elseif ($validated['payment_status'] === 'failed') {
                 $order->status = 'failed';
             }
 
-            $order->save();
-        });
+            if ($validated['payment_status'] === 'paid' && $previous !== 'paid') {
+                $order->paid_at = now();
+                $order->payment_failed_at = null;
+                $order->payment_last_error = null;
 
-        return back()->with('success', 'Order updated successfully.');
-    }
+                $order->awardPointsIfEligible();
+            }
+
+            if ($validated['payment_status'] === 'failed') {
+                $order->payment_failed_at = now();
+            }
+        }
+
+        $order->save();
+    });
+
+    return back()->with('success', 'Order updated successfully.');
+}
 }

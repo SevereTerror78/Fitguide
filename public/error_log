@@ -1,0 +1,40 @@
+[25-Mar-2026 10:34:58 Europe/Budapest] PHP Warning:  require(/home/fitguide/public_html/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/fitguide/public_html/index.php on line 14
+[25-Mar-2026 10:34:58 Europe/Budapest] PHP Fatal error:  Uncaught Error: Failed opening required '/home/fitguide/public_html/../vendor/autoload.php' (include_path='.:/opt/alt/php83/usr/share/pear:/opt/alt/php83/usr/share/php:/usr/share/pear:/usr/share/php') in /home/fitguide/public_html/index.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/fitguide/public_html/index.php on line 14
+[25-Mar-2026 10:35:00 Europe/Budapest] PHP Warning:  require(/home/fitguide/public_html/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/fitguide/public_html/index.php on line 14
+[25-Mar-2026 10:35:00 Europe/Budapest] PHP Fatal error:  Uncaught Error: Failed opening required '/home/fitguide/public_html/../vendor/autoload.php' (include_path='.:/opt/alt/php83/usr/share/pear:/opt/alt/php83/usr/share/php:/usr/share/pear:/usr/share/php') in /home/fitguide/public_html/index.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/fitguide/public_html/index.php on line 14
+[25-Mar-2026 10:35:06 Europe/Budapest] PHP Warning:  require(/home/fitguide/public_html/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/fitguide/public_html/index.php on line 14
+[25-Mar-2026 10:35:06 Europe/Budapest] PHP Fatal error:  Uncaught Error: Failed opening required '/home/fitguide/public_html/../vendor/autoload.php' (include_path='.:/opt/alt/php83/usr/share/pear:/opt/alt/php83/usr/share/php:/usr/share/pear:/usr/share/php') in /home/fitguide/public_html/index.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/fitguide/public_html/index.php on line 14
+[25-Mar-2026 10:35:30 Europe/Budapest] PHP Warning:  require(/home/fitguide/public_html/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/fitguide/public_html/index.php on line 14
+[25-Mar-2026 10:35:30 Europe/Budapest] PHP Fatal error:  Uncaught Error: Failed opening required '/home/fitguide/public_html/../vendor/autoload.php' (include_path='.:/opt/alt/php83/usr/share/pear:/opt/alt/php83/usr/share/php:/usr/share/pear:/usr/share/php') in /home/fitguide/public_html/index.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/fitguide/public_html/index.php on line 14
+[25-Mar-2026 10:36:30 Europe/Budapest] PHP Warning:  require(/home/fitguide/public_html/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/fitguide/public_html/index.php on line 14
+[25-Mar-2026 10:36:30 Europe/Budapest] PHP Fatal error:  Uncaught Error: Failed opening required '/home/fitguide/public_html/../vendor/autoload.php' (include_path='.:/opt/alt/php83/usr/share/pear:/opt/alt/php83/usr/share/php:/usr/share/pear:/usr/share/php') in /home/fitguide/public_html/index.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/fitguide/public_html/index.php on line 14
+[25-Mar-2026 10:37:14 Europe/Budapest] PHP Warning:  require(/home/fitguide/public_html/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/fitguide/public_html/index.php on line 14
+[25-Mar-2026 10:37:14 Europe/Budapest] PHP Fatal error:  Uncaught Error: Failed opening required '/home/fitguide/public_html/../vendor/autoload.php' (include_path='.:/opt/alt/php83/usr/share/pear:/opt/alt/php83/usr/share/php:/usr/share/pear:/usr/share/php') in /home/fitguide/public_html/index.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/fitguide/public_html/index.php on line 14
+[25-Mar-2026 10:37:43 Europe/Budapest] PHP Warning:  require(/home/fitguide/public_html/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/fitguide/public_html/index.php on line 14
+[25-Mar-2026 10:37:43 Europe/Budapest] PHP Fatal error:  Uncaught Error: Failed opening required '/home/fitguide/public_html/../vendor/autoload.php' (include_path='.:/opt/alt/php83/usr/share/pear:/opt/alt/php83/usr/share/php:/usr/share/pear:/usr/share/php') in /home/fitguide/public_html/index.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/fitguide/public_html/index.php on line 14
+[25-Mar-2026 10:38:48 Europe/Budapest] PHP Warning:  require(/home/fitguide/public_html/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/fitguide/public_html/index.php on line 14
+[25-Mar-2026 10:38:48 Europe/Budapest] PHP Fatal error:  Uncaught Error: Failed opening required '/home/fitguide/public_html/../vendor/autoload.php' (include_path='.:/opt/alt/php83/usr/share/pear:/opt/alt/php83/usr/share/php:/usr/share/pear:/usr/share/php') in /home/fitguide/public_html/index.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/fitguide/public_html/index.php on line 14

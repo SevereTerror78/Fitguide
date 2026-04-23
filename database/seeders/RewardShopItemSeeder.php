@@ -11,22 +11,22 @@ class RewardShopItemSeeder extends Seeder
     {
         $items = [
             [
-                'name' => 'FitGuide Shaker Bottle',
-                'description' => 'Stylish protein shaker',
-                'required_points' => 800,
-                'image' => 'rewards/shaker.png',
-            ],
-            [
-                'name' => 'Protein Bar',
-                'description' => 'Chocolate whey bar',
-                'required_points' => 250,
-                'image' => 'rewards/protein-bar.png',
+                'name' => '5% Discount Coupon',
+                'description' => '5% off your next purchase',
+                'required_points' => 200,
+                'image' => 'images/discount5.png',
             ],
             [
                 'name' => '10% Discount Coupon',
-                'description' => 'Use on your next purchase',
+                'description' => '10% off your next purchase',
                 'required_points' => 500,
-                'image' => 'rewards/discount10.png',
+                'image' => 'images/discount10.png',
+            ],
+            [
+                'name' => '20% Discount Coupon',
+                'description' => '20% off your next purchase',
+                'required_points' => 900,
+                'image' => 'images/discount20.png',
             ],
         ];
 

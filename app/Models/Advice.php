@@ -14,6 +14,5 @@ class Advice extends Model
     protected $fillable = [
         'user_id',
         'category',
-        'content',
     ];
 }

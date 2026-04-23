@@ -1,19 +1,19 @@
 /* ===== Reset & Base ===== */
 *{box-sizing:border-box}
-html,body{height:100%}
+html,body{height:100%; overflow-x:hidden;} /* ✅ FIX: oldalirányú csúszás megfogása */
+
 body{
   margin:0;
   font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
   color:#e7f0ff;
 
-
   background:
     radial-gradient(1100px 700px at 18% 8%, #1f53a6 0%, #0d2a57 35%, rgba(13,42,87,0) 62%),
     linear-gradient(180deg, #0c1d33 0%, #0a1930 55%, #081629 100%);
-  background-attachment: fixed;   
+  background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: #0a1930;     
+  background-color: #0a1930;
 }
 
 /* ===== Layout ===== */
@@ -26,7 +26,10 @@ body{
   background:rgba(6,20,44,.35);
   border-bottom:1px solid rgba(255,255,255,.07);
 }
-.navbar-inner{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+.navbar-inner{
+  display:flex; align-items:center; justify-content:space-between; padding:14px 0;
+  position:relative; /* ✅ FIX: mobil .nav-links absolute ehhez igazodjon */
+}
 .nav-links{display:flex; gap:28px; align-items:center; flex-wrap:wrap}
 .nav-links a{
   color:#dfe9ff; text-decoration:none; font-weight:600; letter-spacing:.02em;
@@ -52,7 +55,6 @@ body{
 }
 .hero::before{
   content:""; position:absolute; inset:0; pointer-events:none;
-  background:radial-gradient(700px 520px at 92% 12%, rgba(90,145,255,.35) 0%, rgba(90,145,255,0) 65%);
 }
 .hero > div{
   background:rgba(10,20,40,.45);
@@ -84,6 +86,162 @@ body{
 }
 .btn.pill:hover{background:linear-gradient(135deg,#8d6aff,#6c4ef0); transform:translateY(-2px)}
 
+/* ===== Hero2 ===== */
+.hero2{
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 48px;
+  align-items: center;
+  padding: 56px 32px 36px;
+  color: #e7f0ff;
+  background: url('/images/background2_2.png') no-repeat center center / cover;
+  border-radius: 22px;
+  overflow: hidden;
+}
+
+.hero2::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero2 > div{
+  position: relative;
+  z-index: 1;
+  background: rgba(10,20,40,.45);
+  padding: 28px;
+  border-radius: 16px;
+  max-width: 480px;
+  width: 100%;
+  margin-left: 0;
+}
+
+.hero2-title{
+  font-size: clamp(36px, 6.2vw, 66px);
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  margin: 0 0 12px;
+  color: #eef4ff;
+}
+
+.hero2-sub{
+  font-size: clamp(15px, 2.2vw, 18px);
+  color: #d6e2ff;
+  margin: 0 0 28px;
+  line-height: 1.5;
+}
+
+.hero2-cta{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 26px;
+  border-radius: 16px;
+  border: 0;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 17px;
+  letter-spacing: .3px;
+  background: linear-gradient(135deg,#4a66ff,#3a4bdd);
+  color: #fff;
+  text-decoration: none;
+  box-shadow:
+    0 4px 12px rgba(0,0,0,.25),
+    0 0 0 2px rgba(255,255,255,.10) inset,
+    inset 0 2px 6px rgba(255,255,255,.22);
+  transition: .22s;
+}
+
+.hero2-cta:hover{
+  background: linear-gradient(135deg,#5a74ff,#4657e0);
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* ===== Tablet ===== */
+@media (max-width: 992px){
+  .hero2{
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 40px 24px 28px;
+    background-position: center;
+  }
+
+  .hero2 > div{
+    max-width: 560px;
+  }
+
+  .hero2-title{
+    font-size: clamp(30px, 5.8vw, 52px);
+  }
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 768px){
+  .hero2{
+    grid-template-columns: 1fr;
+    padding: 24px 16px;
+    min-height: 520px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 18px;
+  }
+
+  .hero2 > div{
+    max-width: 100%;
+    padding: 20px;
+    border-radius: 14px;
+  }
+
+  .hero2-title{
+    font-size: clamp(28px, 9vw, 42px);
+    line-height: 1.08;
+    margin-bottom: 10px;
+  }
+
+  .hero2-sub{
+    font-size: 16px;
+    line-height: 1.45;
+    margin-bottom: 20px;
+  }
+
+  .hero2-cta{
+    width: 100%;
+    min-height: 52px;
+    padding: 14px 18px;
+    font-size: 16px;
+    border-radius: 14px;
+  }
+}
+
+/* ===== Small Mobile ===== */
+@media (max-width: 480px){
+  .hero2{
+    padding: 18px 12px;
+    min-height: 460px;
+    border-radius: 16px;
+    background-position: 62% center;
+  }
+
+  .hero2 > div{
+    padding: 16px;
+  }
+
+  .hero2-title{
+    font-size: clamp(24px, 8.5vw, 34px);
+  }
+
+  .hero2-sub{
+    font-size: 15px;
+  }
+
+  .hero2-cta{
+    font-size: 15px;
+    padding: 13px 16px;
+  }
+}
 /* ===== Footer (bővített) ===== */
 .footer{
   margin-top:8px;
@@ -172,80 +330,213 @@ body{
 .footer-bottom .legal a:hover{ opacity:1; text-decoration:underline }
 
 /* ===== Responsive ===== */
-@media (max-width:1200px){ .hero{gap:36px} }
+@media (max-width:1200px){
+  .hero{gap:36px}
+}
 
 @media (max-width:980px){
   .container{width:min(840px,92%)}
-  .hero{grid-template-columns:1fr; gap:24px; padding-top:36px; text-align:center}
-  .hero>div{margin:0 auto}
-  .footer-grid{ grid-template-columns:1fr 1fr; }
+
+  .hero{
+    grid-template-columns:1fr;
+    gap:24px;
+    padding-top:36px;
+    text-align:center;
+  }
+
+  .hero>div{
+    margin:0 auto;
+    margin-left:0;
+    max-width:100%;
+  }
+
+  .footer-grid{
+    grid-template-columns:1fr 1fr;
+  }
 }
 
+/* ===== TABLET / MOBILE ===== */
 @media (max-width:768px){
+
   .cards.cards--two{grid-template-columns:1fr}
   .card{min-height:auto}
   .card-icon{font-size:66px}
-  .footer-grid{ grid-template-columns:1fr; }
+
+  /* ✅ FOOTER FULL COLUMN */
+  .footer-grid{
+    grid-template-columns:1fr;
+    gap:22px;
+  }
+
+  /* ✅ NEWSLETTER FIX */
+  .nl-form{
+    display:flex;
+    flex-direction:column;      /* 🔥 EZ A LÉNYEG */
+    align-items:stretch;
+    gap:10px;
+    width:100%;
+  }
+
+  .nl-form input{
+    width:100%;
+  }
+
+  .nl-btn{
+    width:100%;
+    text-align:center;
+  }
+
+  /* ✅ SOCIALS */
+  .footer-socials{
+    flex-wrap:wrap;
+    justify-content:flex-start; /* vagy center */
+  }
 }
 
+/* ===== SMALL MOBILE ===== */
 @media (max-width:560px){
+
   .container{width:94%}
+
   .navbar-inner{padding:10px 0}
+
   .nav-links{gap:14px}
   .nav-links a{font-size:14px}
+
   .auth-buttons{gap:8px}
-  .btn-login{padding:7px 10px; border-radius:10px; font-size:13px}
+
+  .btn-login{
+    padding:7px 10px;
+    border-radius:10px;
+    font-size:13px;
+  }
+
   .hero-title{font-size:clamp(30px,9vw,38px)}
   .hero-sub{font-size:14px; margin-bottom:20px}
-  .hero-cta{font-size:14px; padding:11px 18px; border-radius:12px; width:100%}
+
+  .hero-cta{
+    font-size:14px;
+    padding:11px 18px;
+    border-radius:12px;
+    width:100%;
+  }
+
   .card{padding:22px}
   .card-title.xl{font-size:24px}
   .card-icon{font-size:58px}
-  .footer-bottom{flex-direction:column; gap:10px}
+
+  .footer-bottom{
+    flex-direction:column;
+    gap:10px;
+  }
+
+  .footer-grid{
+    gap:18px;
+  }
+
+  .footer .container{
+    padding-left:4px;
+    padding-right:4px;
+  }
 }
 
+/* ===== EXTRA SMALL ===== */
 @media (max-width:400px){
   .nav-links{gap:10px}
-  .btn-login{padding:6px 8px; font-size:12px; border-radius:9px}
+
+  .btn-login{
+    padding:6px 8px;
+    font-size:12px;
+    border-radius:9px;
+  }
+
   .card-icon{font-size:50px}
 }
-.footer-grid > * { min-width: 0; }
 
-.nl-form {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: nowrap;       
+/* ===== FIXES ===== */
+.footer-grid > * {
+  min-width: 0;
 }
-.nl-form input {
-  flex: 1 1 auto;          
-  min-width: 0;            
-}
-.nl-btn {
-  flex: 0 0 auto;          
-  white-space: nowrap;    
-}
-
-.footer-socials { flex-wrap: wrap; }
 @media (max-width: 768px) {
-  .nl-form {
-    flex-wrap: wrap;       
-    gap: 8px;
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
   }
-  .nl-form input {
-    flex: 1 1 100%;
-  }
-  .nl-btn {
-    width: 100%;           
+
+  /* ✅ FitGuide középre + full width */
+  .footer-brand {
+    grid-column: 1 / -1;
     text-align: center;
   }
-}
-@media (max-width: 560px) {
-  .footer .container { padding-left: 4px; padding-right: 4px; }
-  .footer-grid { gap: 18px; }
-}
 
+  /* ✅ Értesítések full width alul */
+  .footer-newsletter {
+    grid-column: 1 / -1;
+  }
+
+  /* opcionális középre */
+  .footer-brand .tagline {
+    text-align: center;
+  }
+
+  /* ✅ Newsletter form maradjon szép */
+  .nl-form {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nl-btn {
+    width: 100%;
+  }
+}@media (max-width: 768px) {
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    text-align: center; /* 🔥 EZ KÖZPONTOSÍT MINDENT */
+  }
+
+  /* FitGuide középen full width */
+  .footer-brand {
+    grid-column: 1 / -1;
+    text-align: center;
+  }
+
+  /* Két oszlop is középre igazítva */
+  .footer-links {
+    text-align: center;
+    justify-self: center; /* 🔥 ez rakja középre a blokkot */
+  }
+
+  /* Newsletter full width + középre */
+  .footer-newsletter {
+    grid-column: 1 / -1;
+    text-align: center;
+  }
+
+  /* Input + button */
+  .nl-form {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nl-form input {
+    width: 100%;
+    max-width: 320px; /* szebb mobilon */
+  }
+
+  .nl-btn {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  /* Social ikonok középre */
+  .footer-socials {
+    justify-content: center;
+  }
+}
 /* ===== Store ===== */
 .store-grid{
   display:grid;
@@ -333,7 +624,7 @@ body{
 
   /* A linkek alapból rejtve, a lenyíló panel a nav alatt */
   .nav-links {
-    display: none;                 /* rejtve alapból */
+    display: none;
     position: absolute;
     left: 0;
     right: 0;
@@ -352,36 +643,37 @@ body{
   /* Auth + cart marad a jobb oldalon, nem tűnik el */
   .auth-buttons { display: flex; align-items: center; gap: 10px; }
 }
+
 /* ========== NAV: CART BADGE (globális, de maradhat) ========== */
-.nav-cart{ 
-  position:relative; 
-  display:inline-block; 
-  color:#fff; 
-  font-size:24px; 
+.nav-cart{
+  position:relative;
+  display:inline-block;
+  color:#fff;
+  font-size:24px;
 }
 .nav-cart .cart-badge{
-  position:absolute; 
-  top:-8px; 
-  right:-8px; 
-  width:20px; 
+  position:absolute;
+  top:-8px;
+  right:-8px;
+  width:20px;
   height:20px;
-  background:#e60023; 
-  color:#fff; 
-  font-size:12px; 
-  font-weight:700; 
+  background:#e60023;
+  color:#fff;
+  font-size:12px;
+  font-weight:700;
   border-radius:50%;
-  display:flex; 
-  align-items:center; 
+  display:flex;
+  align-items:center;
   justify-content:center;
   box-shadow:0 0 0 2px #0a1a2f;
 }
-@keyframes cart-bump{ 
-  0%{transform:scale(1)} 
-  50%{transform:scale(1.2)} 
-  100%{transform:scale(1)} 
+@keyframes cart-bump{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.2)}
+  100%{transform:scale(1)}
 }
-.nav-cart .cart-badge.bump{ 
-  animation:cart-bump .35s ease; 
+.nav-cart .cart-badge.bump{
+  animation:cart-bump .35s ease;
 }
 
 /* ====================== USER DROPDOWN (ÚJ, FIX) ====================== */
@@ -478,6 +770,7 @@ body{
     transform-origin: top center;
   }
 }
+
 /* USER AREA ONE-LINE ALIGNMENT */
 .user-area {
   display: flex;
@@ -567,13 +860,13 @@ body{
   transform: translateX(3px);
 }
 
-
 /* ONE LINE FIX */
 .user-area {
   display: flex;
   align-items: center;
   gap: 22px;
 }
+
 .order-page{ padding: 18px 0 60px; }
 
 .order-top{
@@ -669,4 +962,61 @@ body{
   .order-grid{ grid-template-columns: 1fr; }
   .order-summary{ position:static; }
   .order-top{ align-items:flex-start; }
+}
+
+/* =========================================================
+   FINAL OVERRIDES (EZEK DÖNTENEK)  ✅
+   - mobil background fixed glitch off
+   - dropdown egységesítve (mert több helyen volt definiálva)
+========================================================= */
+@media (max-width: 900px){
+  body{ background-attachment: scroll; } /* ✅ FIX */
+}
+
+/* ✅ Dropdown végleges (a duplikáltakat felülírja) */
+.user-dropdown{ position:relative; }
+.user-dropdown .dropdown-menu{
+  width:190px;
+  background: rgba(12, 28, 63, 0.92);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 14px;
+  padding: 8px 0;
+  box-shadow: 0 15px 35px rgba(0,0,0,.45);
+  backdrop-filter: blur(12px);
+
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  z-index: 999;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: .18s ease-in-out;
+}
+.user-dropdown:hover .dropdown-menu{
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.user-dropdown .dropdown-item{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:10px 16px;
+  font-size:14px;
+  color:#e7efff;
+  text-decoration:none;
+  transition:.18s ease;
+}
+.user-dropdown .dropdown-item:hover{
+  background: rgba(255,255,255,.10);
+  color:#fff;
+  transform: translateX(3px);
+}
+@media (max-width: 320px) {
+    body {
+        min-width: 320px;
+    }
 }

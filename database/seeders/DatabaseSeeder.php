@@ -18,8 +18,11 @@ class DatabaseSeeder extends Seeder
         ProductSeeder::class,
         AdvicesSeeder::class,
         MusclesSeeder::class,
+        MusclesHuSeeder::class,
         AdminDiscountSeeder::class,
         RewardShopItemSeeder::class,
+        ExercisesSeeder::class,
+        
     ]);
 
     }

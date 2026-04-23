@@ -23,8 +23,12 @@ return new class extends Migration
             // 🔥 User role (admin / user)
             $table->enum('role', ['user', 'admin'])->default('user');
 
+            // ✅ SETTINGS
+            $table->string('language', 5)->default('hu');     // hu | en
+            $table->string('theme', 20)->default('dark');     // light | dark | colorblind
+            $table->string('currency', 5)->default('HUF');    // HUF | EUR | USD
+
             // 🔥 PROFIL MEZŐK
-            $table->string('profile_picture')->nullable();
             $table->string('phone')->nullable();
             $table->date('dob')->nullable();
             $table->string('gender')->nullable();
@@ -66,7 +70,12 @@ return new class extends Migration
             'password'          => Hash::make('admin123'),
             'role'              => 'admin',
             'email_verified_at' => now(),
-            'profile_picture'   => null,
+
+            // ✅ SETTINGS default az adminnak is
+            'language'          => 'hu',
+            'theme'             => 'dark',
+            'currency'          => 'HUF',
+
             'phone'             => null,
             'dob'               => null,
             'gender'            => null,

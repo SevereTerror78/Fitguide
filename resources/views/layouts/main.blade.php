@@ -1,34 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  @php($t = auth()->check() ? (auth()->user()->theme ?? 'dark') : 'dark')
 
-    <title>@yield('title', 'FitGuide')</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    {{-- Global Styles --}}
-    <link rel="stylesheet" href="{{ asset('css/orders.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/profile.css') }}" />
-    <link rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}">
+  <title>@yield('title', 'FitGuide')</title>
 
-    {{-- Scripts --}}
-    <script src="{{ asset('js/script.js') }}" defer></script>
-    <script src="{{ asset('js/shop.js') }}" defer></script>
+  {{-- THEME CSS (minden oldalon) --}}
+  <link id="theme-css" rel="stylesheet" href="{{ asset('css/themes/'.$t.'.css') }}?v={{ time() }}">
+
+  {{-- BASE CSS --}}
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}">
+
+  {{-- Régi módszer: @section('head') --}}
+  @yield('head')
+
+  {{-- Új módszer: @push('head') --}}
+  @stack('head')
+
+  <script>
+    window.FG = { cartCountUrl: "{{ route('cart.count') }}" };
+    window.STORE_URL = "{{ url('/store') }}";
+  </script>
+
+  <script src="{{ asset('js/shop.js') }}" defer></script>
+  <script src="{{ asset('js/navbar.js') }}" defer></script>
+  
+
+  @stack('scripts')
 </head>
 
-<body>
+<body data-theme="{{ $t }}" data-currency="{{ auth()->user()?->currency ?? session('currency', 'HUF') }}">
+  @include('partials.navbar')
 
-    {{-- NAVIGATION --}}
-    @include('partials.navbar')
+  <main style="min-height:70vh; padding-top:20px;">
+    @yield('content')
+  </main>
 
-    {{-- MAIN CONTENT --}}
-    <main style="min-height: 70vh; padding-top: 20px;">
-        @yield('content')
-    </main>
-
-    {{-- FOOTER --}}
-    @include('partials.footer')
-
+  @include('partials.footer')
 </body>
 </html>

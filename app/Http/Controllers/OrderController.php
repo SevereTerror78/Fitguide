@@ -5,41 +5,51 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 class OrderController extends Controller
 {
-    /**
-     * Display a single order.
-     */
+    public function index()
+    {
+        $orders = Order::query()
+            ->where('user_id', Auth::id())
+            ->whereNot(function ($q) {
+                $q->where('payment_method', 'card')
+                  ->where('status', Order::STATUS_PENDING_PAYMENT);
+            })
+            ->with('items.product')
+            ->latest()
+            ->get();
 
-     public function index()
-     {
-         $orders = Auth::user()
-             ->orders()
-             ->with('items.product')
-             ->where(function ($q) {
-                 // ne mutassa a régi pending_payment státuszt sem
-                 $q->where('payment_method', '!=', 'card')
-                   ->orWhere('status', '!=', Order::STATUS_PENDING_PAYMENT);
-             })
-             ->latest()
-             ->get();
-     
-         return view('orders.index', compact('orders'));
-     }
-     
-    
+        return view('orders.index', compact('orders'));
+    }
+
     public function show(Order $order)
     {
-        // biztosítjuk, hogy csak a saját rendelését lássa
-        if (Auth::id() !== $order->user_id) {
+        if ((int) Auth::id() !== (int) $order->user_id) {
             abort(403);
         }
-
-        // betöltjük a rendelés tételeit és termékeket
+    
         $order->load('items.product');
-
+    
         return view('orders.show', [
-            'order' => $order
+            'order' => $order,
         ]);
     }
+    public function cancel(Order $order)
+    {
+        if ((int) $order->user_id !== (int) Auth::id()) {
+            abort(403);
+        }
+    
+        if (! $order->canBeCancelledByUser()) {
+            return back()->with('error', __('orders.cancel_not_allowed'));
+        }
+    
+        $order->update([
+            'fulfillment_status' => 'cancelled',
+        ]);
+    
+        return back()->with('success', __('orders.cancel_success'));
+    }
+    
 }

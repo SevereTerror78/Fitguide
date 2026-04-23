@@ -9,63 +9,106 @@
                 : asset('images/' . ltrim($product->image, '/')))
             : asset('images/placeholder-product.png');
         @endphp
-        <img src="{{ $img }}" alt="{{ $product->name }}" />
+        <img src="{{ $img }}" alt="{{ $product->translated_name }}" />
       </div>
 
       <div class="product-body">
-        <h3 class="product-name">{{ $product->name }}</h3>
-        @if($product->description)
-          <p class="product-desc">{{ \Illuminate\Support\Str::limit($product->description, 90) }}</p>
+        <h3 class="product-name">
+          {{ $product->translated_name }}
+        </h3>
+
+        @if($product->translated_description)
+          <p class="product-desc">
+            {{ \Illuminate\Support\Str::limit($product->translated_description, 90) }}
+          </p>
         @endif
       </div>
 
       <div class="product-foot">
-      <div class="product-price">{{ number_format($product->price, 2, ',', ' ') }} €</div>
-      @auth
+        <div class="product-price">
+          {{ $product->price_formatted }}
+        </div>
+
+        @auth
           @php
-            $canBuy = ($product->is_active ?? false) && ((int)$product->stock > 0);
+            $stock = (int) ($product->stock ?? 0);
+            $canBuy = ($product->is_active ?? false) && $stock > 0;
           @endphp
 
-          @if($canBuy)
-            <form method="POST" action="{{ route('cart.add', $product) }}" class="add-to-cart-form">
-              @csrf
-              <button type="submit" class="btn pill add-btn">
-                <span class="label">Add to cart</span>
-                <span class="check-icon" aria-hidden="true"><i class="fa-solid fa-check"></i></span>
+          <form method="POST" action="{{ route('cart.add', $product) }}" class="add-to-cart-form product-buy-form">
+            @csrf
+
+            <div class="qty-picker {{ $canBuy ? '' : 'is-disabled' }}" data-qty-picker>
+              <button
+                type="button"
+                class="qty-btn qty-minus"
+                aria-label="{{ __('store.qty_decrease') }}"
+                {{ $canBuy ? '' : 'disabled' }}
+              >
+                <i class="fa-solid fa-minus"></i>
               </button>
-            </form>
-          @else
-            <button type="button" class="btn pill add-btn is-disabled" disabled>
-              <span class="label">Out of stock</span>
+
+              <input
+                type="number"
+                name="qty"
+                class="qty-input"
+                value="1"
+                min="1"
+                max="{{ max($stock, 1) }}"
+                inputmode="numeric"
+                aria-label="{{ __('store.quantity') }}"
+                {{ $canBuy ? '' : 'disabled' }}
+              >
+
+              <button
+                type="button"
+                class="qty-btn qty-plus"
+                aria-label="{{ __('store.qty_increase') }}"
+                {{ $canBuy ? '' : 'disabled' }}
+              >
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+
+            <button
+              type="submit"
+              class="btn pill add-btn {{ $canBuy ? '' : 'is-disabled' }}"
+              {{ $canBuy ? '' : 'disabled' }}
+            >
+              <span class="label">
+                {{ $canBuy ? __('store.add_to_cart') : __('store.out_of_stock') }}
+              </span>
+              @if($canBuy)
+                <span class="check-icon" aria-hidden="true"><i class="fa-solid fa-check"></i></span>
+              @endif
             </button>
-          @endif
+          </form>
         @else
           <a class="btn pill" href="{{ route('login') }}?redirect={{ urlencode(request()->fullUrl()) }}">
-            Log in to buy
+            {{ __('store.login_to_buy') }}
           </a>
-      @endauth
+        @endauth
       </div>
     </article>
   @empty
-    <p style="color:#cfe3ff">No products yet.</p>
+    <p style="color:#cfe3ff">{{ __('store.no_products') }}</p>
   @endforelse
 </div>
 
-{{-- =========================
-     PAGINATION SECTION
-   ========================= --}}
 @if ($products->total() > 0)
   <div class="pagi-stack">
-    {{-- Oldalszámok + Previous / Next --}}
     <div class="page-links">
       {{ $products->onEachSide(1)->links('vendor.pagination.fitguide') }}
     </div>
 
-    {{-- "Showing x to y of z results" --}}
     <div class="pagination-info">
-      Showing {{ $products->firstItem() }}
-      to {{ $products->lastItem() }}
-      of {{ $products->total() }} results
+      {{ __('store.showing') }}
+      {{ $products->firstItem() }}
+      {{ __('store.to') }}
+      {{ $products->lastItem() }}
+      {{ __('store.of') }}
+      {{ $products->total() }}
+      {{ __('store.results') }}
     </div>
   </div>
 @endif

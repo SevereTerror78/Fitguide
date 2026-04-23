@@ -16,6 +16,8 @@ use App\Models\Discount;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Models\User;
+use App\Mail\AccountDeletedMail;
+use Illuminate\Support\Facades\Mail;
 
 
 class ProfileController extends Controller
@@ -71,15 +73,6 @@ class ProfileController extends Controller
     {
         $user = $request->user();
         $validatedData = $request->validated();
-
-        // Profilkép
-        if ($request->hasFile('profile_picture')) {
-            if ($user->profile_picture) {
-                Storage::delete('public/' . $user->profile_picture);
-            }
-            $validatedData['profile_picture'] =
-                $request->file('profile_picture')->store('profile_pictures', 'public');
-        }
 
         // Mentés ELŐTT: teljes volt-e már?
         $previousCompleted = ($user->phone && $user->dob && $user->gender);
@@ -166,23 +159,35 @@ class ProfileController extends Controller
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
+            'confirmation_text' => ['required', 'string'],
         ]);
-
+        
+        if ($request->input('confirmation_text') !== 'DELETEACCOUNT') {
+            return back()->withErrors([
+                'confirmation_text' => __('profile.delete_confirmation_invalid'),
+            ], 'userDeletion');
+        }
+    
         $user = $request->user();
+    
+        Mail::to($user->email)
+            ->locale($user->language ?? 'hu')
+            ->send(new AccountDeletedMail($user->name));
+    
         Auth::logout();
-
+    
         if ($user->profile_picture) {
             Storage::delete('public/' . $user->profile_picture);
         }
-
+    
         $user->delete();
-
+    
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-
+    
         return Redirect::to('/');
     }
+    
     public function security(Request $request)
     {
         return view('profile.security', ['user' => $request->user()]);

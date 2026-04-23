@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Discounts • FitGuide')
+@section('title', __('profile.discounts.page_title') . ' • FitGuide')
 @section('head')
 <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 @endsection
@@ -11,39 +11,38 @@
     @include('profile.sidebar')
 
     <section class="profile-main">
-        <h2 class="section-title">My Discounts</h2>
+        <h2 class="section-title">{{ __('profile.discounts.title') }}</h2>
 
         @if ($discounts->isEmpty())
-            <p style="color:#ccc">You currently have no discounts.</p>
+            <p style="color:#ccc">{{ __('profile.discounts.empty') }}</p>
         @else
             <div class="discount-list">
                 @foreach ($discounts as $d)
-                    <div class="discount-card {{ 
-                        $d->usedOrNot 
-                            ? 'used' 
-                            : ($d->expiryDate && $d->expiryDate->isPast() 
-                                ? 'expired' 
-                                : 'active') 
-                    }}">
-                        
+                    @php
+                        $stateClass = $d->usedOrNot
+                            ? 'used'
+                            : (($d->expiryDate && $d->expiryDate->isPast()) ? 'expired' : 'active');
+                    @endphp
+
+                    <div class="discount-card {{ $stateClass }}">
                         <div class="discount-left">
                             <strong class="discount-code">{{ $d->discountCode }}</strong>
                             <span class="amount">-{{ $d->discountAmount }}%</span>
 
                             @if($d->usedOrNot)
-                                <span class="status used">✔ Used</span>
+                                <span class="status used">✔ {{ __('profile.discounts.used') }}</span>
                             @elseif($d->expiryDate && $d->expiryDate->isPast())
-                                <span class="status expired">✖ Expired</span>
+                                <span class="status expired">✖ {{ __('profile.discounts.expired') }}</span>
                             @else
-                                <span class="status active">Usable 🎉</span>
+                                <span class="status active">{{ __('profile.discounts.usable') }} 🎉</span>
                             @endif
                         </div>
 
                         <div class="discount-right">
-                            <span class="expiry-label">Expiry date</span>
+                            <span class="expiry-label">{{ __('profile.discounts.expiry_label') }}</span>
                             <span class="expiry">
                                 <i class="fa-regular fa-clock"></i>
-                                {{ $d->expiryDate?->format('Y-m-d') ?? 'No limit' }}
+                                {{ $d->expiryDate?->format('Y-m-d') ?? __('profile.discounts.no_limit') }}
                             </span>
                         </div>
                     </div>
@@ -54,5 +53,3 @@
     </section>
 </div>
 @endsection
-
-

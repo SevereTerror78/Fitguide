@@ -1,73 +1,238 @@
-.orders-wrapper {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 22px;
+/* =========================================================
+   MY ORDERS (profile) – a te markupodhoz igazítva
+   Classes: .orders-list .order-card .order-top .order-details .view-btn
+   ========================================================= */
+
+   .orders-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 22px;
+  }
+  
+  .orders-list .order-card{
+    background: rgba(18, 34, 66, 0.55);
+    border: 1px solid rgba(135, 190, 255, 0.18);
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: 0 10px 26px rgba(5, 11, 24, 0.45);
+    backdrop-filter: blur(6px);
+    transition: transform .2s ease, border-color .2s ease;
+  }
+  
+  .orders-list .order-card:hover{
+    transform: translateY(-4px);
+    border-color: rgba(170, 210, 255, .45);
+  }
+  
+  .orders-list .order-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .orders-list .order-id{
+    font-weight: 800;
+    color: #eaf2ff;
+  }
+  
+  .orders-list .order-status{
+    padding: 4px 10px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+  
+  /* státusz színek */
+  .orders-list .status-pending{
+    background: rgba(255,210,80,.15);
+    color: #ffd250;
+  }
+  .orders-list .status-completed,
+  .orders-list .status-paid{
+    background: rgba(83,214,105,.15);
+    color: #53d669;
+  }
+  .orders-list .status-cancelled,
+  .orders-list .status-failed{
+    background: rgba(232,93,93,.20);
+    color: #e85d5d;
+  }
+  
+  .orders-list .order-details p{
+    margin: 4px 0;
+    font-size: 14px;
+    color: #d6e2ff;
+  }
+  
+  .orders-list .view-btn{
+    margin-top: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 800;
+    color: #6fb7ff;
+    text-decoration: none;
+    transition: transform .2s ease, color .2s ease;
+  }
+  
+  .orders-list .view-btn:hover{
+    color: #a9d4ff;
+    transform: translateX(3px);
+  }
+  
+  
+  /* =========================================================
+     ORDER SHOW – Summary alatti gomb középre + prémium
+     Classes: .summary-actions + a gomb (btn pill ghost)
+     ========================================================= */
+  
+  .summary-actions{
+    margin-top: 18px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .summary-actions .btn{
+    min-width: 240px;
+    padding: 14px 22px;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 15px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  
+    /* prémium CTA kinézet */
+    background: linear-gradient(135deg, rgba(124,77,255,.95), rgba(90,51,232,.95));
+    color: #fff;
+    border: none;
+  
+    box-shadow: 0 12px 34px rgba(90,51,232,.45), inset 0 1px 0 rgba(255,255,255,.25);
+    transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+  }
+  
+  .summary-actions .btn i{
+    font-size: 14px;
+  }
+  
+  .summary-actions .btn:hover{
+    transform: translateY(-1px);
+    filter: brightness(1.05);
+    box-shadow: 0 18px 44px rgba(90,51,232,.55), inset 0 1px 0 rgba(255,255,255,.30);
+  }
+  
+  .summary-actions .btn:active{
+    transform: translateY(0);
+    box-shadow: 0 10px 26px rgba(90,51,232,.40), inset 0 1px 0 rgba(255,255,255,.20);
+  }
+  @media (max-width: 320px) {
+    body {
+        min-width: 320px;
+    }
+}
+/* =========================================================
+   CANCEL BUTTONS – orders list + order show
+   Classes: .cancel-btn + .btn.pill.danger
+   ========================================================= */
+
+.cancel-order-form{
+  margin: 0;
 }
 
-.order-card {
-  background: rgba(18, 34, 66, 0.55);
-  border: 1px solid rgba(135, 190, 255, 0.18);
-  border-radius: 18px;
-  padding: 18px;
-  box-shadow: 0 10px 26px rgba(5, 11, 24, 0.45);
-  backdrop-filter: blur(6px);
-  transition: 0.2s ease;
-}
-
-.order-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(170, 210, 255, .45);
-}
-
-.order-header {
-  display: flex;
-  justify-content: space-between;
+.cancel-btn,
+.btn.pill.danger{
+  min-width: 220px;
+  padding: 14px 22px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 15px;
+  display: inline-flex;
   align-items: center;
-  margin-bottom: 10px;
-}
-
-.order-id {
-  font-weight: 700;
-  color: #eaf2ff;
-}
-
-.order-status {
-  padding: 4px 10px;
-  border-radius: 10px;
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.status-pending {
-  background: rgba(255,210,80,.15);
-  color: #ffd250;
-}
-.status-completed {
-  background: rgba(83,214,105,.15);
-  color: #53d669;
-}
-.status-cancelled {
-  background: rgba(232,93,93,.2);
-  color: #e85d5d;
-}
-
-.order-info p {
-  margin: 4px 0;
-  font-size: 14px;
-  color: #d6e2ff;
-}
-
-.order-btn {
-  margin-top: 12px;
-  display: inline-block;
-  font-weight: 700;
-  color: #6fb7ff;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
   text-decoration: none;
-  transition: 0.2s;
+
+  color: #fff;
+  border: 1px solid rgba(255, 120, 120, 0.28);
+  background: linear-gradient(135deg, rgba(255, 92, 92, 0.95), rgba(185, 28, 28, 0.95));
+
+  box-shadow:
+    0 12px 34px rgba(185, 28, 28, 0.35),
+    inset 0 1px 0 rgba(255,255,255,.18);
+
+  transition:
+    transform .15s ease,
+    box-shadow .15s ease,
+    filter .15s ease,
+    border-color .15s ease;
 }
 
-.order-btn:hover {
-  color: #a9d4ff;
-  transform: translateX(3px);
+.cancel-btn:hover,
+.btn.pill.danger:hover{
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+  border-color: rgba(255, 160, 160, 0.4);
+  box-shadow:
+    0 18px 44px rgba(185, 28, 28, 0.45),
+    inset 0 1px 0 rgba(255,255,255,.24);
+}
+
+.cancel-btn:active,
+.btn.pill.danger:active{
+  transform: translateY(0);
+  box-shadow:
+    0 10px 24px rgba(185, 28, 28, 0.3),
+    inset 0 1px 0 rgba(255,255,255,.14);
+}
+
+.cancel-btn:focus-visible,
+.btn.pill.danger:focus-visible{
+  outline: 2px solid rgba(255, 180, 180, 0.9);
+  outline-offset: 3px;
+}
+
+/* listaoldalon a két gomb szépen egymás mellé/egymás alá */
+.order-actions{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+/* részletező oldalon a két CTA egymás mellett */
+.summary-actions{
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+  .summary-actions a {
+    text-decoration: none;
+  }
+
+/* mobil finomhangolás */
+@media (max-width: 768px){
+  .cancel-btn,
+  .btn.pill.danger,
+  .summary-actions .btn,
+  .summary-actions form{
+    width: 100%;
+  }
+
+  .summary-actions{
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cancel-btn,
+  .btn.pill.danger{
+    min-width: 0;
+  }
 }

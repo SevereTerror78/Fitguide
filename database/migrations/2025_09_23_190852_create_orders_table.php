@@ -67,7 +67,7 @@ return new class extends Migration
             $table->string('country')->nullable();
 
             // ───── Pickup extra (opcionális)
-            $table->string('pickup_location')->nullable();
+            $table->string('pickup_location', 100)->nullable()->index();
 
             $table->timestamps();
         });

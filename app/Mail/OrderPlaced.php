@@ -13,12 +13,12 @@ class OrderPlaced extends Mailable
     use Queueable, SerializesModels;
 
     public array $cart;
-    public float $subtotal;
-    public float $shipping;
-    public float $total;
+    public int $subtotal;
+    public int $shipping;
+    public int $total;
     public $order;
 
-    public function __construct(array $cart, float $subtotal, float $shipping, float $total, $order)
+    public function __construct(array $cart, int $subtotal, int $shipping, int $total, $order)
     {
         $this->cart = $cart;
         $this->subtotal = $subtotal;
@@ -30,7 +30,7 @@ class OrderPlaced extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Order Placed',
+            subject: __('emails.order.subject'),
         );
     }
 
@@ -39,11 +39,11 @@ class OrderPlaced extends Mailable
         return new Content(
             view: 'emails.order_placed',
             with: [
-                'cart' => $this->cart,
+                'cart'     => $this->cart,
                 'subtotal' => $this->subtotal,
                 'shipping' => $this->shipping,
-                'total' => $this->total,
-                'order' => $this->order,
+                'total'    => $this->total,
+                'order'    => $this->order,
             ]
         );
     }

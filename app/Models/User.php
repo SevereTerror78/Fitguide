@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\RedeemedReward;
 use App\Models\Order;
 use App\Models\Discount;
 
@@ -20,14 +21,16 @@ class User extends Authenticatable
     'phone',
     'dob',
     'gender',
-    'profile_picture',
     'role',
     'points',
-
     'first_login_bonus_claimed',
     'profile_bonus_claimed',
     'first_login_bonus_claimed_at',
     'profile_bonus_claimed_at',
+    'language',
+    'theme',
+    'currency',
+
     ];
 
 

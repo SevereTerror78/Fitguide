@@ -10,9 +10,14 @@ return new class extends Migration
     {
         Schema::create('exercises', function (Blueprint $table) {
             $table->id();
-            $table->string('name');               // pl. Fekvenyomás
-            $table->text('description')->nullable();
-            $table->string('video_url');          // pl. YouTube link vagy saját fájl URL
+
+            $table->string('name');                 // EN name
+            $table->string('name_hu')->nullable();  // HU name
+
+            $table->text('description')->nullable();       // EN desc
+            $table->text('description_hu')->nullable();    // HU desc
+
+            $table->string('video_url');
             $table->timestamps();
         });
     }

@@ -469,3 +469,8 @@
     margin-top: 0;
   }
 }
+@media (max-width: 320px) {
+    body {
+        min-width: 320px;
+    }
+}

@@ -19,12 +19,21 @@ class StoreController extends Controller
 
         $products = Product::with('productType')
             ->when($type !== 'all', function ($q) use ($type) {
-                $q->whereHas('productType', fn($t) => $t->where('slug', $type));
+                $q->whereHas('productType', fn ($t) => $t->where('slug', $type));
             })
             ->when($search !== '', function ($q) use ($search) {
                 $q->where(function ($qq) use ($search) {
-                    $qq->where('name', 'like', "%{$search}%")
-                    ->orWhere('description', 'like', "%{$search}%");
+                    if (app()->getLocale() === 'hu') {
+                        $qq->where('name_hu', 'like', "%{$search}%")
+                           ->orWhere('description_hu', 'like', "%{$search}%")
+                           ->orWhere('name', 'like', "%{$search}%")
+                           ->orWhere('description', 'like', "%{$search}%");
+                    } else {
+                        $qq->where('name', 'like', "%{$search}%")
+                           ->orWhere('description', 'like', "%{$search}%")
+                           ->orWhere('name_hu', 'like', "%{$search}%")
+                           ->orWhere('description_hu', 'like', "%{$search}%");
+                    }
                 });
             })
             ->orderBy('name')
@@ -43,5 +52,4 @@ class StoreController extends Controller
         return view('store.index', compact('products', 'productTypes'))
             ->with('active', $type);
     }
-
 }

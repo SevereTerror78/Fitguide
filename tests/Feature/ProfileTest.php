@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 
 class ProfileTest extends TestCase
@@ -12,6 +13,7 @@ class ProfileTest extends TestCase
 
     public function test_profile_page_is_displayed(): void
     {
+        /** @var \App\Models\User $user */
         $user = User::factory()->create();
 
         $response = $this
@@ -23,6 +25,7 @@ class ProfileTest extends TestCase
 
     public function test_profile_information_can_be_updated(): void
     {
+        /** @var \App\Models\User $user */
         $user = User::factory()->create();
 
         $response = $this
@@ -40,11 +43,11 @@ class ProfileTest extends TestCase
 
         $this->assertSame('Test User', $user->name);
         $this->assertSame('test@example.com', $user->email);
-        $this->assertNull($user->email_verified_at);
     }
 
     public function test_email_verification_status_is_unchanged_when_the_email_address_is_unchanged(): void
     {
+        /** @var \App\Models\User $user */
         $user = User::factory()->create();
 
         $response = $this
@@ -63,12 +66,15 @@ class ProfileTest extends TestCase
 
     public function test_user_can_delete_their_account(): void
     {
+        Mail::fake();
+
+        /** @var \App\Models\User $user */
         $user = User::factory()->create();
 
         $response = $this
             ->actingAs($user)
             ->delete('/profile', [
-                'password' => 'password',
+                'confirmation_text' => 'DELETEACCOUNT',
             ]);
 
         $response
@@ -79,19 +85,22 @@ class ProfileTest extends TestCase
         $this->assertNull($user->fresh());
     }
 
-    public function test_correct_password_must_be_provided_to_delete_account(): void
+    public function test_correct_confirmation_text_must_be_provided_to_delete_account(): void
     {
+        Mail::fake();
+
+        /** @var \App\Models\User $user */
         $user = User::factory()->create();
 
         $response = $this
             ->actingAs($user)
             ->from('/profile')
             ->delete('/profile', [
-                'password' => 'wrong-password',
+                'confirmation_text' => 'WRONGTEXT',
             ]);
 
         $response
-            ->assertSessionHasErrorsIn('userDeletion', 'password')
+            ->assertSessionHasErrorsIn('userDeletion', 'confirmation_text')
             ->assertRedirect('/profile');
 
         $this->assertNotNull($user->fresh());

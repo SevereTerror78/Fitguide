@@ -3,30 +3,26 @@
   $fs = $fulfillment_status ?? 'new';
   $pm = $payment_method ?? 'card';
 
-  $pretty = fn($s) => ucfirst(str_replace('_', ' ', $s));
-
   // Színek – visszafogott, de informatív
   $color = match($ps) {
     'paid' => 'text-green-700',
     'failed' => 'text-red-700',
     'pending' => 'text-yellow-700',
-    default => 'text-gray-700', // unpaid
+    default => 'text-gray-700', // unpaid, refunded, stb.
   };
 
-  $method = match($pm) {
-    'cod' => 'COD',
-    'pickup' => 'Pickup',
-    default => 'Card',
-  };
+  $psLabel = __('admin.orders.payment_status.' . $ps);
+  $fsLabel = __('admin.orders.fulfillment_status.' . $fs);
+  $pmLabel = __('admin.orders.payment_method.' . $pm);
 @endphp
 
 <span class="font-semibold {{ $color }}">
-  {{ $pretty($ps) }}
+  {{ $psLabel }}
 </span>
 <span class="mx-1 text-gray-400">·</span>
 <span class="text-gray-700">
-  {{ $pretty($fs) }}
+  {{ $fsLabel }}
 </span>
 <span class="text-gray-400">
-  ({{ $method }})
+  ({{ $pmLabel }})
 </span>
